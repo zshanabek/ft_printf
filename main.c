@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 14:17:14 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/27 19:18:23 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/04/27 20:21:23 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdio.h>
 #include <unistd.h>
+
 
 int is_specifier(char c)
 {
@@ -40,6 +40,12 @@ void ft_printf(const char * restrict format)
 	i = 0;
 	while (format[i])
 	{
+		if (ft_isdigit(format[i]))
+		{
+			k = i;
+			k++;
+			// while ()
+		}
 		if (format[i] == '%')
 		{
 			k = i;
@@ -53,7 +59,7 @@ void ft_printf(const char * restrict format)
 		}
 		if (format[i] == '.')
 		{
-			k = i;			
+			k = i;
 			k++;
 			num = 0;
 			while (format[k] && ft_isdigit(format[k]))
@@ -72,5 +78,6 @@ int main()
 {
 	int c;
 	char *s = "zhunissali";
-	ft_printf ("floats: %4.323f\n");
+	printf ("Width trick: %5d \n", 10);
+	// ft_printf ("floats: %34.33f\n");
 }
