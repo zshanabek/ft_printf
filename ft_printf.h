@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 14:17:14 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/27 14:42:24 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/04/26 21:48:23 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/04/27 14:41:57 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <unistd.h>
-
-int ft_printf(const char * restrict format)
+#ifndef FT_PRINTF
+# define FT_PRINTF
+# include "libft/libft.h"
+typedef struct	s_spec
 {
-	ft_putstr(format);
-}
+	int width;
+	int hyphen;
+	int precision;
+	char specifier;
+}				t_spec;
 
-int main()
-{
-	ft_printf("ok%d");
-}
+#endif

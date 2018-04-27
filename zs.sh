@@ -1,0 +1,1 @@
+cc main.c -Llibft -lft
