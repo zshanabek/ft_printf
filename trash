@@ -1,12 +1,26 @@
-if (ft_isdigit(format[i]))
+i += 1;
+num = 0;			
+while (ft_isdigit(format[i]))
+{
+	num++;
+	k++;
+}
+form.width = ft_atoi(ft_strsub(format, i, num));
+while (format[k])
+{
+	if (is_specifier(format[k]))
+		form.specifier = format[k];
+	k++;
+}
+if (format[i] == '.')
 {
 	k = i;
-	num = 0;		
-	printf("%c\n", format[k]);		
+	k++;
+	num = 0;
 	while (format[k] && ft_isdigit(format[k]))
 	{
 		num++;
 		k++;
 	}
-	form.width = ft_atoi(ft_strsub(format, i, num));
+	form.precision = ft_atoi(ft_strsub(format, i + 1, num));
 }
