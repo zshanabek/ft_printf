@@ -1,0 +1,12 @@
+if (ft_isdigit(format[i]))
+{
+	k = i;
+	num = 0;		
+	printf("%c\n", format[k]);		
+	while (format[k] && ft_isdigit(format[k]))
+	{
+		num++;
+		k++;
+	}
+	form.width = ft_atoi(ft_strsub(format, i, num));
+}

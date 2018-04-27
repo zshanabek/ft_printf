@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/27 20:21:23 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/27 21:50:19 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdio.h>
 #include <unistd.h>
-
 
 int is_specifier(char c)
 {
@@ -32,52 +32,52 @@ int is_specifier(char c)
 
 void ft_printf(const char * restrict format)
 {
-	int i;
-	char *precision;
-	t_item form;
-	int num;
-	int k;
+	int		i;
+	int		k;
+	int		num;
+	char	*precision;
+	t_item	form;
+
 	i = 0;
 	while (format[i])
 	{
-		if (ft_isdigit(format[i]))
-		{
-			k = i;
-			k++;
-			// while ()
-		}
 		if (format[i] == '%')
 		{
-			k = i;
-			k++;
-			while(format[k])
+			i += 1;
+			num = 0;			
+			while (ft_isdigit(format[i]))
+			{
+				num++;
+				k++;
+			}
+			form.width = ft_atoi(ft_strsub(format, i, num));
+			while (format[k])
 			{
 				if (is_specifier(format[k]))
 					form.specifier = format[k];
 				k++;
 			}
-		}
-		if (format[i] == '.')
-		{
-			k = i;
-			k++;
-			num = 0;
-			while (format[k] && ft_isdigit(format[k]))
+			if (format[i] == '.')
 			{
-				num++;
+				k = i;
 				k++;
+				num = 0;
+				while (format[k] && ft_isdigit(format[k]))
+				{
+					num++;
+					k++;
+				}
+				form.precision = ft_atoi(ft_strsub(format, i + 1, num));
 			}
-			form.precision = ft_atoi(ft_strsub(format, i + 1, num));
 		}
 		i++;
 	}
-	ft_putnbr(form.precision);
+	printf("prec: %d\n", form.precision);
 }
 
 int main()
 {
 	int c;
 	char *s = "zhunissali";
-	printf ("Width trick: %5d \n", 10);
-	// ft_printf ("floats: %34.33f\n");
+	ft_printf ("floats: %34.45f\n");
 }
