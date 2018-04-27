@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 14:17:14 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/27 18:55:54 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/27 19:18:23 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,35 @@ void ft_printf(const char * restrict format)
 	{
 		if (format[i] == '%')
 		{
-			i++;
-			while(format[i])
+			k = i;
+			k++;
+			while(format[k])
 			{
-				if (is_specifier(format[i]))
-					form.specifier = format[i];
-				i++;
+				if (is_specifier(format[k]))
+					form.specifier = format[k];
+				k++;
 			}
 		}
-		else if (format[i] == '.')
+		if (format[i] == '.')
 		{
-			i++;
-			k = i;
+			k = i;			
+			k++;
 			num = 0;
-			while (format[i] && is_digit(format[i]))
+			while (format[k] && ft_isdigit(format[k]))
 			{
 				num++;
-				i++;
+				k++;
 			}
+			form.precision = ft_atoi(ft_strsub(format, i + 1, num));
 		}
 		i++;
 	}
-	ft_putchar(form.specifier);
+	ft_putnbr(form.precision);
 }
 
 int main()
 {
 	int c;
 	char *s = "zhunissali";
-	c = printf("%s\n", s);
+	ft_printf ("floats: %4.323f\n");
 }
