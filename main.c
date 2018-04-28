@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/28 20:05:37 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/28 20:19:29 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void ft_printf(const char * restrict format)
 	int		i;
 	int		k;
 	int		num;
-	char	*precision;
 	t_item	form;
 
 	form.pls_spc = 0;
