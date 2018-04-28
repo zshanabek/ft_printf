@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/27 22:05:26 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/28 15:44:58 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,49 +29,63 @@ int is_specifier(char c)
 	return (0);
 }
 
+void print_struct_members(t_item *form)
+{
+	printf("sign: %d\n", form->pls_spc);
+	printf("min_zero: %d\n", form->min_zer);	
+	printf("width: %d\n", form->width);
+	printf("precision: %d\n", form->precision);	
+	printf("specifier: %c\n", form->specifier);
+}
 
 void ft_printf(const char * restrict format)
 {
-	int i;
-	char *precision;
-	t_item form;	
-	int num;
-	int k;
+	int		i;
+	int		k;
+	int		num;
+	char	*precision;
+	t_item	form;
+
+	form.pls_spc = 0;
+	form.min_zer = 0;
+	form.width = 0;
+	form.precision = 0;
 	i = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			k = i;
-			k++;
-			while(format[k])
+			i += 1;
+			if (format[i] == '-' || format[i] == '0')
 			{
-				if (is_specifier(format[k]))
-					form.specifier = format[k];
-				k++;
+				if (format[i] == '-')
+					form.pls_spc = 1;
+				else if (format[i] == '0')
+					form.pls_spc = 2;
+				i++;
 			}
-		}
-		if (format[i] == '.')
-		{
-			k = i;
-			k++;
-			num = 0;
-			while (format[k] && ft_isdigit(format[k]))
+			if (format[i] == '.')
 			{
-				num++;
-				k++;
+				k = i;
+				i++;
+				num = 0;
+				while (format[i] && ft_isdigit(format[i]))
+				{
+					num++;
+					i++;
+				}
+				form.precision = ft_atoi(ft_strsub(format, k + 1, num));
 			}
-			form.precision = ft_atoi(ft_strsub(format, i + 1, num));
+			if (is_specifier(format[i]))
+				form.specifier = format[i];
 		}
 		i++;
 	}
-	ft_putnbr(form.precision);
+	print_struct_members(&form);
 }
 
 int main()
 {
-	int c;
-	char *s = "zhunissali";
-	printf ("Width trick: %5d \n", 10);
-	// ft_printf ("floats: %34.33f\n");
+	ft_printf ("floats: %034.33f\n");
+	// printf ("floats: %-.5f\n", 44.43);	
 }
