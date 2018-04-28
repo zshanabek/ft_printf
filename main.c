@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/28 15:44:58 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/28 20:05:37 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,17 @@ void ft_printf(const char * restrict format)
 					form.pls_spc = 2;
 				i++;
 			}
+			if (ft_isdigit(format[i]))
+			{
+				k = i;
+				num = 0;
+				while (format[i] && ft_isdigit(format[i]))
+				{
+					num++;
+					i++;
+				}
+				form.width = ft_atoi(ft_strsub(format, k, num));
+			}
 			if (format[i] == '.')
 			{
 				k = i;
@@ -86,6 +97,6 @@ void ft_printf(const char * restrict format)
 
 int main()
 {
-	ft_printf ("floats: %034.33f\n");
+	ft_printf ("floats: %034.33d\n");
 	// printf ("floats: %-.5f\n", 44.43);	
 }
