@@ -6,11 +6,9 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/29 13:46:53 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/30 17:48:00 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "ft_printf.h"
 
@@ -50,24 +48,6 @@ void print_struct_members(t_item *form)
 	printf("=====================\n");	
 }
 
-void ft_integer(int num, t_item *form)
-{
-	printf("num: %d\n", num);
-	print_struct_members(form);
-}
-
-void ft_character(char c, t_item *form)
-{
-	printf("char: %c\n", c);	
-	print_struct_members(form);
-}
-
-void ft_string(char *str, t_item *form)
-{
-	printf("string: %s\n", str);		
-	print_struct_members(form);
-}
-
 void ft_printf(const char * restrict format, ...)
 {
 	int		i;
@@ -80,10 +60,10 @@ void ft_printf(const char * restrict format, ...)
 	i = 0;
 	while (format[i])
 	{
+		if (format[i] != '%')
+			ft_putchar(format[i]);
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '%')
-				break;
 			form = (t_item *)malloc(sizeof(t_item));
 			form->pls_spc = 0;
 			form->min_zer = 0;
@@ -139,10 +119,12 @@ void ft_printf(const char * restrict format, ...)
 				form->specifier = format[i];
 			if (form->specifier == 'd')
 				ft_integer(va_arg(ap, int), form);
-			if (form->specifier == 'c')
+			else if (form->specifier == 'c')
 				ft_character(va_arg(ap, int), form);
-			if (form->specifier == 's')
+			else if (form->specifier == 's')
 				ft_string(va_arg(ap, char*), form);
+			else if (form->specifier == 'x')
+				ft_hex(va_arg(ap, int), form);
 			free(form);	
 		}
 		i++;
@@ -151,6 +133,9 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	ft_printf ("%010.5d %10c %-10s", 4, 'c', "ok");
-	// printf (" %d",55);	
+	// ft_printf ("%010.5d %10c %-10s", 4, 'c', "ok");
+	// ft_printf ("%-07.17d %#10.15x %-10s", 55, 11, "ok");
+	printf ("%5.4d\n", 25);	
+	// ft_printf ("%5.3d\n", -25);		
+	// ft_printf ("ok%10.5d ok\n", 445);		
 }

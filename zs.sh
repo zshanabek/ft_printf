@@ -1,2 +1,2 @@
-cc main.c -Llibft -lft
+gcc main.c spec_handlers.c -Llibft -lft
 ./a.out

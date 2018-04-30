@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/04/19 17:17:57 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/04/30 15:46:12 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ t_list			*ft_lstaddend(t_list *head);
 int				ft_intlen(int n);
 int				ft_isws(char c);
 void			ft_print2darr(char **matrix);
+int				ft_intmax(int a, int b);
 
 #endif
