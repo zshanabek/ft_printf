@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/01 12:29:14 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/01 15:17:46 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int is_specifier(char c)
 {
-	int i;	
+	int i;
 	const char flags[] = "sSpdDioOuUxXcCfF";
 
 	i = 0;
@@ -66,6 +66,14 @@ void ft_printf(const char * restrict format, ...)
 					form->pls_spc = 2;
 				i++;
 			}
+			if (format[i] == '-' || format[i] == '0')
+			{
+				if (format[i] == '-')
+					form->min_zer = 1;
+				else if (format[i] == '0')
+					form->min_zer = 2;
+				i++;
+			}
 			if (format[i] == '#')
 			{
 				form->hash = 1;
@@ -96,14 +104,9 @@ void ft_printf(const char * restrict format, ...)
 			}
 			if (is_specifier(format[i]))
 				form->specifier = format[i];
+			// print_struct_members(form);
 			if (form->specifier == 'd')
 				ft_integer(va_arg(ap, int), form);
-			else if (form->specifier == 'c')
-				ft_character(va_arg(ap, int), form);
-			else if (form->specifier == 's')
-				ft_string(va_arg(ap, char*), form);
-			else if (form->specifier == 'x')
-				ft_hex(va_arg(ap, int), form);
 			free(form);	
 		}
 		i++;
@@ -112,9 +115,13 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	ft_printf("%+5.3d\n",1);	
-	printf("%+5.3d\n",1);
-	// printf("%0+6.d\n",1);
-	// ft_printf("%0+6.d\n",1);	
+	// ft_printf("%+06d\n",42);	
+	printf("%030.0d\n",42);
+
+	// ft_printf("%0+6.d\n",42);	
+	// printf("%0+6.d\n",42);
+
+	// printf("%+6.d\n",1);
+	// ft_printf("%+6.d\n",1);	
 	// ft_printf("%+1.d\n",4);		
 }

@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 21:48:23 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/30 17:53:27 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/01 14:42:55 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct	s_item
 
 void print_struct_members(t_item *form);
 void ft_integer(int num, t_item *form);
-void ft_character(char c, t_item *form);
-void ft_string(char *str, t_item *form);
-void ft_hex(int num, t_item *form);
+
 
 #endif

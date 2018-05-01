@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 17:46:50 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/01 12:26:50 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/01 15:22:48 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void ft_integer(int num, t_item *form)
 		width = form->width - form->precision;
 	offset = width;	
 	prec2 = precision;
+	// printf("w: %d\n", width);
+	// printf("p: %d\n", precision);
+	// print_struct_members(form);
+	if (form->pls_spc == 1 && form->min_zer != 2)
+		ft_putchar('+');	
 	if (form->min_zer != 1 && width > 0)
 	{
 		if (form->pls_spc == 1)
@@ -38,7 +43,7 @@ void ft_integer(int num, t_item *form)
 		{
 			if (form->min_zer == 2 || (offset > prec2 && prec2 > 0) || form->pls_spc == 1)
 				ft_putchar(' ');				
-			else 
+			else
 				ft_putchar('0');
 		}
 	}
@@ -47,7 +52,7 @@ void ft_integer(int num, t_item *form)
 		ft_putchar('-');
 		num *= -1;
 	}
-	if (form->pls_spc == 1)
+	if (form->pls_spc == 1 && form->min_zer == 2)
 		ft_putchar('+');
 	if (precision > 0)
 	{
@@ -60,22 +65,4 @@ void ft_integer(int num, t_item *form)
 		while(width--)
 			ft_putchar(' ');
 	}
-}
-
-void ft_character(char c, t_item *form)
-{
-	printf("char: %c\n", c);	
-	print_struct_members(form);
-}
-
-void ft_string(char *str, t_item *form)
-{
-	printf("string: %s\n", str);		
-	print_struct_members(form);
-}
-
-void ft_hex(int num, t_item *form)
-{
-	printf("hex: %x\n", num);		
-	print_struct_members(form);
 }
