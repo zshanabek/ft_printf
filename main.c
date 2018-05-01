@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/30 17:48:00 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/01 12:29:14 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,6 @@ int is_specifier(char c)
 		i++;
 	}
 	return (0);
-}
-
-void print_struct_members(t_item *form)
-{
-	if (form->pls_spc == 2)
-		printf("pls_spc: %s\n", "space");
-	else if (form->pls_spc == 1)
-		printf("pls_spc: %c\n", '+');
-	else
-		printf("pls_spc: %s\n", "null");
-	if (form->min_zer == 2)
-		printf("min_zero: %d\n", 0);
-	else if (form->min_zer == 1)
-		printf("min_zero: %c\n", '-');
-	else
-		printf("min_zero: %s\n", "null");		
-	printf("hash: %d\n", form->hash);	
-	printf("width: %d\n", form->width);
-	printf("precision: %d\n", form->precision);	
-	printf("specifier: %c\n", form->specifier);
-	printf("=====================\n");	
 }
 
 void ft_printf(const char * restrict format, ...)
@@ -133,9 +112,9 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	// ft_printf ("%010.5d %10c %-10s", 4, 'c', "ok");
-	// ft_printf ("%-07.17d %#10.15x %-10s", 55, 11, "ok");
-	printf ("%5.4d\n", 25);	
-	// ft_printf ("%5.3d\n", -25);		
-	// ft_printf ("ok%10.5d ok\n", 445);		
+	ft_printf("%+5.3d\n",1);	
+	printf("%+5.3d\n",1);
+	// printf("%0+6.d\n",1);
+	// ft_printf("%0+6.d\n",1);	
+	// ft_printf("%+1.d\n",4);		
 }

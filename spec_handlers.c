@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 17:46:50 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/04/30 17:49:08 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/01 12:26:50 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,28 @@ void ft_integer(int num, t_item *form)
 	int width;
 	int precision;
 	int offset;
-	int zero;
+	int prec2;
 
-	// print_struct_members(form);	
-	precision = form->precision - ft_intlen(num);
-	width = form->width - form->precision;
-	zero = 0;
-	if (form->min_zer == 2 && offset > 0)
-		zero = 1;
-	if (offset > 0)
+	if (num >= 0)
+		precision = form->precision - ft_intlen(num);
+	else
+		precision = form->precision - ft_intlen(num) + 1;	
+	if (ft_intlen(num) > form->precision)
+		width = form->width - ft_intlen(num);		
+	else
+		width = form->width - form->precision;
+	offset = width;	
+	prec2 = precision;
+	if (form->min_zer != 1 && width > 0)
 	{
-		while(offset--)
+		if (form->pls_spc == 1)
+			width--;
+		while(width--)
 		{
-			if (zero)
+			if (form->min_zer == 2 || (offset > prec2 && prec2 > 0) || form->pls_spc == 1)
+				ft_putchar(' ');				
+			else 
 				ft_putchar('0');
-			else			
-				ft_putchar(' ');
 		}
 	}
 	if (num < 0)
@@ -41,10 +47,18 @@ void ft_integer(int num, t_item *form)
 		ft_putchar('-');
 		num *= -1;
 	}
+	if (form->pls_spc == 1)
+		ft_putchar('+');
 	if (precision > 0)
 	{
 		while(precision--)
 			ft_putchar('0');
+	}
+	ft_putnbr(num);
+	if (form->min_zer == 1 && width > 0)
+	{
+		while(width--)
+			ft_putchar(' ');
 	}
 }
 
