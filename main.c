@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/27 20:20:41 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/01 15:17:46 by zshanabe         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 int is_specifier(char c)
@@ -66,14 +54,6 @@ void ft_printf(const char * restrict format, ...)
 					form->pls_spc = 2;
 				i++;
 			}
-			if (format[i] == '-' || format[i] == '0')
-			{
-				if (format[i] == '-')
-					form->min_zer = 1;
-				else if (format[i] == '0')
-					form->min_zer = 2;
-				i++;
-			}
 			if (format[i] == '#')
 			{
 				form->hash = 1;
@@ -115,8 +95,8 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	// ft_printf("%+06d\n",42);	
-	printf("%030.0d\n",42);
+	ft_printf("%-20.10d\n",42);	
+	printf("%-20.10d\n",42);
 
 	// ft_printf("%0+6.d\n",42);	
 	// printf("%0+6.d\n",42);
