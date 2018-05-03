@@ -12,11 +12,12 @@ typedef struct	s_item
 	int width;		
 	int hash;			
 	int precision;
+	int is_precision;
 	char specifier;
 	int percent;
 }				t_item;
 
-void print_struct_members(t_item *form);
+void print_struct(t_item *form);
 void ft_integer(int num, t_item *form);
 
 
