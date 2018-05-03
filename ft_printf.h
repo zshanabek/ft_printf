@@ -18,7 +18,7 @@ typedef struct	s_item
 }				t_item;
 
 void print_struct(t_item *form);
+void print_wp(int width, int precision);
 void ft_integer(int num, t_item *form);
-
 
 #endif

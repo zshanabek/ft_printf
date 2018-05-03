@@ -1,11 +1,5 @@
 #include "ft_printf.h"
 
-void print_wp(int width, int precision)
-{
-	printf("w: %d\n", width);
-	printf("p: %d\n", precision);	
-}
-
 void ft_integer(int num, t_item *form)
 {
 	int width;
@@ -45,5 +39,5 @@ void ft_integer(int num, t_item *form)
 
 void ft_string(char *str, t_item *form)
 {
-
+	
 }

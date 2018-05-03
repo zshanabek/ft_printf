@@ -126,17 +126,14 @@ int main()
 	// ft_printf("%0+6.d\n",42);
 	// printf	 ("%0+6.d\n",42);
 
-	ft_printf("%+06.d\n",42);
-	printf	 ("%+06.d\n",42);
+	// ft_printf("%+06.d\n",42);
+	// printf	 ("%+06.d\n",42);
 
 	// ft_printf("%+6.4d\n",42);
 	// printf("%+6.4d\n",42);
 
 	// ft_printf("%+6.d\n",1);	
-	// printf("%+6.d\n",1);
-
-	// ft_printf("%+10.d\n",4);		
-	// printf("%+10.d\n",4);		
+	// printf("%+6.d\n",1);	
 
 	// ft_printf("%+19.20d\n",65655);		
 	// printf("%+19.20d\n",76755);	

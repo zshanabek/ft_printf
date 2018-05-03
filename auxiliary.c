@@ -21,3 +21,9 @@ void print_struct(t_item *form)
 	printf("specifier: %c\n", form->specifier);
 	printf("=====================\n");	
 }
+
+void print_wp(int width, int precision)
+{
+	printf("w: %d\n", width);
+	printf("p: %d\n", precision);	
+}
