@@ -1,3 +1,4 @@
 libft/*.o
 libft/*.a
 *.out
+.vscode/

@@ -2,22 +2,21 @@
 
 void print_struct(t_item *form)
 {
-	if (form->pls_spc == 2)
-		printf("pls_spc: %s\n", "space");
-	else if (form->pls_spc == 1)
-		printf("pls_spc: %c\n", '+');
-	else
-		printf("pls_spc: %s\n", "null");
-	if (form->min_zer == 2)
-		printf("min_zero: %s\n", "zero");
-	else if (form->min_zer == 1)
-		printf("min_zero: %c\n", '-');
-	else
-		printf("min_zero: %s\n", "null");		
-	printf("hash: %d\n", form->hash);	
+	if (form->plus == 1)
+		printf("plus\n");
+	if (form->space == 1)
+		printf("space\n");
+	if (form->minus == 1)
+		printf("minus\n");
+	if (form->zero == 1)
+		printf("zero\n");
+	if (form->hash)
+		printf("hash\n");
 	printf("width: %d\n", form->width);
-	printf("precision: %d\n", form->precision);
-	printf("is precision: %d\n", form->is_precision);			
+	if (form->precision != -1)
+		printf("precision: %d\n", form->precision);
+	else
+		printf("no precision\n");
 	printf("specifier: %c\n", form->specifier);
 	printf("=====================\n");	
 }

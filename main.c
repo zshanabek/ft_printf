@@ -15,79 +15,78 @@ int is_specifier(char c)
 	return (0);
 }
 
-void parse_str(const char * restrict format, va_list *ap)
+
+t_item *create_struct()
+{
+	t_item *form;
+
+	form = (t_item *)malloc(sizeof(t_item));
+	if (form == NULL)
+		return (NULL);
+	form->plus = false;
+	form->minus = false;
+	form->space = false;
+	form->zero = false;			
+	form->hash = false;
+	form->width = 0;
+	form->precision = 0;
+	return (form);
+}
+
+char  *get_inform(const char * restrict format, int i, t_item *form)
+{
+	int		k;
+	int		len;
+	char	*flags;
+
+	k = i;
+	len = 0;
+	while (!(is_specifier(format[i])))
+	{
+		i++;
+		form->specifier = format[i];
+		len++;
+	}
+	flags = ft_strsub(format, k, len);
+	return flags;
+}
+
+t_item *analyze(t_item *form, char *flags)
+{
+	int		precision;
+
+	form->width = get_width(flags);
+	form->precision = get_precision(flags);
+	if (find_minus(flags))
+		form->minus = true;
+	else if (find_zero(flags) && form->precision == -1)
+		form->zero = true;
+	if (find_plus(flags))
+		form->plus = true;
+	else if (find_space(flags))
+		form->space = true;
+	print_struct(form);
+	return form;
+}
+
+void parse_str (const char * restrict format, va_list *ap)
 {
 	int		i;
-	int		k;
-	int		num;
+	int		precision;
+	char 	*flags;
 	t_item	*form;
 
 	i = 0;
 	while (format[i])
 	{
-		if (format[i] != '%')
-			ft_putchar(format[i]);
 		if (format[i] == '%')
 		{
-			form = (t_item *)malloc(sizeof(t_item));
-			form->pls_spc = 0;
-			form->min_zer = 0;
-			form->width = 0;
-			form->precision = 0;
-			form->is_precision = 0;			
-			form->hash = 0;	
+			form = create_struct();
 			i += 1;
-			if (format[i] == '-' || format[i] == '0')
-			{
-				if (format[i] == '-')
-					form->min_zer = 1;
-				else if (format[i] == '0')
-					form->min_zer = 2;
-				i++;
-			}
-			if (format[i] == '+' || format[i] == ' ')
-			{
-				if (format[i] == '+')
-					form->pls_spc = 1;
-				else if (format[i] == ' ')
-					form->pls_spc = 2;
-				i++;
-			}
-			if (format[i] == '#')
-			{
-				form->hash = 1;
-				i++;
-			}
-			if (ft_isdigit(format[i]))
-			{
-				k = i;
-				num = 0;
-				while (format[i] && ft_isdigit(format[i]))
-				{
-					num++;
-					i++;
-				}
-				form->width = ft_atoi(ft_strsub(format, k, num));
-			}
-			if (format[i] == '.')
-			{
-				form->is_precision = 1;				
-				k = i;
-				i++;
-				num = 0;
-				while (format[i] && ft_isdigit(format[i]))
-				{
-					num++;
-					i++;
-				}
-				form->precision = ft_atoi(ft_strsub(format, k + 1, num));
-			}
-			if (is_specifier(format[i]))
-				form->specifier = format[i];
-			// print_struct_members(form);
-			if (form->specifier == 'd')
-				ft_integer(va_arg(*ap, int), form);
-			free(form);	
+			flags = get_inform(format, i, form);
+			analyze(form, flags);
+			free(form);
+			i += 1;
 		}
 		i++;
 	}
@@ -101,40 +100,15 @@ void ft_printf(const char * restrict format, ...)
 	t_item	*form;
 
 	va_list ap;
-    va_start(ap, format);	
-
+    va_start(ap, format);
 	parse_str(format, &ap);
 }
 
 int main()
 {
-	// ft_printf("%30.3d\n",42);
-	// printf	 ("%30.3d\n",42);
+	
+	ft_printf("%044.12d", 12);
 
-	// ft_printf("%010.5d\n",42);
-	// printf("%010.5d\n",42);
-
-	// ft_printf("%-15.17d\n",1);	
-	// printf("%-15.17d\n",1);
-
-	// ft_printf("%015.17d\n",1);	
-	// printf("%015.17d\n",1);
-
-	// ft_printf("%+5.3d\n",4);		
-	// printf("%+5.3d\n",4);		
-
-	// ft_printf("%0+6.d\n",42);
-	// printf	 ("%0+6.d\n",42);
-
-	// ft_printf("%+06.d\n",42);
-	// printf	 ("%+06.d\n",42);
-
-	// ft_printf("%+6.4d\n",42);
-	// printf("%+6.4d\n",42);
-
-	// ft_printf("%+6.d\n",1);	
-	// printf("%+6.d\n",1);	
-
-	// ft_printf("%+19.20d\n",65655);		
-	// printf("%+19.20d\n",76755);	
+	// printf("%044.d", 12);
+	
 }
