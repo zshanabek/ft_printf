@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/04/30 15:46:12 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:25:33 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+void			ft_nbrendl(int n);
 int				ft_isempty(char const *str);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));

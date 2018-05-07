@@ -1,38 +1,5 @@
 #include "ft_printf.h"
 
-int is_specifier(char c)
-{
-	int i;
-	const char flags[] = "sSpdDioOuUxXcCfF";
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-
-t_item *create_struct()
-{
-	t_item *form;
-
-	form = (t_item *)malloc(sizeof(t_item));
-	if (form == NULL)
-		return (NULL);
-	form->plus = false;
-	form->minus = false;
-	form->space = false;
-	form->zero = false;			
-	form->hash = false;
-	form->width = 0;
-	form->precision = 0;
-	return (form);
-}
-
 char  *get_inform(const char * restrict format, int i, t_item *form)
 {
 	int		k;
@@ -51,12 +18,11 @@ char  *get_inform(const char * restrict format, int i, t_item *form)
 	return flags;
 }
 
-t_item *analyze(t_item *form, char *flags)
+t_item *ft_analyze_d(int num, t_item *form, char *flags)
 {
-	int		precision;
+	char 	*zeros_str;
+	char 	*padding_str;
 
-	form->width = get_width(flags);
-	form->precision = get_precision(flags);
 	if (find_minus(flags))
 		form->minus = true;
 	else if (find_zero(flags) && form->precision == -1)
@@ -65,14 +31,22 @@ t_item *analyze(t_item *form, char *flags)
 		form->plus = true;
 	else if (find_space(flags))
 		form->space = true;
-	print_struct(form);
+	if (num < 0)
+		form->sign = '-';
+	else if (form->plus)
+		form->sign = '+';
+	if (form->sign == '+' || form->sign == '-')
+		form->space = false;
+	calculate_padding(num, form, flags);
+	calculate_zeros(num, form, flags);
+
+	ft_putnbr(form->padding);
 	return form;
 }
 
-void parse_str (const char * restrict format, va_list *ap)
+void parse_str(const char * restrict format, va_list *ap)
 {
 	int		i;
-	int		precision;
 	char 	*flags;
 	t_item	*form;
 
@@ -81,10 +55,14 @@ void parse_str (const char * restrict format, va_list *ap)
 	{
 		if (format[i] == '%')
 		{
+			i += 1;			
 			form = create_struct();
-			i += 1;
 			flags = get_inform(format, i, form);
-			analyze(form, flags);
+			if (form->specifier == 'd')
+			{
+				form = ft_analyze_d(va_arg(*ap, int), form, flags);
+				
+			}
 			free(form);
 			i += 1;
 		}
@@ -94,11 +72,6 @@ void parse_str (const char * restrict format, va_list *ap)
 
 void ft_printf(const char * restrict format, ...)
 {
-	int		i;
-	int		k;
-	int		num;
-	t_item	*form;
-
 	va_list ap;
     va_start(ap, format);
 	parse_str(format, &ap);
@@ -106,9 +79,6 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	
-	ft_printf("%044.12d", 12);
-
-	// printf("%044.d", 12);
-	
+	ft_printf("%22d", 12);
+	printf("%22d", 12);	
 }
