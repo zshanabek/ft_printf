@@ -2,3 +2,6 @@ libft/*.o
 libft/*.a
 *.out
 .vscode/
+push.sh
+zs.sh
+examples

@@ -13,7 +13,6 @@ void calculate_padding(int num, t_item *form, char *flags)
 	if (form->sign == '+' || form->sign == '-')
 		padding--;
 	form->padding = padding;
-
 }
 
 void calculate_zeros(int num, t_item *form, char *flags)
