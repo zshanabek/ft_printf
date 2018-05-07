@@ -5,3 +5,4 @@ libft/*.a
 push.sh
 zs.sh
 examples
+ft_printf
