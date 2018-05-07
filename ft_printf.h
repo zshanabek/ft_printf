@@ -36,8 +36,7 @@ void			calculate_zeros(int num, t_item *form, char *flags);
 void			calculate_padding(int num, t_item *form, char *flags);
 int				is_specifier(char c);
 t_item			*create_struct();
-void			make_output_d(int num, t_item *form);
-char			*ft_paddingnew(size_t size);
-char			*ft_zerosnew(size_t size);
+void			create_output_d(int num, t_item *form);
+char			*ft_strfill(size_t size, char c);
 
 #endif

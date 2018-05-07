@@ -30,7 +30,18 @@ void calculate_zeros(int num, t_item *form, char *flags)
 	}
 }
 
-void make_output_d(int num, t_item *form)
+void create_output_d(int num, t_item *form)
 {
-	num = form->padding;
+	char 	*zeros_str;
+	char 	*padding_str;
+	char 	*output;
+	
+	if (form->padding > 0 && form->zero == false)
+		padding_str = ft_strfill(form->padding, ' ');
+	else if (form->padding > 0 && form->zero == true)
+		padding_str = ft_strfill(form->padding, '0');
+
+	zeros_str = ft_strfill(form->precision, '0');
+	output = ft_strjoin(padding_str, zeros_str);
+	ft_putendl(output);
 }

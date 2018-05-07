@@ -20,8 +20,6 @@ char  *get_inform(const char * restrict format, int i, t_item *form)
 
 t_item *ft_analyze_d(int num, t_item *form, char *flags)
 {
-	char 	*zeros_str;
-	char 	*padding_str;
 
 	if (find_minus(flags))
 		form->minus = true;
@@ -40,7 +38,6 @@ t_item *ft_analyze_d(int num, t_item *form, char *flags)
 	calculate_padding(num, form, flags);
 	calculate_zeros(num, form, flags);
 
-	ft_putnbr(form->padding);
 	return form;
 }
 
@@ -61,7 +58,7 @@ void parse_str(const char * restrict format, va_list *ap)
 			if (form->specifier == 'd')
 			{
 				form = ft_analyze_d(va_arg(*ap, int), form, flags);
-				
+				create_output_d(va_arg(*ap, int), form);
 			}
 			free(form);
 			i += 1;
@@ -79,6 +76,6 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	ft_printf("%22d", 12);
-	printf("%22d", 12);	
+	ft_printf("%10.5d", 12);
+	// printf("%10.d", 12);	
 }

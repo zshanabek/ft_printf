@@ -58,25 +58,13 @@ t_item *create_struct()
 }
 
 
-char	*ft_paddingnew(size_t size)
+char	*ft_strfill(size_t size, char c)
 {
 	char *str;
 
 	str = malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_memset(str, ' ', size + 1);
-	return (str);
-}
-
-
-char	*ft_zerosnew(size_t size)
-{
-	char *str;
-
-	str = malloc(sizeof(char) * (size + 1));
-	if (str == NULL)
-		return (NULL);
-	ft_memset(str, '0', size + 1);
+	ft_memset(str, c, size + 1);
 	return (str);
 }
