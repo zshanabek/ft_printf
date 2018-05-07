@@ -18,7 +18,7 @@ void print_struct(t_item *form)
 	else
 		printf("no precision\n");
 	printf("specifier: %c\n", form->specifier);
-	printf("=====================\n");	
+	printf("====================\n");	
 }
 
 void print_wp(int width, int precision)
