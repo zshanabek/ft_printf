@@ -18,7 +18,7 @@ char  *get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
-t_item *ft_analyze_d(int num, t_item *form, char *flags)
+void	ft_analyze_d(int num, t_item *form, char *flags)
 {
 	if (find_minus(flags))
 		form->minus = true;
@@ -36,7 +36,18 @@ t_item *ft_analyze_d(int num, t_item *form, char *flags)
 		form->space = false;
 	form->precision = calculate_zeros(num, form, flags);
 	form->padding = calculate_padding(num, form, flags);
-	return (form);
+}
+
+void identify_specifier(t_item *form, va_list *ap, char *flags)
+{
+	int num;
+
+	if (form->specifier == 'd')
+	{
+		num = va_arg(*ap, int);
+		ft_analyze_d(num, form, flags);
+		create_output_d(num, form);
+	}
 }
 
 void parse_str(const char * restrict format, va_list *ap)
@@ -54,12 +65,7 @@ void parse_str(const char * restrict format, va_list *ap)
 			i += 1;			
 			form = create_struct();
 			flags = get_inform(format, i, form);
-			if (form->specifier == 'd')
-			{
-				num = va_arg(*ap, int);
-				form = ft_analyze_d(num, form, flags);
-				create_output_d(num, form);
-			}
+			identify_specifier(form, ap, flags);
 			free(form);
 		}
 		i++;
@@ -75,7 +81,7 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	ft_printf("%8.3d\n", 12);
+	ft_printf("%4.3d\n", 12);
 	ft_putchar('\n');
-	printf("%8.3d\n", 12);	
+	printf("%4.3d\n", 12);	
 }

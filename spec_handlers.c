@@ -34,14 +34,14 @@ void create_output_d(int num, t_item *form)
 	char 	*padding_str;
 	char 	*output;
 	
+	padding_str = ft_strnew(0);
+	zeros_str = ft_strnew(0);
 	if (form->padding > 0 && form->zero == false)
 		padding_str = ft_strfill(form->padding, ' ');
 	else if (form->padding > 0 && form->zero == true)
 		padding_str = ft_strfill(form->padding, '0');
-
 	if (form->precision > 0)
 		zeros_str = ft_strfill(form->precision, '0');
-	
 	if (form->space)
 		ft_putchar(' ');
 	if (ft_strlen(padding_str) > 0) 
@@ -49,8 +49,4 @@ void create_output_d(int num, t_item *form)
 	if (ft_strlen(zeros_str) > 0)
 		ft_putstr(zeros_str);
 	ft_putnbr(num);
-	// ft_nbrendl(num);
-	
-	// output = ft_strjoin(output, );
-	// ft_putendl(output);
 }
