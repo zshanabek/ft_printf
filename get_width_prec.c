@@ -5,9 +5,9 @@ int get_width(char *flags)
 	int k;
 	int len;
 	int num;
-	num = 0;
 	int i;
 
+	num = 0;
 	i = 0;
 	while (flags[i] && !(ft_isdigit(flags[i])))
 		i++;

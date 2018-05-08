@@ -15,12 +15,11 @@ char  *get_inform(const char * restrict format, int i, t_item *form)
 		len++;
 	}
 	flags = ft_strsub(format, k, len);
-	return flags;
+	return (flags);
 }
 
 t_item *ft_analyze_d(int num, t_item *form, char *flags)
 {
-
 	if (find_minus(flags))
 		form->minus = true;
 	else if (find_zero(flags) && form->precision == -1)
@@ -35,10 +34,9 @@ t_item *ft_analyze_d(int num, t_item *form, char *flags)
 		form->sign = '+';
 	if (form->sign == '+' || form->sign == '-')
 		form->space = false;
-	calculate_padding(num, form, flags);
-	calculate_zeros(num, form, flags);
-
-	return form;
+	form->precision = calculate_zeros(num, form, flags);
+	form->padding = calculate_padding(num, form, flags);
+	return (form);
 }
 
 void parse_str(const char * restrict format, va_list *ap)
@@ -46,6 +44,7 @@ void parse_str(const char * restrict format, va_list *ap)
 	int		i;
 	char 	*flags;
 	t_item	*form;
+	int num;
 
 	i = 0;
 	while (format[i])
@@ -57,11 +56,11 @@ void parse_str(const char * restrict format, va_list *ap)
 			flags = get_inform(format, i, form);
 			if (form->specifier == 'd')
 			{
-				form = ft_analyze_d(va_arg(*ap, int), form, flags);
-				create_output_d(va_arg(*ap, int), form);
+				num = va_arg(*ap, int);
+				form = ft_analyze_d(num, form, flags);
+				create_output_d(num, form);
 			}
 			free(form);
-			i += 1;
 		}
 		i++;
 	}
@@ -76,6 +75,7 @@ void ft_printf(const char * restrict format, ...)
 
 int main()
 {
-	ft_printf("%10.5d", 12);
-	// printf("%10.d", 12);	
+	ft_printf("%8.3d\n", 12);
+	ft_putchar('\n');
+	printf("%8.3d\n", 12);	
 }

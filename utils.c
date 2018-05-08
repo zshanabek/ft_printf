@@ -65,6 +65,7 @@ char	*ft_strfill(size_t size, char c)
 	str = malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_memset(str, c, size + 1);
+	ft_memset(str, c, size);
+	str[size] = '\0';
 	return (str);
 }
