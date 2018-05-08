@@ -40,6 +40,14 @@ int is_specifier(char c)
 	return (0);
 }
 
+
+int is_sign(char c)
+{
+	if (c == '+' || c == '-')
+		return (1);
+	return (0);
+}
+
 t_item *create_struct()
 {
 	t_item *form;
@@ -54,6 +62,8 @@ t_item *create_struct()
 	form->hash = false;
 	form->padding = 0;
 	form->precision = 0;
+	form->sign = 'E';
+	form->order = 0;	
 	return (form);
 }
 
