@@ -29,7 +29,8 @@ void ft_sign_order(t_item *form, char *padding_str, char *zeros_str)
 	// ft_putchar(form->sign);
 	if (is_sign(form->sign))
 	{
-		if ((ft_strlen(padding_str) <= 0 && ft_strlen(zeros_str) <= 0) || (ft_strlen(padding_str) > 0 && ft_strlen(zeros_str) <= 0 && form->zero == true))
+		if ((ft_strlen(padding_str) <= 0 && ft_strlen(zeros_str) <= 0) || (ft_strlen(padding_str) > 0 && ft_strlen(zeros_str) <= 0 && form->zero == true) 
+		|| (ft_strlen(zeros_str) > ft_strlen(padding_str)))
 		{
 			// ft_putchar('0');
 			form->order = 1;
@@ -62,11 +63,9 @@ int	ft_analyze_d(int num, t_item *form, char *flags)
 		form->minus = true;
 	else if (find_zero(flags) && form->precision == -1)
 		form->zero = true;
-
 	if (is_sign(form->sign) || form->padding > 0) 
 		form->space = false;
 	form->padding = calculate_padding(num, form, flags);
-	
 	return (num);
 }
 
@@ -116,12 +115,13 @@ void	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	ft_printf("1 |% 05d\n",0);
-	ft_printf("2 |% 05d\n",-7); 
-	ft_printf("3 |% 05d\n",1560133635);
-	ft_printf("4 |% 05d\n",-2035065302);
-	printf	 ("1 |% 05d\n",0);
-	printf	 ("2 |% 05d\n",-7);
-	printf	 ("3 |% 05d\n",1560133635);
-	printf	 ("4 |% 05d\n",-2035065302);
+ft_printf("1 |% 05d\n",0);
+ft_printf("2 |% 05d\n",-7); 
+ft_printf("3 |% 05d\n",1560133635);
+ft_printf("4 |% 05d\n",-2035065302);
+printf	 ("1 |% 05d\n",0);
+printf	 ("2 |% 05d\n",-7);
+printf	 ("3 |% 05d\n",1560133635);
+printf	 ("4 |% 05d\n",-2035065302);
+
 }

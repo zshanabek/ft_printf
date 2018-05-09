@@ -10,6 +10,7 @@ void print_struct(t_item *form)
 		printf("minus\n");
 	if (form->zero == 1)
 		printf("zero\n");
+	printf("sign: %c\n", form->sign);	
 	if (form->hash)
 		printf("hash\n");
 	printf("width: %d\n", form->padding);

@@ -9,7 +9,7 @@ int get_width(char *flags)
 
 	num = 0;
 	i = 0;
-	while (flags[i] && !(ft_isdigit(flags[i])))
+	while ((flags[i] && !(ft_isdigit(flags[i]))) || flags[i] == '0')
 		i++;
 	k = i;
 	len = 0;
@@ -19,6 +19,7 @@ int get_width(char *flags)
 		i++;
 	}
 	num = ft_atoi(ft_strsub(flags, k, len));
+	
 	return (num);
 }
 
@@ -68,9 +69,8 @@ int calculate_padding(int num, t_item *form, char *flags)
 	int		width;	
 
 	width = get_width(flags);
-
-	// ft_putchar(' ');
-	if (form->precision >= 0)
+	
+	if (form->precision > 0)
 	{
 		padding = width - (form->precision + ft_intlen(num));
 		if (form->sign == '+' || form->sign == '-' || form->space == true )
