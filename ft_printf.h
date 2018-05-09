@@ -34,7 +34,7 @@ int				calculate_zeros(int num, char *flags);
 int				calculate_padding(int num, t_item *form, char *flags);
 int				is_specifier(char c);
 t_item			*create_struct();
-void			create_output_d(int num, t_item *form);
+void			create_output_d(int num, t_item *form, int *count);
 char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);

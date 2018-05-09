@@ -69,7 +69,7 @@ int	ft_analyze_d(int num, t_item *form, char *flags)
 	return (num);
 }
 
-void	identify_specifier(t_item *form, va_list *ap, char *flags)
+void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 {
 	int num;
 
@@ -77,51 +77,52 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags)
 	{
 		num = va_arg(*ap, int);
 		num = ft_analyze_d(num, form, flags);
-		create_output_d(num, form);
+		create_output_d(num, form, count);
 	}
 }
 
-void	parse_str(const char * restrict format, va_list *ap)
+int	ft_printf(const char * restrict format, ...)
 {
-	int		i;
-	char 	*flags;
-	t_item	*form;
+	int			i;
+	int			count;
+	char		*flags;
+	t_item		*form;
+	va_list		ap;
 
+	count = 0;
+    va_start(ap, format);
 	i = 0;
 	while (format[i])
 	{
 		if (format[i] != '%')
+		{
 			ft_putchar(format[i]);
+			count++;
+		}
 		if (format[i] == '%')
 		{
 			i += 1;
 			form = create_struct();
 			flags = get_inform(format, i, form);
-			identify_specifier(form, ap, flags);
+			identify_specifier(form, &ap, flags, &count);
 			while (is_specifier(format[i]) != 1)
 				i++;
 			free(form);
 		}
 		i++;
 	}
-}
-
-void	ft_printf(const char * restrict format, ...)
-{
-	va_list ap;
-    va_start(ap, format);
-	parse_str(format, &ap);
+	return (count);
 }
 
 int		main()
 {
-ft_printf("1 |% 05d\n",0);
-ft_printf("2 |% 05d\n",-7); 
-ft_printf("3 |% 05d\n",1560133635);
-ft_printf("4 |% 05d\n",-2035065302);
-printf	 ("1 |% 05d\n",0);
-printf	 ("2 |% 05d\n",-7);
-printf	 ("3 |% 05d\n",1560133635);
-printf	 ("4 |% 05d\n",-2035065302);
 
+	ft_printf("1 |% -5d\n",0);
+	ft_printf("2 |% -5d\n",-7); 
+	ft_printf("3 |% -5d\n",1560133635);
+	ft_printf("4 |% -5d\n",-2035065302);
+	printf	("1 |% -5d\n",0);
+	printf	("2 |% -5d\n",-7);
+	printf	("3 |% -5d\n",1560133635);
+	printf	("4 |% -5d\n",-2035065302);
 }
