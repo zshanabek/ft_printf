@@ -1,20 +1,18 @@
 #include "ft_printf.h"
 
-
-
 void make_output_d(int num, t_item *form, char *padding_str, char *zeros_str)
 {
 	if (form->space)
 		ft_putchar(' ');
-	if (form->order == 1)
+	if (form->order == 1 && is_sign(form->sign))
 		ft_putchar(form->sign);
 	if (ft_strlen(padding_str) > 0 && form->minus == false) 
 		ft_putstr(padding_str);
-	if (form->order == 2)
+	if (form->order == 2 && is_sign(form->sign))
 		ft_putchar(form->sign);
 	if (ft_strlen(zeros_str) > 0)
 		ft_putstr(zeros_str);
-	if (form->order == 3)
+	if (form->order == 3 && is_sign(form->sign))
 		ft_putchar(form->sign);
 	ft_putnbr(num);
 	if (ft_strlen(padding_str) > 0 && form->minus == true) 

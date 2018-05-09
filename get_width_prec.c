@@ -55,8 +55,10 @@ int calculate_zeros(int num, char *flags)
 	int precision;
 
 	precision = get_precision(flags);
+	// ft_nbrendl(num);
 	if (precision > 0)
 		precision = precision - ft_intlen(num);
+	// ft_nbrendl(precision);		
 	return precision;
 }
 
@@ -66,17 +68,19 @@ int calculate_padding(int num, t_item *form, char *flags)
 	int		width;	
 
 	width = get_width(flags);
+
+	// ft_putchar(' ');
 	if (form->precision >= 0)
 	{
 		padding = width - (form->precision + ft_intlen(num));
-		if (form->sign == '+' || form->sign == '-')
+		if (form->sign == '+' || form->sign == '-' || form->space == true )
 			padding--;
 		return (padding);		
 	}
 	else
 	{
-		padding = width -  ft_intlen(num);
-		if (form->sign == '+' || form->sign == '-')
+		padding = width - ft_intlen(num);
+		if (form->sign == '+' || form->sign == '-' || form->space == true  )
 			padding--;
 		return (padding);	
 	}
