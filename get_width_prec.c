@@ -86,3 +86,10 @@ int calculate_padding(int num, t_item *form, char *flags)
 	}
 	return (0);
 }
+
+int calculate_padding_s(char *str, t_item *form, char *flags)
+{
+	int width;
+
+	width = get_width(flags);
+}

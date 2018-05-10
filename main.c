@@ -24,54 +24,10 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
-void ft_sign_order(t_item *form, char *padding_str, char *zeros_str)
-{
-	// ft_putchar(form->sign);
-	if (is_sign(form->sign))
-	{
-		if ((ft_strlen(padding_str) <= 0 && ft_strlen(zeros_str) <= 0) || (ft_strlen(padding_str) > 0 && ft_strlen(zeros_str) <= 0 && form->zero == true) 
-		|| (ft_strlen(zeros_str) > ft_strlen(padding_str)))
-		{
-			// ft_putchar('0');
-			form->order = 1;
-		}
-		else if (ft_strlen(padding_str) > 0 && ft_strlen(zeros_str) > 0)
-		{
-			// ft_putchar('1');			
-			form->order = 2;
-		}
-		else if (ft_strlen(padding_str) > 0 && ft_strlen(zeros_str) <= 0)
-		{
-			// ft_putchar('2');			
-			form->order = 3;
-		}
-	}
-}
-int	ft_analyze_d(int num, t_item *form, char *flags)
-{
-	if (num < 0)
-	{
-		form->sign = '-';
-		num *= -1;
-	}
-	if (find_plus(flags) && form->sign != '-')
-		form->sign = '+';
-	else if (find_space(flags))
-		form->space = true;
-	form->precision = calculate_zeros(num, flags);	
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags) && form->precision == -1)
-		form->zero = true;
-	if (is_sign(form->sign) || form->padding > 0) 
-		form->space = false;
-	form->padding = calculate_padding(num, form, flags);
-	return (num);
-}
-
 void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 {
 	int num;
+	char *string;
 
 	if (form->specifier == 'd')
 	{
@@ -79,6 +35,8 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 		num = ft_analyze_d(num, form, flags);
 		create_output_d(num, form, count);
 	}
+	else if (form->specifier == 's')
+		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
 }
 
 int	ft_printf(const char * restrict format, ...)
@@ -116,13 +74,17 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
+	ft_printf	 ("%+20hd\n",434);
+	printf	 ("%+20d\n",344);
+	
 
-	ft_printf("1 |% -5d\n",0);
-	ft_printf("2 |% -5d\n",-7); 
-	ft_printf("3 |% -5d\n",1560133635);
-	ft_printf("4 |% -5d\n",-2035065302);
-	printf	("1 |% -5d\n",0);
-	printf	("2 |% -5d\n",-7);
-	printf	("3 |% -5d\n",1560133635);
-	printf	("4 |% -5d\n",-2035065302);
+	// ft_printf("1 |%d\n",0);
+	// ft_printf("2 |%d\n",-7); 
+	// ft_printf("3 |%d\n",1560133635);
+	// ft_printf("4 |%d\n",-2035065302);
+	// printf	 ("1 |%d\n",0);
+	// printf	 ("2 |%d\n",-7);
+	// printf	 ("3 |%d\n",1560133635);
+	// printf	 ("4 |%d\n",-2035065302);
+	
 }

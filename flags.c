@@ -12,11 +12,15 @@ int find_minus(char *flags)
 
 int find_zero(char *flags)
 {
-	char *zero;
+	int i;
 
-	zero = ft_strchr(flags, '0');
-	if (zero)
-		return (1);	
+	i = 0;
+	while(flags[i])
+	{
+		if (ft_isdigit(flags[i-1]) == 0 && flags[i] == '0')
+			return (1);
+		i++;
+	}
 	return (0);
 }
 

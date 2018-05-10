@@ -5,6 +5,14 @@
 # include <stdarg.h>
 # include <stdbool.h>
 
+enum			modifiers
+{
+	ll = 0,
+	hh = 0,
+	h = 0,
+	l = 0
+}				mod;
+
 typedef struct	s_item
 {
 	int plus;
@@ -38,5 +46,8 @@ void			create_output_d(int num, t_item *form, int *count);
 char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
+int				ft_analyze_d(int num, t_item *form, char *flags);
+void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
+int				calculate_padding_s(char *str, t_item *form, char *flags);
 
 #endif
