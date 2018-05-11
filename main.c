@@ -76,8 +76,8 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	ft_printf	 ("%7o\n",444);
-	printf	 ("%7o\n",444);
+	ft_printf	 ("%7.5o\n",345);
+	printf	 ("%7.5o\n",345);
 					
 	// ft_printf("1 |%d\n",0);
 	// ft_printf("2 |%d\n",-7); 
