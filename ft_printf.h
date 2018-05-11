@@ -49,5 +49,6 @@ void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
 int				ft_analyze_d(int num, t_item *form, char *flags);
 void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
 int				calculate_padding_s(char *str, t_item *form, char *flags);
+void			ft_analyze_o(int num, t_item *form, char *flags, int *count);
 
 #endif

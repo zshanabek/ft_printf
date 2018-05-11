@@ -56,10 +56,8 @@ int calculate_zeros(int num, char *flags)
 	int precision;
 
 	precision = get_precision(flags);
-	// ft_nbrendl(num);
 	if (precision > 0)
 		precision = precision - ft_intlen(num);
-	// ft_nbrendl(precision);		
 	return precision;
 }
 
@@ -95,11 +93,4 @@ int calculate_padding_s(char *str, t_item *form, char *flags)
 	width = get_width(flags);
 	padding = width - ft_strlen(str); 
 	return (padding);
-}
-
-int calculate_precision_s(char *str, t_item *form, char *flags)
-{
-	int precision;
-	precision = get_precision(flags);
-	return (precision);
 }

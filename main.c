@@ -5,13 +5,13 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	int		k;
 	int		len;
 	char	*flags;
-	
+
+	flags = ft_strnew(0);	
 	k = i;
 	len = 0;
 	if (is_specifier(format[i]))
 	{
 		form->specifier = format[i];
-		flags = ft_strnew(0);
 		return (flags);
 	}
 	while (!(is_specifier(format[i])))
@@ -37,6 +37,8 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 	}
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
+	else if (form->specifier == 'o')
+		ft_analyze_o(va_arg(*ap, int), form, flags, count);
 }
 
 int	ft_printf(const char * restrict format, ...)
@@ -74,10 +76,9 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	ft_printf	 ("%33.333s\n","hello world");
-	printf	 ("%33.333s\n","hello world");
-	
-
+	ft_printf	 ("%7o\n",444);
+	printf	 ("%7o\n",444);
+					
 	// ft_printf("1 |%d\n",0);
 	// ft_printf("2 |%d\n",-7); 
 	// ft_printf("3 |%d\n",1560133635);

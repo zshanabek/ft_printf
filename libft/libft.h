@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/07 15:25:33 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/11 14:46:48 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int				ft_intlen(int n);
 int				ft_isws(char c);
 void			ft_print2darr(char **matrix);
 int				ft_intmax(int a, int b);
+char			*ft_itoa_base(int value, int base);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 15:26:36 by zshanabe          #+#    #+#              #
-#    Updated: 2018/05/07 15:22:51 by zshanabe         ###   ########.fr        #
+#    Updated: 2018/05/11 14:47:05 by zshanabe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ ft_putnbr_fd.c ft_strdel.c ft_strmap.c ft_strrchr.c ft_isprint.c ft_memmove.c   
 ft_putstr.c ft_strdup.c ft_strmapi.c ft_strsplit.c ft_itoa.c ft_memset.c         \
 ft_putstr_fd.c ft_strequ.c ft_strncat.c ft_strstr.c ft_isempty.c ft_lstnew.c     \
 ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstaddend.c   \
-ft_intlen.c ft_isws.c ft_print2darr.c ft_intmax.c ft_nbrendl.c
+ft_intlen.c ft_isws.c ft_print2darr.c ft_intmax.c ft_nbrendl.c ft_itoa_base.c
 
 OBJ := $(SRC:%.c=%.o)
 
