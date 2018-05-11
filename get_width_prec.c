@@ -90,6 +90,16 @@ int calculate_padding(int num, t_item *form, char *flags)
 int calculate_padding_s(char *str, t_item *form, char *flags)
 {
 	int width;
+	int padding;
 
 	width = get_width(flags);
+	padding = width - ft_strlen(str); 
+	return (padding);
+}
+
+int calculate_precision_s(char *str, t_item *form, char *flags)
+{
+	int precision;
+	precision = get_precision(flags);
+	return (precision);
 }

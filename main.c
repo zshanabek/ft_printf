@@ -74,8 +74,8 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	ft_printf	 ("%+20hd\n",434);
-	printf	 ("%+20d\n",344);
+	ft_printf	 ("%33.333s\n","hello world");
+	printf	 ("%33.333s\n","hello world");
 	
 
 	// ft_printf("1 |%d\n",0);
