@@ -79,13 +79,13 @@ int		main()
 	ft_printf	 ("%7.5o\n",345);
 	printf	 ("%7.5o\n",345);
 					
-	// ft_printf("1 |%d\n",0);
-	// ft_printf("2 |%d\n",-7); 
-	// ft_printf("3 |%d\n",1560133635);
-	// ft_printf("4 |%d\n",-2035065302);
-	// printf	 ("1 |%d\n",0);
-	// printf	 ("2 |%d\n",-7);
-	// printf	 ("3 |%d\n",1560133635);
-	// printf	 ("4 |%d\n",-2035065302);
+	ft_printf("1 |%d\n",0);
+	ft_printf("2 |%d\n",-7); 
+	ft_printf("3 |%d\n",1560133635);
+	ft_printf("4 |%d\n",-2035065302);
+	printf	 ("1 |%d\n",0);
+	printf	 ("2 |%d\n",-7);
+	printf	 ("3 |%d\n",1560133635);
+	printf	 ("4 |%d\n",-2035065302);
 	
 }
