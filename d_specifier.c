@@ -14,7 +14,7 @@ void ft_sign_order(t_item *form, char *padding_str, char *zeros_str)
 	}
 }
 
-int	ft_analyze_d(int num, t_item *form, char *flags)
+void			ft_analyze_d(int num, unsigned int *unum, t_item *form, char *flags, int *count)
 {
 	if (num < 0)
 	{
@@ -33,7 +33,7 @@ int	ft_analyze_d(int num, t_item *form, char *flags)
 	if (is_sign(form->sign) || form->padding > 0) 
 		form->space = false;
 	form->padding = calculate_padding(num, form, flags);
-	return (num);
+	create_output_d( num, form, count);
 }
 
 

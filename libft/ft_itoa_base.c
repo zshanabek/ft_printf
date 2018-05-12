@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 14:47:25 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/11 14:47:41 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/12 16:08:30 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		*ft_itoa_base(int value, int base)
 	int		len;
 	long	nbr;
 	char	*pointer;
-	char	*base_string = "0123456789ABCDEF";
+	char	*base_string = "0123456789abcdef";
 
 	if (value == 0)
 		return ("0");

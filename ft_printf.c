@@ -26,19 +26,29 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 
 void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 {
-	int num;
+	int *num;
+	unsigned int *unum;
 	char *string;
+
 
 	if (form->specifier == 'd')
 	{
-		num = va_arg(*ap, int);
-		num = ft_analyze_d(num, form, flags);
-		create_output_d(num, form, count);
+		unum = NULL;
+		ft_analyze_d(va_arg(*ap, int), unum, form, flags, count);
 	}
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
 	else if (form->specifier == 'o')
 		ft_analyze_o(va_arg(*ap, int), form, flags, count);
+	else if (form->specifier == 'x')
+		ft_analyze_x(va_arg(*ap, int), form, flags, count);
+	// else if (form->specifier == 'p')
+	// 	ft_analyze_p(va_arg(*ap, int), form, flags, count);
+	else if (form->specifier == 'u')
+	{
+		num = NULL;
+		// ft_analyze_d(num, va_arg(*ap, unsigned int), form, flags, count);
+	}
 }
 
 int	ft_printf(const char * restrict format, ...)
@@ -74,18 +84,11 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
+
 int		main()
 {
-	ft_printf	 ("%7.5o\n",345);
-	printf	 ("%7.5o\n",345);
-					
-	ft_printf("1 |%d\n",0);
-	ft_printf("2 |%d\n",-7); 
-	ft_printf("3 |%d\n",1560133635);
-	ft_printf("4 |%d\n",-2035065302);
-	printf	 ("1 |%d\n",0);
-	printf	 ("2 |%d\n",-7);
-	printf	 ("3 |%d\n",1560133635);
-	printf	 ("4 |%d\n",-2035065302);
-	
+	// ft_printf("%d", 42);
+	int a;
+	a = 4;
+	printf("%p",&"gfgfg");
 }

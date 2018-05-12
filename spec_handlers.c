@@ -65,3 +65,18 @@ void	ft_analyze_o(int num, t_item *form, char *flags, int *count)
 	
 	make_output_o(form, output, count);
 }
+
+void	ft_analyze_x(int num, t_item *form, char *flags, int *count)
+{
+	char *output;
+
+	if (find_minus(flags))
+		form->minus = true;
+	if (find_zero(flags))
+		form->zero = true;
+	output = ft_itoa_base(num, 16);
+	form->precision  = calculate_zeros(ft_atoi(output), flags);
+	form->padding = calculate_padding(ft_atoi(output), form, flags);
+	
+	make_output_o(form, output, count);
+}

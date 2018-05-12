@@ -46,9 +46,11 @@ void			create_output_d(int num, t_item *form, int *count);
 char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
-int				ft_analyze_d(int num, t_item *form, char *flags);
+void			ft_analyze_d(int num, unsigned int *unum, t_item *form, char *flags, int *count);
+// void			ft_analyze_d(int num, t_item *form, char *flags, int *count);
 void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
 int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_o(int num, t_item *form, char *flags, int *count);
+void			ft_analyze_x(int num, t_item *form, char *flags, int *count);
 
 #endif
