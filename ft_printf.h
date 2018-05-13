@@ -54,5 +54,6 @@ int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_o(int num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(int num, t_item *form, char *flags, int *count);
 void			ft_analyze_c(char c, t_item *form, char *flags, int *count);
+int				ft_printf(const char * restrict format, ...);
 
 #endif

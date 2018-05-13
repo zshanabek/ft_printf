@@ -6,3 +6,4 @@ push.sh
 zs.sh
 examples
 ft_printf
+libftprintf.a   
