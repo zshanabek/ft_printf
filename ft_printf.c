@@ -24,13 +24,34 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
+void find_modifiers(char *flags)
+{
+	int i;
+	enum modifiers floor;
+
+	i = 0;
+	while(flags[i])
+	{
+		if (flags[i-1] == 'h' && flags[i] == 'h')
+			floor = hh;
+		if (flags[i-1] == 'l' && flags[i] == 'l')
+			floor = ll;
+		if (flags[i] == 'h')
+			floor = l;
+		if (flags[i] == 'l')
+			floor = h;
+		i++;
+	}
+}
+
 void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 {
-	int *num;
-	unsigned int *unum;
-	char *string;
+	int				*num;
+	unsigned int	*unum;
+	char			*string;
+	int64_t			address;
 
-
+	find_modifiers(flags);
 	if (form->specifier == 'd')
 	{
 		unum = NULL;
@@ -38,12 +59,17 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 	}
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
+	else if (form->specifier == 'c')
+		ft_analyze_c(va_arg(*ap, int), form, flags, count);
 	else if (form->specifier == 'o')
 		ft_analyze_o(va_arg(*ap, int), form, flags, count);
 	else if (form->specifier == 'x')
 		ft_analyze_x(va_arg(*ap, int), form, flags, count);
-	// else if (form->specifier == 'p')
-	// 	ft_analyze_p(va_arg(*ap, int), form, flags, count);
+	else if (form->specifier == 'p')
+	{
+		address = va_arg(*ap,int);
+		ft_analyze_x(address, form, flags, count);
+	}
 	else if (form->specifier == 'u')
 	{
 		num = NULL;
@@ -87,8 +113,12 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	// ft_printf("%d", 42);
-	int a;
-	a = 4;
-	printf("%p",&"gfgfg");
+	ft_printf ("Characters: %c %c \n", 'a', 65);
+	ft_printf ("Decimals: %d %ld\n", 1977, 650000L);
+	ft_printf ("Preceding with blanks: %10d \n", 1977);
+	ft_printf ("Preceding with zeros: %010d \n", 1977);
+	ft_printf ("Some different radices: %d %x %o %#x %#o \n", 100, 100, 100, 100, 100);
+	ft_printf ("floats: %4.2f %+.0e %E \n", 3.1416, 3.1416, 3.1416);
+	ft_printf ("Width trick: %*d \n", 5, 10);
+	ft_printf ("%s \n", "A string");
 }

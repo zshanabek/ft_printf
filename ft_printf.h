@@ -4,14 +4,15 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include <stdint.h>
 
 enum			modifiers
 {
-	ll = 0,
-	hh = 0,
-	h = 0,
-	l = 0
-}				mod;
+	ll,
+	hh,
+	l,
+	h
+};
 
 typedef struct	s_item
 {
@@ -52,5 +53,6 @@ void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
 int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_o(int num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(int num, t_item *form, char *flags, int *count);
+void			ft_analyze_c(char c, t_item *form, char *flags, int *count);
 
 #endif

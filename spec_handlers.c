@@ -45,6 +45,10 @@ void	make_output_o(t_item *form, char *output, int *count)
 		ft_putstr(padding_str);
 	if (ft_strlen(zeros_str) > 0)
 		ft_putstr(zeros_str);
+	if(form->hash && form->specifier == 'x')
+		ft_putstr("0x");
+	if(form->hash && form->specifier == 'o')
+		ft_putstr("0");
 	ft_putstr(output);
 	if (ft_strlen(padding_str) > 0 && form->minus == true) 
 		ft_putstr(padding_str);
@@ -59,6 +63,8 @@ void	ft_analyze_o(int num, t_item *form, char *flags, int *count)
 		form->minus = true;
 	if (find_zero(flags))
 		form->zero = true;
+	if (find_hash(flags))
+		form->hash = true;
 	output = ft_itoa_base(num, 8);
 	form->precision  = calculate_zeros(ft_atoi(output), flags);
 	form->padding = calculate_padding(ft_atoi(output), form, flags);
@@ -74,7 +80,24 @@ void	ft_analyze_x(int num, t_item *form, char *flags, int *count)
 		form->minus = true;
 	if (find_zero(flags))
 		form->zero = true;
+	if (find_hash(flags))
+		form->hash = true;
 	output = ft_itoa_base(num, 16);
+	form->precision  = calculate_zeros(ft_atoi(output), flags);
+	form->padding = calculate_padding(ft_atoi(output), form, flags);
+	
+	make_output_o(form, output, count);
+}
+
+void	ft_analyze_p(int num, t_item *form, char *flags, int *count)
+{
+	char *output;
+
+	if (find_minus(flags))
+		form->minus = true;
+	if (find_zero(flags))
+		form->zero = true;
+	output = ft_itoa_base(num, 8);
 	form->precision  = calculate_zeros(ft_atoi(output), flags);
 	form->padding = calculate_padding(ft_atoi(output), form, flags);
 	
