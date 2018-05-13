@@ -6,7 +6,7 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-enum			modifiers
+enum			length
 {
 	ll,
 	hh,
@@ -43,12 +43,11 @@ int				calculate_zeros(int num, char *flags);
 int				calculate_padding(int num, t_item *form, char *flags);
 int				is_specifier(char c);
 t_item			*create_struct();
-void			create_output_d(int num, t_item *form, int *count);
+void			create_output_d(intmax_t num, t_item *form, int *count);
 char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
-void			ft_analyze_d(int num, unsigned int *unum, t_item *form, char *flags, int *count);
-// void			ft_analyze_d(int num, t_item *form, char *flags, int *count);
+void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
 int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_o(int num, t_item *form, char *flags, int *count);

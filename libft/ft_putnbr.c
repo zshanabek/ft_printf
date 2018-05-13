@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:58:23 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/03/27 15:24:23 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/13 22:04:45 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void	ft_putnbr(intmax_t n)
 {
 	const char *str = "-2147483648";
 

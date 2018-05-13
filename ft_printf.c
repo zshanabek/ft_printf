@@ -24,22 +24,20 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
-void find_modifiers(char *flags)
+void find_length(intmax_t *n, va_list *ap, char *flags)
 {
 	int i;
-	enum modifiers floor;
+	enum length mod;
 
 	i = 0;
 	while(flags[i])
 	{
 		if (flags[i-1] == 'h' && flags[i] == 'h')
-			floor = hh;
-		if (flags[i-1] == 'l' && flags[i] == 'l')
-			floor = ll;
-		if (flags[i] == 'h')
-			floor = l;
-		if (flags[i] == 'l')
-			floor = h;
+			*n = (char)(va_arg(*ap, int));
+		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
+			*n = (long)va_arg(*ap, intmax_t);	
+		else if (flags[i] == 'h')
+			*n = (short)(va_arg(*ap, intmax_t));
 		i++;
 	}
 }
@@ -50,31 +48,29 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 	unsigned int	*unum;
 	char			*string;
 	int64_t			address;
+	intmax_t			n;	
 
-	find_modifiers(flags);
-	if (form->specifier == 'd')
-	{
-		unum = NULL;
-		ft_analyze_d(va_arg(*ap, int), unum, form, flags, count);
-	}
-	else if (form->specifier == 's')
-		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
-	else if (form->specifier == 'c')
-		ft_analyze_c(va_arg(*ap, int), form, flags, count);
-	else if (form->specifier == 'o')
-		ft_analyze_o(va_arg(*ap, int), form, flags, count);
-	else if (form->specifier == 'x')
-		ft_analyze_x(va_arg(*ap, int), form, flags, count);
-	else if (form->specifier == 'p')
-	{
-		address = va_arg(*ap,int);
-		ft_analyze_x(address, form, flags, count);
-	}
-	else if (form->specifier == 'u')
-	{
-		num = NULL;
-		// ft_analyze_d(num, va_arg(*ap, unsigned int), form, flags, count);
-	}
+	find_length(&n, ap, flags);
+	// if (form->specifier == 'd')
+		ft_analyze_d(n, form, flags, count);
+	// else if (form->specifier == 's')
+	// 	ft_analyze_s(va_arg(*ap, char *), form, flags, count);
+	// else if (form->specifier == 'c')
+	// 	ft_analyze_c(va_arg(*ap, int), form, flags, count);
+	// else if (form->specifier == 'o')
+	// 	ft_analyze_o(va_arg(*ap, int), form, flags, count);
+	// else if (form->specifier == 'x')
+	// 	ft_analyze_x(va_arg(*ap, int), form, flags, count);
+	// else if (form->specifier == 'p')
+	// {
+	// 	address = va_arg(*ap,int);
+	// 	ft_analyze_x(address, form, flags, count);
+	// }
+	// else if (form->specifier == 'u')
+	// {
+	// 	num = NULL;
+	// 	// ft_analyze_d(num, va_arg(*ap, unsigned int), form, flags, count);
+	// }
 }
 
 int	ft_printf(const char * restrict format, ...)
@@ -108,4 +104,10 @@ int	ft_printf(const char * restrict format, ...)
 		i++;
 	}
 	return (count);
+}
+
+int		main()
+{
+	ft_printf("ZSH: %ld\n", 3333333333333);	
+	printf("ORG: %ld\n", 3333333333333);
 }
