@@ -45,7 +45,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 		ft_putstr(padding_str);
 	if (ft_strlen(zeros_str) > 0)
 		ft_putstr(zeros_str);
-	if(form->hash && form->specifier == 'x')
+	if(form->hash && (form->specifier == 'x' || form->specifier == 'p'))
 		ft_putstr("0x");
 	if(form->hash && form->specifier == 'o')
 		ft_putstr("0");
@@ -58,18 +58,19 @@ void	make_output_u(t_item *form, char *output, int *count)
 void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
+
 	if (find_minus(flags))
 		form->minus = true;
 	if (find_zero(flags))
 		form->zero = true;
-	if (find_hash(flags))
+	if (find_hash(flags) || form->specifier == 'p')
 		form->hash = true;
 	if (form->specifier == 'o')
-		output = ft_itoa_base(num, 8);
-	else if (form->specifier == 'x')
-		output = ft_itoa_base(num, 16);		
+		output = ft_itoa_base_u(num, 8);
+	else if (form->specifier == 'x' || form->specifier == 'p')
+		output = ft_itoa_base_u(num, 16);		
 	else
-		output = ft_itoa(num);	
+		output = ft_itoa_u(num);	
 	form->precision  = calculate_zeros_u(ft_atoi(output), flags);
 	form->padding = calculate_padding_u(ft_atoi(output), form, flags);
 

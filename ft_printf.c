@@ -57,6 +57,7 @@ void find_length_u(uintmax_t *k, va_list *ap, char *flags)
 			*k = (short)(va_arg(*ap, uintmax_t));
 		i++;
 	}
+	*k = va_arg(*ap, uintmax_t);
 }
 
 
@@ -68,19 +69,18 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 
 	if (form->specifier == 'd' || form->specifier == 'i')
 		find_length(&n, ap, flags);
-	if (form->specifier == 'u' || form->specifier == 'o' || form->specifier == 'x' )
+	if (form->specifier == 'u' || form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'p' )
 		find_length_u(&k, ap, flags);
-		
+	// =========================identify conversion===================
 	if (form->specifier == 'd' && form->specifier == 'i')
 		ft_analyze_d(n, form, flags, count);
-	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u')
-		ft_analyze_u(va_arg(*ap, int), form, flags, count);
+	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' )	
+		ft_analyze_u(k, form, flags, count);
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
 	else if (form->specifier == 'c')
 		ft_analyze_c(va_arg(*ap, int), form, flags, count);
-	else if (form->specifier == 'p')
-		ft_analyze_x(va_arg(*ap, uintmax_t), form, flags, count);	
+
 }
 
 int	ft_printf(const char * restrict format, ...)
@@ -123,7 +123,6 @@ int		main()
 	a = 32;
 	// ft_printf("ZSH: %lu\n", 3333333333333);	
 	ft_printf("MY|%p\n",&a);
-	printf("OR|%p\n",&a);	
 	printf("OR|%p\n",&a);		
 	// ft_printf("ORG|%#2x\n",345);
 	// ft_printf("ORG|%#2o\n",345);	

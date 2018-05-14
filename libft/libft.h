@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/14 16:11:57 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/14 21:19:34 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void			ft_print2darr(char **matrix);
 int				ft_intmax(int a, int b);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_base_u(uintmax_t value, int base);
+char			*ft_itoa_u(uintmax_t n);
 
 #endif
