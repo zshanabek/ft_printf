@@ -33,7 +33,7 @@ int is_specifier(char c)
 	char *spec;
 	char *flags;
 	
-	flags = "sSpdDioOuUxXcCfF";
+	flags = "%sSpdDioOuUxXcCfF";
 
 	spec = ft_strchr(flags, c);
 	if (spec)

@@ -6,14 +6,6 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-enum			length
-{
-	ll,
-	hh,
-	l,
-	h
-};
-
 typedef struct	s_item
 {
 	int plus;
@@ -55,6 +47,7 @@ int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(uintmax_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_c(char c, t_item *form, char *flags, int *count);
+void			ft_analyze_percent(t_item *form, char *flags, int *count);
 int				ft_printf(const char * restrict format, ...);
 
 #endif

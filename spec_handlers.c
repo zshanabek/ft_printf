@@ -6,6 +6,21 @@ void	ft_analyze_c(char c, t_item *form, char *flags, int *count)
 	ft_putchar(c);
 }
 
+void	ft_analyze_percent(t_item *form, char *flags, int *count)
+{
+	char *padding_str;
+
+	padding_str = ft_strnew(0);	
+	if (find_minus(flags))
+		form->minus = true;
+	if (form->padding > 0)
+		padding_str = ft_strfill(form->padding, ' ');
+	if (form->minus == false)
+		ft_putstr(padding_str);
+	if (form->minus == true)
+		ft_putstr(padding_str);
+}
+
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 {
 	char *output;

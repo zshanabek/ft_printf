@@ -11,7 +11,8 @@ LIBFT := $(LIB)/ft_atoi.c $(LIB)/ft_memalloc.c $(LIB)/ft_putchar.c $(LIB)/ft_str
 		$(LIB)/ft_putstr.c $(LIB)/ft_strdup.c $(LIB)/ft_strmapi.c $(LIB)/ft_strsplit.c $(LIB)/ft_itoa.c $(LIB)/ft_memset.c         \
 		$(LIB)/ft_putstr_fd.c $(LIB)/ft_strequ.c $(LIB)/ft_strncat.c $(LIB)/ft_strstr.c $(LIB)/ft_isempty.c $(LIB)/ft_lstnew.c     \
 		$(LIB)/ft_lstdelone.c $(LIB)/ft_lstdel.c $(LIB)/ft_lstadd.c $(LIB)/ft_lstiter.c $(LIB)/ft_lstmap.c $(LIB)/ft_lstaddend.c   \
-		$(LIB)/ft_intlen.c $(LIB)/ft_isws.c $(LIB)/ft_print2darr.c $(LIB)/ft_intmax.c $(LIB)/ft_nbrendl.c $(LIB)/ft_itoa_base.c
+		$(LIB)/ft_intlen.c $(LIB)/ft_isws.c $(LIB)/ft_print2darr.c $(LIB)/ft_intmax.c $(LIB)/ft_nbrendl.c $(LIB)/ft_itoa_base.c    \
+		$(LIB)/ft_itoa_base_u.c $(LIB)/ft_itoa_u.c
 FILES := ft_printf.c \
 		spec_handlers.c \
 		utils.c \

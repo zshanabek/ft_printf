@@ -80,6 +80,8 @@ void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
 	else if (form->specifier == 'c')
 		ft_analyze_c(va_arg(*ap, int), form, flags, count);
+	else if (form->specifier == '%')
+		ft_analyze_percent(form, flags, count);
 
 }
 
@@ -107,7 +109,7 @@ int	ft_printf(const char * restrict format, ...)
 			form = create_struct();
 			flags = get_inform(format, i, form);
 			identify_specifier(form, &ap, flags, &count);
-			while (is_specifier(format[i]) != 1)
+			while (!is_specifier(format[i]))
 				i++;
 			free(form);
 		}
@@ -118,12 +120,5 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	int a;
-
-	a = 32;
-	// ft_printf("ZSH: %lu\n", 3333333333333);	
-	ft_printf("MY|%p\n",&a);
-	printf("OR|%p\n",&a);		
-	// ft_printf("ORG|%#2x\n",345);
-	// ft_printf("ORG|%#2o\n",345);	
+	printf("%05%\n");  	
 }
