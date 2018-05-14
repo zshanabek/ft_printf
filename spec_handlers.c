@@ -13,10 +13,17 @@ void	ft_analyze_percent(t_item *form, char *flags, int *count)
 	padding_str = ft_strnew(0);	
 	if (find_minus(flags))
 		form->minus = true;
-	if (form->padding > 0)
+	if (find_zero(flags))
+		form->zero = true;
+	form->padding = get_width(flags) - 1;
+	if (form->padding > 0 && form->zero)
+		padding_str = ft_strfill(form->padding, '0');
+	else if (form->padding > 0)
 		padding_str = ft_strfill(form->padding, ' ');
+		
 	if (form->minus == false)
 		ft_putstr(padding_str);
+	ft_putchar('%');
 	if (form->minus == true)
 		ft_putstr(padding_str);
 }

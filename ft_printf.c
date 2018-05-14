@@ -120,5 +120,6 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	printf("%05%\n");  	
+	ft_printf("%.0%\n");  		
+	printf("%.0%\n");  	
 }
