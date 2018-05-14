@@ -118,8 +118,8 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-	ft_printf("%.0%\n");  		
-	printf("%.0%\n");  	
-}
+// int		main()
+// {
+// 	ft_printf("%.0%\n");  		
+// 	printf("%.0%\n");  	
+// }
