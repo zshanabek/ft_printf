@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/13 22:05:15 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/14 16:11:57 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
-char			*ft_itoa(int n);
+char			*ft_itoa(intmax_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
@@ -88,6 +88,7 @@ int				ft_intlen(int n);
 int				ft_isws(char c);
 void			ft_print2darr(char **matrix);
 int				ft_intmax(int a, int b);
-char			*ft_itoa_base(int value, int base);
+char			*ft_itoa_base(intmax_t value, int base);
+char			*ft_itoa_base_u(uintmax_t value, int base);
 
 #endif

@@ -47,28 +47,20 @@ void make_output_d(intmax_t num, t_item *form, char *padding_str, char *zeros_st
 		(*count)++;
 	}
 	if (form->order == 1 && is_sign(form->sign))
-	{
 		ft_putchar(form->sign);
-		(*count)++;		
-	}
 	if (ft_strlen(padding_str) > 0 && form->minus == false)
 		ft_putstr(padding_str);
 	if (form->order == 2 && is_sign(form->sign))
-	{
 		ft_putchar(form->sign);
-		(*count)++;		
-	}
 	if (ft_strlen(zeros_str) > 0)
 		ft_putstr(zeros_str);
 	if (form->order == 3 && is_sign(form->sign))
-	{
 		ft_putchar(form->sign);
-		(*count)++;		
-	}
+	if (is_sign(form->sign))
+		(*count)++;			
 	ft_putnbr(num);
 	if (ft_strlen(padding_str) > 0 && form->minus == true) 
 		ft_putstr(padding_str);
-
 	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_intlen(num));	
 }
 

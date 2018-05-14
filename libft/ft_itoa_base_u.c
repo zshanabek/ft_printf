@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_u.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/11 14:47:25 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/14 13:54:40 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/05/14 15:44:20 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/14 16:12:32 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa_base(intmax_t value, int base)
+char		*ft_itoa_base_u(uintmax_t value, int base)
 {
 	int		len;
 	long	nbr;
@@ -43,7 +43,7 @@ char		*ft_itoa_base(intmax_t value, int base)
 		pointer[--len] = base_string[nbr % base];
 		nbr /= base;
 	}
-	if (value < 0 && base == 10)
+	if (base == 10)
 		pointer[0] = '-';
 	return (pointer);
 }

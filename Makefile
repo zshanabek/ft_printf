@@ -1,7 +1,7 @@
-NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
-LIB = libft
-LIBFT = $(LIB)/ft_atoi.c $(LIB)/ft_memalloc.c $(LIB)/ft_putchar.c $(LIB)/ft_strcat.c $(LIB)/ft_striter.c $(LIB)/ft_strncmp.c \
+NAME := libftprintf.a
+FLAGS := -Wall -Wextra -Werror
+LIB := libft
+LIBFT := $(LIB)/ft_atoi.c $(LIB)/ft_memalloc.c $(LIB)/ft_putchar.c $(LIB)/ft_strcat.c $(LIB)/ft_striter.c $(LIB)/ft_strncmp.c \
 		$(LIB)/ft_strsub.c $(LIB)/ft_bzero.c $(LIB)/ft_memccpy.c $(LIB)/ft_putchar_fd.c $(LIB)/ft_strchr.c $(LIB)/ft_striteri.c    \
 		$(LIB)/ft_strncpy.c $(LIB)/ft_strtrim.c $(LIB)/ft_isalnum.c $(LIB)/ft_memchr.c $(LIB)/ft_putendl.c $(LIB)/ft_strclr.c      \
 		$(LIB)/ft_strjoin.c $(LIB)/ft_strnequ.c $(LIB)/ft_tolower.c $(LIB)/ft_isalpha.c $(LIB)/ft_memcmp.c $(LIB)/ft_putendl_fd.c  \
@@ -12,24 +12,24 @@ LIBFT = $(LIB)/ft_atoi.c $(LIB)/ft_memalloc.c $(LIB)/ft_putchar.c $(LIB)/ft_strc
 		$(LIB)/ft_putstr_fd.c $(LIB)/ft_strequ.c $(LIB)/ft_strncat.c $(LIB)/ft_strstr.c $(LIB)/ft_isempty.c $(LIB)/ft_lstnew.c     \
 		$(LIB)/ft_lstdelone.c $(LIB)/ft_lstdel.c $(LIB)/ft_lstadd.c $(LIB)/ft_lstiter.c $(LIB)/ft_lstmap.c $(LIB)/ft_lstaddend.c   \
 		$(LIB)/ft_intlen.c $(LIB)/ft_isws.c $(LIB)/ft_print2darr.c $(LIB)/ft_intmax.c $(LIB)/ft_nbrendl.c $(LIB)/ft_itoa_base.c
-FILES = ft_printf.c \
+FILES := ft_printf.c \
 		spec_handlers.c \
 		utils.c \
 		flags.c \
 		get_width_prec.c \
 		d_specifier.c
-OBJ = $(FILES:.c=.o) $(LIBFT:.c=.o)
+OBJ := $(FILES:.c=.o) $(LIBFT:.c=.o)
 
 all: 	$(NAME)
 
 $(NAME): $(OBJ)
-		gcc -c -I ft_printf.h $(FILES) $(LIBFT)
-		ar rc $(NAME) $(OBJ)
+		@gcc -c -I ft_printf.h $(FILES) $(LIBFT)
+		@ar rc $(NAME) $(OBJ)
 
 clean:
-		/bin/rm -f *.o		
+		@/bin/rm -f *.o		
 
 fclean: clean
-		/bin/rm -f $(NAME)
+		@/bin/rm -f $(NAME)
 
 re:		fclean all
