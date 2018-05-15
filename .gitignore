@@ -1,9 +1,9 @@
 libft/*.o
 libft/*.a
+*.o
 *.out
 .vscode/
 push.sh
 zs.sh
 examples
-ft_printf
 libftprintf.a   

@@ -39,6 +39,7 @@ void find_length(intmax_t *n, va_list *ap, char *flags)
 			*n = (short)(va_arg(*ap, intmax_t));
 		i++;
 	}
+	*n = va_arg(*ap, intmax_t);
 }
 
 
@@ -60,21 +61,36 @@ void find_length_u(uintmax_t *k, va_list *ap, char *flags)
 	*k = va_arg(*ap, uintmax_t);
 }
 
+void find_length_s(wchar_t *s, va_list *ap, char *flags)
+{
+	int i;
+
+	i = 0;
+	while (flags[i])
+	{
+		if (flags[i] == 'l')
+			*s = va_arg(*ap, wchar_t);
+		i++;
+	}
+}
 
 void	identify_specifier(t_item *form, va_list *ap, char *flags, int *count)
 {
 
 	intmax_t			n;	
 	uintmax_t 			k;
+	wchar_t				s;
 
-	if (form->specifier == 'd' || form->specifier == 'i')
+	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
 		find_length(&n, ap, flags);
-	if (form->specifier == 'u' || form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'p' )
+	if (form->specifier == 'u' || form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'p')
 		find_length_u(&k, ap, flags);
+	if (form->specifier == 's')
+		find_length_s(&s, ap, flags);
 	// =========================identify conversion===================
-	if (form->specifier == 'd' && form->specifier == 'i')
+	if (form->specifier == 'd' || form->specifier == 'i')
 		ft_analyze_d(n, form, flags, count);
-	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' )	
+	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p')
 		ft_analyze_u(k, form, flags, count);
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(*ap, char *), form, flags, count);
@@ -115,11 +131,11 @@ int	ft_printf(const char * restrict format, ...)
 		}
 		i++;
 	}
+	va_end(ap);
 	return (count);
 }
 
 // int		main()
 // {
-// 	ft_printf("%.0%\n");  		
-// 	printf("%.0%\n");  	
+
 // }

@@ -6,6 +6,15 @@
 # include <stdbool.h>
 # include <stdint.h>
 
+
+enum size
+{
+	h,
+	l,
+	hh,
+	ll
+};
+
 typedef struct	s_item
 {
 	int plus;
