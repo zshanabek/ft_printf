@@ -34,6 +34,7 @@ void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->space = false;
 	form->padding = calculate_padding(num, form, flags);
 	create_output_d(num, form, count);
+
 }
 
 
