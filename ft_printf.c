@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/16 17:18:17 by zshanabe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*get_inform(const char * restrict format, int i, t_item *form)
@@ -161,5 +173,21 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-
+	ft_printf("1 |%14o\n", 45);
+	ft_printf("2 |%014o\n", 45);
+	ft_printf("3 |%#14o\n", 45);
+	ft_printf("4 |%#014o\n", 45);
+	ft_printf("5 |%-14o\n", 45);
+	ft_printf("6 |%-#14o\n", 45);
+	ft_printf("7 |%14.4o\n", 45);
+	ft_printf("8 |%-#14.4o\n", 45);
+	ft_printf("======================\n");
+	printf	 ("1 |%14o\n", 45);
+	printf	 ("2 |%014o\n", 45);
+	printf	 ("3 |%14o\n", 45);
+	printf	 ("4 |%#014o\n", 45);
+	printf	 ("5 |%-14o\n", 45);
+	printf	 ("6 |%-#14o\n", 45);
+	printf	 ("7 |%14.4o\n", 45);
+	printf	 ("8 |%-#14.4o\n", 45);
 }

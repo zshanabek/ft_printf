@@ -106,14 +106,14 @@ int calculate_padding_u(uint64_t num, t_item *form, char *flags)
 	if (form->precision > 0)
 	{
 		padding = width - (form->precision + ft_intlen_u(num));
-		if (form->sign == '+' || form->sign == '-' || form->space == true )
+		if (form->hash == true)
 			padding--;
 		return (padding);		
 	}
 	else
 	{
 		padding = width - ft_intlen_u(num);
-		if (form->sign == '+' || form->sign == '-' || form->space == true  )
+		if (form->hash == true)
 			padding--;
 		return (padding);	
 	}
