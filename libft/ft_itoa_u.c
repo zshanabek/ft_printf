@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 21:17:57 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/16 17:05:03 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 00:35:50 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*fill_arr(char *arr, uint64_t n, int len)
+static char		*fill_arr(char *arr, uintmax_t n, int len)
 {
 	int		flag;
 	
@@ -29,7 +29,7 @@ static char		*fill_arr(char *arr, uint64_t n, int len)
 	return (arr);
 }
 
-char			*ft_itoa_u(uint64_t n)
+char			*ft_itoa_u(uintmax_t n)
 {
 	int		len;
 	char	*arr;

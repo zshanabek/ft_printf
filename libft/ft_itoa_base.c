@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 14:47:25 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/16 13:42:07 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 00:35:50 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa_base(int64_t value, int base)
+char		*ft_itoa_base(intmax_t value, int base)
 {
 	int		len;
 	long	nbr;

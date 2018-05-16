@@ -3,7 +3,23 @@
 
 void	ft_analyze_c(char c, t_item *form, char *flags, int *count)
 {
+	char *padding_str;
+
+	padding_str = ft_strnew(0);	
+	if (find_minus(flags))
+		form->minus = true;
+	else if (find_zero(flags))
+		form->zero = true;
+	form->padding = get_width(flags) - 1;
+	if (form->padding > 0 && form->zero)
+		padding_str = ft_strfill(form->padding, '0');
+	else if (form->padding > 0)
+		padding_str = ft_strfill(form->padding, ' ');
+	if (form->minus == false)
+		ft_putstr(padding_str);
 	ft_putchar(c);
+	if (form->minus == true)
+		ft_putstr(padding_str);
 }
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)
@@ -76,7 +92,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_strlen(output));	
 }
 
-void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 	if (find_minus(flags))
@@ -96,34 +112,4 @@ void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 	form->padding = calculate_padding_u(ft_atoi_u(output), form, flags);
 	make_output_u(form, output, count);
 	
-}
-
-void	ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count)
-{
-	char *output;
-
-	if (find_minus(flags))
-		form->minus = true;
-	if (find_zero(flags))
-		form->zero = true;
-	if (find_hash(flags))
-		form->hash = true;
-	output = ft_itoa_base_u(num, 16);
-	form->precision  = calculate_zeros_u(ft_atoi(output), flags);
-	form->padding = calculate_padding_u(ft_atoi(output), form, flags);
-	make_output_u(form, output, count);
-}
-
-void	ft_analyze_p(int num, t_item *form, char *flags, int *count)
-{
-	char *output;
-
-	if (find_minus(flags))
-		form->minus = true;
-	if (find_zero(flags))
-		form->zero = true;
-	output = ft_itoa_base(num, 8);
-	form->precision  = calculate_zeros(ft_atoi(output), flags);
-	form->padding = calculate_padding(ft_atoi(output), form, flags);
-	make_output_u(form, output, count);
 }

@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/17 00:25:01 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 00:47:37 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
-void find_length(int64_t *n, va_list ap, char *flags)
+void find_length(intmax_t *n, va_list ap, char *flags)
 {
 	int i;
 	int ok;
@@ -52,22 +52,22 @@ void find_length(int64_t *n, va_list ap, char *flags)
 		}
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
 		{
-			*n = (long)va_arg(ap, int64_t);	
+			*n = (long)va_arg(ap, intmax_t);	
 			ok = 1;
 		}
 		else if (flags[i] == 'h')
 		{
-			*n = (short)(va_arg(ap, int64_t));
+			*n = (short)(va_arg(ap, intmax_t));
 			ok = 1;
 		}
 		i++;
 	}
 	if (ok == 0)
-		*n = va_arg(ap, int);
+		*n = va_arg(ap, intmax_t);
 }
 
 
-void find_length_u(uint64_t *k, va_list ap, char *flags)
+void find_length_u(uintmax_t *k, va_list ap, char *flags)
 {
 	int i;
 	int ok;
@@ -83,18 +83,18 @@ void find_length_u(uint64_t *k, va_list ap, char *flags)
 		}
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
 		{
-			*k = (long)va_arg(ap, uint64_t);
+			*k = (long)va_arg(ap, uintmax_t);
 			ok = 1;
 		}	
 		else if (flags[i] == 'h')
 		{
-			*k = (short)(va_arg(ap, uint64_t));
+			*k = (short)(va_arg(ap, uintmax_t));
 			ok = 1;
 		}
 		i++;
 	}
 	if (ok == 0)
-		*k = va_arg(ap, unsigned int);
+		*k = va_arg(ap, uintmax_t);
 }
 
 void find_length_s(wchar_t *s, va_list ap, char *flags)
@@ -113,8 +113,8 @@ void find_length_s(wchar_t *s, va_list ap, char *flags)
 void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 {
 
-	int64_t				n;	
-	uint64_t 			k;
+	intmax_t			n;	
+	uintmax_t 			k;
 	wchar_t				s;
 
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
@@ -171,22 +171,23 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-// int		main()
-// {
-// // ft_printf("1 |%14u\n", 45);
-// // ft_printf("2 |%014u\n", 45);
-// // ft_printf("3 |%-14u\n", 45);
-// // ft_printf("4 |%14.4u\n", 45);
-// // ft_printf("5 |%-14.4u\n", 45);
+int		main()
+{
+// ft_printf("1 |%14u\n", 45);
+// ft_printf("2 |%014u\n", 45);
+// ft_printf("3 |%-14u\n", 45);
+// ft_printf("4 |%14.4u\n", 45);
+// ft_printf("5 |%-14.4u\n", 45);
 
-// // ft_printf("=====================\n");
+// ft_printf("=====================\n");
 
-// // printf("1 |%14u\n", 45);
-// // printf("2 |%014u\n", 45);
-// // printf("3 |%-14u\n", 45);
-// // printf("4 |%14.4u\n", 45);
-// // printf("5 |%-14.4u\n", 45);
-// ft_printf("%2c\n", 0);  
-// printf("%2c\n", 0);  
+// printf("1 |%14u\n", 45);
+// printf("2 |%014u\n", 45);
+// printf("3 |%-14u\n", 45);
+// printf("4 |%14.4u\n", 45);
+// printf("5 |%-14.4u\n", 45);
+	int a;
+	printf("%p\n", &a);  	
+	ft_printf("%p\n", &a);  
 
-// }
+}
