@@ -79,7 +79,6 @@ void	make_output_u(t_item *form, char *output, int *count)
 void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
-
 	if (find_minus(flags))
 		form->minus = true;
 	if (find_zero(flags))
@@ -92,9 +91,11 @@ void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 		output = ft_itoa_base_u(num, 16);		
 	else
 		output = ft_itoa_base_u(num, 10);
+	
 	form->precision  = calculate_zeros_u(ft_atoi_u(output), flags);
 	form->padding = calculate_padding_u(ft_atoi_u(output), form, flags);
 	make_output_u(form, output, count);
+	
 }
 
 void	ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count)

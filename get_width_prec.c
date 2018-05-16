@@ -100,23 +100,37 @@ int calculate_padding_u(uint64_t num, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	
+	int		len;
 
-	width = get_width(flags);
-	
+	width = get_width(flags);	
 	if (form->precision > 0)
 	{
-		padding = width - (form->precision + ft_intlen_u(num));
-		if (form->hash == true)
+		if (form->specifier == 'x' || form->specifier == 'X')
+			len = ft_strlen(ft_itoa_base_u(num, 16));
+		else
+			len = ft_intlen_u(num);
+		padding = width - (form->precision + len);
+		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
+			padding -= 2;
+		else if (form->hash == true)
 			padding--;
-		return (padding);		
+		return (padding);				
 	}
 	else
 	{
+		// printf("h: %s\n", ft_itoa_base_u(num, 16));
+		if (form->specifier == 'x' || form->specifier == 'X')
+			len = ft_strlen(ft_itoa_base_u(num, 16));
+		else
+			len = ft_intlen_u(num);
 		padding = width - ft_intlen_u(num);
-		if (form->hash == true)
+		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
+			padding -= 2;
+		else if (form->hash == true)
 			padding--;
 		return (padding);	
 	}
+
 	return (0);
 }
 

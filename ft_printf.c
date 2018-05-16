@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/16 17:18:17 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 00:25:01 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
 		find_length(&n, ap, flags);
-	if (form->specifier == 'u' || form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'p')
+	if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p')
 		find_length_u(&k, ap, flags);
 	if (form->specifier == 's')
 		find_length_s(&s, ap, flags);
@@ -171,23 +171,22 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-	ft_printf("1 |%14o\n", 45);
-	ft_printf("2 |%014o\n", 45);
-	ft_printf("3 |%#14o\n", 45);
-	ft_printf("4 |%#014o\n", 45);
-	ft_printf("5 |%-14o\n", 45);
-	ft_printf("6 |%-#14o\n", 45);
-	ft_printf("7 |%14.4o\n", 45);
-	ft_printf("8 |%-#14.4o\n", 45);
-	ft_printf("======================\n");
-	printf	 ("1 |%14o\n", 45);
-	printf	 ("2 |%014o\n", 45);
-	printf	 ("3 |%14o\n", 45);
-	printf	 ("4 |%#014o\n", 45);
-	printf	 ("5 |%-14o\n", 45);
-	printf	 ("6 |%-#14o\n", 45);
-	printf	 ("7 |%14.4o\n", 45);
-	printf	 ("8 |%-#14.4o\n", 45);
-}
+// int		main()
+// {
+// // ft_printf("1 |%14u\n", 45);
+// // ft_printf("2 |%014u\n", 45);
+// // ft_printf("3 |%-14u\n", 45);
+// // ft_printf("4 |%14.4u\n", 45);
+// // ft_printf("5 |%-14.4u\n", 45);
+
+// // ft_printf("=====================\n");
+
+// // printf("1 |%14u\n", 45);
+// // printf("2 |%014u\n", 45);
+// // printf("3 |%-14u\n", 45);
+// // printf("4 |%14.4u\n", 45);
+// // printf("5 |%-14.4u\n", 45);
+// ft_printf("%2c\n", 0);  
+// printf("%2c\n", 0);  
+
+// }
