@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_intlen_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/23 13:58:23 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/16 13:42:07 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/03/26 19:55:56 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/16 17:04:27 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int64_t n)
+int		ft_intlen_u(uint64_t n)
 {
-	const char *str = "-2147483648";
+	int len;
 
-	if (n == -2147483648)
-		ft_putstr(str);
-	else if (n < 0)
+	len = 0;
+	while (n > 0)
 	{
-		ft_putchar('-');
-		ft_putnbr(n * -1);
+		n = n / 10;
+		len++;
 	}
-	else if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
-	}
-	else
-		ft_putchar(n + '0');
+	return (len);
 }

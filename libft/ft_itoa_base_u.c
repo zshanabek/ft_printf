@@ -6,16 +6,16 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 15:44:20 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/14 16:12:32 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/16 14:10:41 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa_base_u(uintmax_t value, int base)
+char		*ft_itoa_base_u(uint64_t value, int base)
 {
 	int		len;
-	long	nbr;
+	uintmax_t	nbr;
 	char	*pointer;
 	char	*base_string = "0123456789abcdef";
 
@@ -29,13 +29,7 @@ char		*ft_itoa_base_u(uintmax_t value, int base)
 		len += 1;
 	}
 	nbr = value;
-	if (nbr < 0)
-	{
-		if (base == 10)
-			len += 1;
-		nbr *= -1;
-	}
-	if (!(pointer = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(pointer = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	pointer[len] = '\0';
 	while (nbr)
@@ -43,7 +37,5 @@ char		*ft_itoa_base_u(uintmax_t value, int base)
 		pointer[--len] = base_string[nbr % base];
 		nbr /= base;
 	}
-	if (base == 10)
-		pointer[0] = '-';
 	return (pointer);
 }

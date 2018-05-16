@@ -24,7 +24,7 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 	return (flags);
 }
 
-void find_length(intmax_t *n, va_list ap, char *flags)
+void find_length(int64_t *n, va_list ap, char *flags)
 {
 	int i;
 	int ok;
@@ -40,22 +40,22 @@ void find_length(intmax_t *n, va_list ap, char *flags)
 		}
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
 		{
-			*n = (long)va_arg(ap, intmax_t);	
+			*n = (long)va_arg(ap, int64_t);	
 			ok = 1;
 		}
 		else if (flags[i] == 'h')
 		{
-			*n = (short)(va_arg(ap, intmax_t));
+			*n = (short)(va_arg(ap, int64_t));
 			ok = 1;
 		}
 		i++;
 	}
-	if (!ok)
+	if (ok == 0)
 		*n = va_arg(ap, int);
 }
 
 
-void find_length_u(uintmax_t *k, va_list ap, char *flags)
+void find_length_u(uint64_t *k, va_list ap, char *flags)
 {
 	int i;
 	int ok;
@@ -71,18 +71,18 @@ void find_length_u(uintmax_t *k, va_list ap, char *flags)
 		}
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
 		{
-			*k = (long)va_arg(ap, uintmax_t);
+			*k = (long)va_arg(ap, uint64_t);
 			ok = 1;
 		}	
 		else if (flags[i] == 'h')
 		{
-			*k = (short)(va_arg(ap, uintmax_t));
+			*k = (short)(va_arg(ap, uint64_t));
 			ok = 1;
 		}
 		i++;
 	}
-	if (!ok)
-		*k = va_arg(ap, uintmax_t);
+	if (ok == 0)
+		*k = va_arg(ap, unsigned int);
 }
 
 void find_length_s(wchar_t *s, va_list ap, char *flags)
@@ -101,8 +101,8 @@ void find_length_s(wchar_t *s, va_list ap, char *flags)
 void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 {
 
-	intmax_t			n;	
-	uintmax_t 			k;
+	int64_t				n;	
+	uint64_t 			k;
 	wchar_t				s;
 
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
@@ -113,9 +113,7 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 		find_length_s(&s, ap, flags);
 	// =========================identify conversion===================
 	if (form->specifier == 'd' || form->specifier == 'i')
-	{
 		ft_analyze_d(n, form, flags, count);
-	}
 	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p')
 		ft_analyze_u(k, form, flags, count);
 	else if (form->specifier == 's')
@@ -163,25 +161,5 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	ft_printf("1 |%12d\n", 45);
-	ft_printf("2 |%012d\n", 45);
-	ft_printf("3 |% 012d\n", 45);
-	ft_printf("4 |%+12d\n", 45);
-	ft_printf("5 |%+012d\n", 45);
-	ft_printf("6 |%- 12d\n", 45);
-	ft_printf("7 |%-+12d\n", 45);
-	ft_printf("8 |%12.4d\n", 45);
-	ft_printf("9 |%-12.4d\n", 45);
 
-	ft_printf("=====================\n");
-	
-	printf("1 |%12d\n", 45);
-	printf("2 |%012d\n", 45);
-	printf("3 |% 012d\n", 45);
-	printf("4 |%+12d\n", 45);
-	printf("5 |%+012d\n", 45);
-	printf("6 |%- 12d\n", 45);
-	printf("7 |%-+12d\n", 45);
-	printf("8 |%12.4d\n", 45);
-	printf("9 |%-12.4d\n", 45);
 }

@@ -51,7 +51,7 @@ int get_precision(char *flags)
 		return (-1);
 }
 
-int calculate_zeros(intmax_t num, char *flags)
+int calculate_zeros(int64_t num, char *flags)
 {
 	int precision;
 
@@ -61,7 +61,7 @@ int calculate_zeros(intmax_t num, char *flags)
 	return precision;
 }
 
-int calculate_padding(intmax_t num, t_item *form, char *flags)
+int calculate_padding(int64_t num, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	
@@ -86,17 +86,17 @@ int calculate_padding(intmax_t num, t_item *form, char *flags)
 }
 
 
-int calculate_zeros_u(uintmax_t num, char *flags)
+int calculate_zeros_u(uint64_t num, char *flags)
 {
 	int precision;
 
 	precision = get_precision(flags);
 	if (precision > 0)
-		precision = precision - ft_intlen(num);
+		precision = precision - ft_intlen_u(num);
 	return precision;
 }
 
-int calculate_padding_u(uintmax_t num, t_item *form, char *flags)
+int calculate_padding_u(uint64_t num, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	
@@ -105,14 +105,14 @@ int calculate_padding_u(uintmax_t num, t_item *form, char *flags)
 	
 	if (form->precision > 0)
 	{
-		padding = width - (form->precision + ft_intlen(num));
+		padding = width - (form->precision + ft_intlen_u(num));
 		if (form->sign == '+' || form->sign == '-' || form->space == true )
 			padding--;
 		return (padding);		
 	}
 	else
 	{
-		padding = width - ft_intlen(num);
+		padding = width - ft_intlen_u(num);
 		if (form->sign == '+' || form->sign == '-' || form->space == true  )
 			padding--;
 		return (padding);	

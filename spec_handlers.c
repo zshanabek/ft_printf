@@ -76,7 +76,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_strlen(output));	
 }
 
-void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 
@@ -91,14 +91,13 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	else if (form->specifier == 'x' || form->specifier == 'p')
 		output = ft_itoa_base_u(num, 16);		
 	else
-		output = ft_itoa_u(num);	
-	form->precision  = calculate_zeros_u(ft_atoi(output), flags);
-	form->padding = calculate_padding_u(ft_atoi(output), form, flags);
-
+		output = ft_itoa_base_u(num, 10);
+	form->precision  = calculate_zeros_u(ft_atoi_u(output), flags);
+	form->padding = calculate_padding_u(ft_atoi_u(output), form, flags);
 	make_output_u(form, output, count);
 }
 
-void	ft_analyze_x(uintmax_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 
@@ -125,6 +124,5 @@ void	ft_analyze_p(int num, t_item *form, char *flags, int *count)
 	output = ft_itoa_base(num, 8);
 	form->precision  = calculate_zeros(ft_atoi(output), flags);
 	form->padding = calculate_padding(ft_atoi(output), form, flags);
-	
 	make_output_u(form, output, count);
 }

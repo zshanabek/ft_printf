@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:22:00 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/16 00:13:35 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/16 13:42:07 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_nbrendl(intmax_t n)
+void	ft_nbrendl(int64_t n)
 {
 	ft_putnbr(n);
 	ft_putstr("\n");
