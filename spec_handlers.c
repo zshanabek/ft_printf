@@ -20,6 +20,7 @@ void	ft_analyze_c(char c, t_item *form, char *flags, int *count)
 	ft_putchar(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
+	*count += (ft_strlen(padding_str) + 1);		
 }
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)
