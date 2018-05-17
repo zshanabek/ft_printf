@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/18 00:20:46 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/18 00:25:41 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,21 +137,20 @@ int	ft_printf(const char * restrict format, ...)
 
 // int		main()
 // {
-
-// 		printf ("number 1|%d\n", ft_printf("1 |%12X\n", -45));
-// 		printf ("number 2|%d\n", ft_printf("2 |%012X\n", -45));
-// 		printf ("number 3|%d\n", ft_printf("3 |%#12X\n", -45));
-// 		printf ("number 4|%d\n", ft_printf("4 |%#012X\n", -45));
-// 		printf ("number 5|%d\n", ft_printf("5 |%-12X\n", -45));
-// 		printf ("number 6|%d\n", ft_printf("6 |%-#12X\n", -45));
-// 		printf ("number 7|%d\n", ft_printf("7 |%12.4X\n", -45));
-// 		printf ("number 8|%d\n", ft_printf("8 |%-#12.4X\n", -45)); 
-// 		printf ("number 1|%d\n", printf	 ("1 |%12X\n", -45));
-// 		printf ("number 2|%d\n", printf	 ("2 |%012X\n", -45));
-// 		printf ("number 3|%d\n", printf	 ("3 |%#12X\n", -45));
-// 		printf ("number 4|%d\n", printf	 ("4 |%#012X\n", -45));
-// 		printf ("number 5|%d\n", printf	 ("5 |%-12X\n", -45));
-// 		printf ("number 6|%d\n", printf	 ("6 |%-#12X\n", -45));
-// 		printf ("number 7|%d\n", printf	 ("7 |%12.4X\n", -45));
-// 		printf ("number 8|%d\n", printf	 ("8 |%-#12.4X\n", -45));
+// 		printf ("number 1|%d\n", ft_printf("1 |%12X\n", 45));
+// 		printf ("number 2|%d\n", ft_printf("2 |%012X\n", 45));
+// 		printf ("number 3|%d\n", ft_printf("3 |%#12X\n", 45));
+// 		printf ("number 4|%d\n", ft_printf("4 |%#012X\n", 45));
+// 		printf ("number 5|%d\n", ft_printf("5 |%-12X\n", 45));
+// 		printf ("number 6|%d\n", ft_printf("6 |%-#12X\n", 45));
+// 		printf ("number 7|%d\n", ft_printf("7 |%12.4X\n", 45));
+// 		printf ("number 8|%d\n", ft_printf("8 |%-#12.4X\n", 45)); 
+// 		printf ("number 1|%d\n", printf	 ("1 |%12X\n", 45));
+// 		printf ("number 2|%d\n", printf	 ("2 |%012X\n", 45));
+// 		printf ("number 3|%d\n", printf	 ("3 |%#12X\n", 45));
+// 		printf ("number 4|%d\n", printf	 ("4 |%#012X\n", 45));
+// 		printf ("number 5|%d\n", printf	 ("5 |%-12X\n", 45));
+// 		printf ("number 6|%d\n", printf	 ("6 |%-#12X\n", 45));
+// 		printf ("number 7|%d\n", printf	 ("7 |%12.4X\n", 45));
+// 		printf ("number 8|%d\n", printf	 ("8 |%-#12.4X\n", 45));
 // }
