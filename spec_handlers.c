@@ -64,20 +64,23 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	*count += (ft_strlen(padding_str) + ft_strlen(output));
 }
 
-void ft_sign_order_u(t_item *form)
+void ft_sign_order_u(t_item *form, int *count)
 {
 	if (form->hash && form->specifier == 'o')
-		form->hex_sign[0] = '0';
+	{
+		form->hex_sign = "0";		
+		(*count) += 1;
+	}
 	else if (form->hash && form->specifier == 'x' )
 	{
-		form->hex_sign[0] = '0';
-		form->hex_sign[1] = 'x';		
+		form->hex_sign = "0x";		
+		(*count) += 2;
 	}
 	else if (form->hash && form->specifier == 'X')
 	{
-		form->hex_sign[0] = '0';
-		form->hex_sign[1] = 'X';		
-	}
+		form->hex_sign = "0X";		
+		(*count) += 2;
+	}	
 	if (form->hash)
 	{		
 		if ((ft_strlen(form->padding_str) <= 0 && ft_strlen(form->zeros_str) <= 0) || (ft_strlen(form->padding_str) > 0 && ft_strlen(form->zeros_str) <= 0 && form->zero == true) 
@@ -121,7 +124,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 	*count += (ft_strlen(form->padding_str) + ft_strlen(form->zeros_str) + ft_strlen(output));	
 }
 
-void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 	if (find_minus(flags))
@@ -142,6 +145,6 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	form->precision  = calculate_zeros_u(ft_strlen(output), flags);
 	form->padding = calculate_padding_u(ft_strlen(output), form, flags);
 	create_output_u(form, output, count);
-	ft_sign_order_u(form);	
+	ft_sign_order_u(form, count);	
 	make_output_u(form, output, count);
 }

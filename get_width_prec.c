@@ -51,7 +51,7 @@ int get_precision(char *flags)
 		return (-1);
 }
 
-int calculate_zeros(intmax_t num, char *flags)
+int calculate_zeros(int64_t num, char *flags)
 {
 	int precision;
 
@@ -61,7 +61,7 @@ int calculate_zeros(intmax_t num, char *flags)
 	return precision;
 }
 
-int calculate_padding(intmax_t num, t_item *form, char *flags)
+int calculate_padding(int64_t num, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	

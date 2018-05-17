@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:09:21 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/17 00:35:50 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 22:30:41 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char		*fill_arr(char *arr, int n, int len)
 	return (arr);
 }
 
-char			*ft_itoa(intmax_t n)
+char			*ft_itoa(int64_t n)
 {
 	int		len;
 	char	*arr;
