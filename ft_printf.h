@@ -26,8 +26,11 @@ typedef struct	s_item
 	int precision;
 	int padding;
 	char sign;
+	char *hex_sign;	
 	int order;
 	char specifier;
+	char *padding_str;
+	char *zeros_str;
 }				t_item;
 
 void 			print_struct(t_item *form);
@@ -43,8 +46,8 @@ int				get_width(char *flags);
 int				get_precision(char *flags);
 int				calculate_zeros(intmax_t num, char *flags);
 int				calculate_padding(intmax_t num, t_item *form, char *flags);
-int				calculate_zeros_u(uintmax_t num, char *flags);
-int				calculate_padding_u(uintmax_t num, t_item *form, char *flags);
+int				calculate_zeros_u(int len, char *flags);
+int				calculate_padding_u(int len, t_item *form, char *flags);
 int				is_specifier(char c);
 t_item			*create_struct();
 void			create_output_d(intmax_t num, t_item *form, int *count);

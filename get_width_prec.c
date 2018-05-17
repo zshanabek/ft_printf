@@ -86,29 +86,24 @@ int calculate_padding(intmax_t num, t_item *form, char *flags)
 }
 
 
-int calculate_zeros_u(uintmax_t num, char *flags)
+int calculate_zeros_u(int len, char *flags)
 {
 	int precision;
 
 	precision = get_precision(flags);
 	if (precision > 0)
-		precision = precision - ft_intlen_u(num);
+		precision = precision - len;
 	return precision;
 }
 
-int calculate_padding_u(uintmax_t num, t_item *form, char *flags)
+int calculate_padding_u(int len, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	
-	int		len;
 
 	width = get_width(flags);	
 	if (form->precision > 0)
 	{
-		if (form->specifier == 'x' || form->specifier == 'X')
-			len = ft_strlen(ft_itoa_base_u(num, 16));
-		else
-			len = ft_intlen_u(num);
 		padding = width - (form->precision + len);
 		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
 			padding -= 2;
@@ -118,12 +113,7 @@ int calculate_padding_u(uintmax_t num, t_item *form, char *flags)
 	}
 	else
 	{
-		// printf("h: %s\n", ft_itoa_base_u(num, 16));
-		if (form->specifier == 'x' || form->specifier == 'X')
-			len = ft_strlen(ft_itoa_base_u(num, 16));
-		else
-			len = ft_intlen_u(num);
-		padding = width - ft_intlen_u(num);
+		padding = width - len;
 		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
 			padding -= 2;
 		else if (form->hash == true)

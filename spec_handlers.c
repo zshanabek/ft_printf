@@ -64,32 +64,61 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	*count += (ft_strlen(padding_str) + ft_strlen(output));
 }
 
+void ft_sign_order_u(t_item *form)
+{
+	if (form->hash && form->specifier == 'o')
+		form->hex_sign[0] = '0';
+	else if (form->hash && form->specifier == 'x' )
+	{
+		form->hex_sign[0] = '0';
+		form->hex_sign[1] = 'x';		
+	}
+	else if (form->hash && form->specifier == 'X')
+	{
+		form->hex_sign[0] = '0';
+		form->hex_sign[1] = 'X';		
+	}
+	if (form->hash)
+	{		
+		if ((ft_strlen(form->padding_str) <= 0 && ft_strlen(form->zeros_str) <= 0) || (ft_strlen(form->padding_str) > 0 && ft_strlen(form->zeros_str) <= 0 && form->zero == true) 
+		|| (ft_strlen(form->zeros_str) > ft_strlen(form->padding_str)))
+			form->order = 1;
+		else if (ft_strlen(form->padding_str) > 0 && ft_strlen(form->zeros_str) > 0)	
+			form->order = 2;
+		else if (ft_strlen(form->padding_str) > 0 && ft_strlen(form->zeros_str) <= 0)		
+			form->order = 3;
+	}
+}
+
+void	create_output_u(t_item *form, char *output, int *count)
+{
+	form->zeros_str = ft_strnew(0);
+	form->padding_str = ft_strnew(0);	
+	if (form->precision > 0)
+		form->zeros_str = ft_strfill(form->precision, '0');
+	if (form->padding > 0 && form->zero == true)
+		form->padding_str = ft_strfill(form->padding , '0');
+	else if (form->padding > 0 && form->zero == false)
+		form->padding_str = ft_strfill(form->padding, ' ');
+}
+
 
 void	make_output_u(t_item *form, char *output, int *count)
-{
-	char *zeros_str;
-	char *padding_str;	
-
-	zeros_str = ft_strnew(0);
-	padding_str = ft_strnew(0);	
-	if (form->precision > 0)
-		zeros_str = ft_strfill(form->precision, '0');
-	if (form->padding > 0 && form->zero == true)
-		padding_str = ft_strfill(form->padding , '0');
-	else if (form->padding > 0 && form->zero == false)
-		padding_str = ft_strfill(form->padding, ' ');
-	if (ft_strlen(padding_str) > 0 && form->minus == false)
-		ft_putstr(padding_str);
-	if (ft_strlen(zeros_str) > 0)
-		ft_putstr(zeros_str);
-	if(form->hash && (form->specifier == 'x' || form->specifier == 'p'))
-		ft_putstr("0x");
-	if(form->hash && form->specifier == 'o')
-		ft_putstr("0");
+{	
+	if (form->order == 1)
+		ft_putstr(form->hex_sign);
+	if (ft_strlen(form->padding_str) > 0 && form->minus == false)
+		ft_putstr(form->padding_str);
+	if (form->order == 2)
+		ft_putstr(form->hex_sign);
+	if (ft_strlen(form->zeros_str) > 0)
+		ft_putstr(form->zeros_str);
+	if (form->order == 3)
+		ft_putstr(form->hex_sign);
 	ft_putstr(output);
-	if (ft_strlen(padding_str) > 0 && form->minus == true) 
-		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_strlen(output));	
+	if (form->padding_str > 0 && form->minus == true) 
+		ft_putstr(form->padding_str);
+	*count += (ft_strlen(form->padding_str) + ft_strlen(form->zeros_str) + ft_strlen(output));	
 }
 
 void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
@@ -101,15 +130,18 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 		form->zero = true;
 	if (find_hash(flags) || form->specifier == 'p')
 		form->hash = true;
+	
 	if (form->specifier == 'o')
 		output = ft_itoa_base_u(num, 8);
-	else if (form->specifier == 'x' || form->specifier == 'p')
+	else if (form->specifier == 'X' || form->specifier == 'x' || form->specifier == 'p' )
 		output = ft_itoa_base_u(num, 16);		
 	else
 		output = ft_itoa_base_u(num, 10);
-	
-	form->precision  = calculate_zeros_u(ft_atoi_u(output), flags);
-	form->padding = calculate_padding_u(ft_atoi_u(output), form, flags);
+	if (form->specifier == 'X')
+		ft_strupcase(output);
+	form->precision  = calculate_zeros_u(ft_strlen(output), flags);
+	form->padding = calculate_padding_u(ft_strlen(output), form, flags);
+	create_output_u(form, output, count);
+	ft_sign_order_u(form);	
 	make_output_u(form, output, count);
-	
 }

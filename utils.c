@@ -64,6 +64,7 @@ t_item *create_struct()
 	form->padding = 0;
 	form->precision = 0;
 	form->sign = 'E';
+	form->hex_sign = ft_strnew(2);	
 	form->order = 0;	
 	return (form);
 }

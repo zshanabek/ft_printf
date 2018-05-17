@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/17 00:47:37 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 21:51:47 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
 		find_length(&n, ap, flags);
-	if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p')
+	if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'X' || form->specifier == 'u' || form->specifier == 'p')
 		find_length_u(&k, ap, flags);
 	if (form->specifier == 's')
 		find_length_s(&s, ap, flags);
 	// =========================identify conversion===================
 	if (form->specifier == 'd' || form->specifier == 'i')
 		ft_analyze_d(n, form, flags, count);
-	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p')
+	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
 		ft_analyze_u(k, form, flags, count);
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(ap, char *), form, flags, count);
@@ -171,23 +171,36 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
+
+void ft_strupcase(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_toupper(str[i]);
+		i++;
+	}
+}
+
 int		main()
 {
-// ft_printf("1 |%14u\n", 45);
-// ft_printf("2 |%014u\n", 45);
-// ft_printf("3 |%-14u\n", 45);
-// ft_printf("4 |%14.4u\n", 45);
-// ft_printf("5 |%-14.4u\n", 45);
-
-// ft_printf("=====================\n");
-
-// printf("1 |%14u\n", 45);
-// printf("2 |%014u\n", 45);
-// printf("3 |%-14u\n", 45);
-// printf("4 |%14.4u\n", 45);
-// printf("5 |%-14.4u\n", 45);
-	int a;
-	printf("%p\n", &a);  	
-	ft_printf("%p\n", &a);  
-
+	ft_printf("1 |%12X\n", 45);
+	ft_printf("2 |%012X\n", 45);
+	ft_printf("3 |%#12X\n", 45);
+	ft_printf("4 |%#012X\n", 45);
+	ft_printf("5 |%-12X\n", 45);
+	ft_printf("6 |%-#12X\n", 45);
+	ft_printf("7 |%12.4X\n", 45);
+	ft_printf("8 |%-#12.4X\n", 45); 
+	ft_printf("======================\n");
+	printf	 ("1 |%12X\n", 45);
+	printf	 ("2 |%012X\n", 45);
+	printf	 ("3 |%#12X\n", 45);
+	printf	 ("4 |%#012X\n", 45);
+	printf	 ("5 |%-12X\n", 45);
+	printf	 ("6 |%-#12X\n", 45);
+	printf	 ("7 |%12.4X\n", 45);
+	printf	 ("8 |%-#12.4X\n", 45);
 }

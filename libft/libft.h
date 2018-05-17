@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/17 00:35:50 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/17 21:04:06 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char			*ft_itoa_base_u(uintmax_t value, int base);
 char			*ft_itoa_u(uintmax_t n);
 uintmax_t		ft_atoi_u(const char *str);
 int				ft_intlen_u(uintmax_t n);
+void			ft_strupcase(char *str);
 
 #endif
