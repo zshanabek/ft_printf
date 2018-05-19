@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/18 00:25:41 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/19 13:23:28 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ uint64_t	find_length_u(va_list ap, char *flags)
 	while(flags[i])
 	{
 		if (flags[i-1] == 'h' && flags[i] == 'h')
-			return ((char)(va_arg(ap, unsigned int)));
+			return (va_arg(ap, unsigned int));
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
 			return ((long)va_arg(ap, uint64_t));
 		else if (flags[i] == 'h')
@@ -87,6 +87,20 @@ wchar_t *find_length_s(va_list ap, char *flags)
 	return (va_arg(ap, wchar_t *));
 }
 
+wint_t	find_length_c(va_list ap, char *flags)
+{
+	int i;
+
+	i = 0;
+	while (flags[i])
+	{
+		if (flags[i] == 'l')
+			return (va_arg(ap, wint_t));
+		i++;
+	}
+	return (va_arg(ap, int));
+}
+
 void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 {
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
@@ -95,8 +109,12 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
 	else if (form->specifier == 's')
 		ft_analyze_s(va_arg(ap, char *), form, flags, count);
+	else if (form->specifier == 'S')
+		ft_analyze_s(va_arg(ap, char *), form, flags, count);
 	else if (form->specifier == 'c')
-		ft_analyze_c(va_arg(ap, int), form, flags, count);
+		ft_analyze_c(find_length_c(ap, flags), form, flags, count);
+	else if (form->specifier == 'C')
+		ft_analyze_c(va_arg(ap, wint_t), form, flags, count);
 	else if (form->specifier == '%')
 		ft_analyze_percent(form, flags, count);
 }
@@ -135,22 +153,12 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-// int		main()
-// {
-// 		printf ("number 1|%d\n", ft_printf("1 |%12X\n", 45));
-// 		printf ("number 2|%d\n", ft_printf("2 |%012X\n", 45));
-// 		printf ("number 3|%d\n", ft_printf("3 |%#12X\n", 45));
-// 		printf ("number 4|%d\n", ft_printf("4 |%#012X\n", 45));
-// 		printf ("number 5|%d\n", ft_printf("5 |%-12X\n", 45));
-// 		printf ("number 6|%d\n", ft_printf("6 |%-#12X\n", 45));
-// 		printf ("number 7|%d\n", ft_printf("7 |%12.4X\n", 45));
-// 		printf ("number 8|%d\n", ft_printf("8 |%-#12.4X\n", 45)); 
-// 		printf ("number 1|%d\n", printf	 ("1 |%12X\n", 45));
-// 		printf ("number 2|%d\n", printf	 ("2 |%012X\n", 45));
-// 		printf ("number 3|%d\n", printf	 ("3 |%#12X\n", 45));
-// 		printf ("number 4|%d\n", printf	 ("4 |%#012X\n", 45));
-// 		printf ("number 5|%d\n", printf	 ("5 |%-12X\n", 45));
-// 		printf ("number 6|%d\n", printf	 ("6 |%-#12X\n", 45));
-// 		printf ("number 7|%d\n", printf	 ("7 |%12.4X\n", 45));
-// 		printf ("number 8|%d\n", printf	 ("8 |%-#12.4X\n", 45));
-// }
+int		main()
+{
+	wchar_t c;
+
+	setlocale(LC_ALL, "");
+	c = L'€';
+	ft_printf("%C\n", c);
+	printf("%C\n", c);	
+}

@@ -7,6 +7,8 @@
 # include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
+#include <locale.h>
 
 typedef enum e_size
 {
@@ -59,7 +61,7 @@ void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
 int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count);
-void			ft_analyze_c(char c, t_item *form, char *flags, int *count);
+void			ft_analyze_c(wint_t c, t_item *form, char *flags, int *count);
 void			ft_analyze_percent(t_item *form, char *flags, int *count);
 int				ft_printf(const char * restrict format, ...);
 

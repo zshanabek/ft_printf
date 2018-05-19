@@ -1,7 +1,39 @@
 #include "ft_printf.h"
 
+void ft_putsymbol(wchar_t c)
+{
+	char	*s;
+	int		len;
 
-void	ft_analyze_c(char c, t_item *form, char *flags, int *count)
+	setlocale(LC_ALL, "");
+	s = ft_itoa_base(c, 2);
+	len = ft_strlen(s);
+	if (MB_CUR_MAX != 1)
+	{
+		if (len <= 7)
+			ft_putchar(c);
+		else if (len <= 11)
+		{
+			ft_putchar((c >> 6) + 0b11000000);
+			ft_putchar((c & 0b111111) + 0b10000000);
+		}
+		else if (len <= 16)
+		{
+			ft_putchar((c >> 12) + 0b11100000);
+			ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
+			ft_putchar((c & 0b111111) + 0b10000000);
+		}
+		else
+		{
+			ft_putchar((c >> 18) + 0b11110000);		
+			ft_putchar(((c >> 12) & 0b111111) + 0b10000000);
+			ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
+			ft_putchar((c & 0b111111) + 0b10000000);
+		}
+	}
+}
+
+void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
 	char *padding_str;
 
@@ -17,7 +49,7 @@ void	ft_analyze_c(char c, t_item *form, char *flags, int *count)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	ft_putchar(c);
+	ft_putsymbol(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
 	*count += (ft_strlen(padding_str) + 1);		
