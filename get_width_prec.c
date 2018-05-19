@@ -124,12 +124,12 @@ int calculate_padding_u(int len, t_item *form, char *flags)
 	return (0);
 }
 
-int calculate_padding_s(char *str, t_item *form, char *flags)
+int calculate_padding_s(wchar_t *str, t_item *form, char *flags)
 {
 	int width;
 	int padding;
 
 	width = get_width(flags);
-	padding = width - ft_strlen(str); 
+	padding = width - ft_strlen_w(str); 
 	return (padding);
 }

@@ -5,10 +5,9 @@
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <wchar.h>
-#include <locale.h>
+# include <stdlib.h>
+# include <wchar.h>
+# include <locale.h>
 
 typedef enum e_size
 {
@@ -57,8 +56,8 @@ char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
 void			ft_analyze_d(int64_t num, t_item *form, char *flags, int *count);
-void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
-int				calculate_padding_s(char *str, t_item *form, char *flags);
+void			ft_analyze_s(wchar_t *str, t_item *form, char *flags, int *count);
+int				calculate_padding_s(wchar_t *str, t_item *form, char *flags);
 void			ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_c(wint_t c, t_item *form, char *flags, int *count);

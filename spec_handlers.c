@@ -1,38 +1,5 @@
 #include "ft_printf.h"
 
-void ft_putsymbol(wchar_t c)
-{
-	char	*s;
-	int		len;
-
-	setlocale(LC_ALL, "");
-	s = ft_itoa_base(c, 2);
-	len = ft_strlen(s);
-	if (MB_CUR_MAX != 1)
-	{
-		if (len <= 7)
-			ft_putchar(c);
-		else if (len <= 11)
-		{
-			ft_putchar((c >> 6) + 0b11000000);
-			ft_putchar((c & 0b111111) + 0b10000000);
-		}
-		else if (len <= 16)
-		{
-			ft_putchar((c >> 12) + 0b11100000);
-			ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
-			ft_putchar((c & 0b111111) + 0b10000000);
-		}
-		else
-		{
-			ft_putchar((c >> 18) + 0b11110000);		
-			ft_putchar(((c >> 12) & 0b111111) + 0b10000000);
-			ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
-			ft_putchar((c & 0b111111) + 0b10000000);
-		}
-	}
-}
-
 void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
 	char *padding_str;
@@ -77,25 +44,30 @@ void	ft_analyze_percent(t_item *form, char *flags, int *count)
 	*count += (ft_strlen(padding_str) + 1);	
 }
 
-void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
+void	ft_analyze_s(wchar_t *str, t_item *form, char *flags, int *count)
 {
-	char *output;
-	char *padding_str;
+	wchar_t		*output;
+	char		*padding_str;
 
-	output = ft_strnew(0);
+	output = ft_strnew_w(0);
 	padding_str = ft_strnew(0);	
 	if (find_minus(flags))
 		form->minus = true;
-	output = ft_strsub(str, 0, get_precision(flags));
 	form->padding = calculate_padding_s(output, form, flags);
 	if (form->padding > 0)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	ft_putstr(output);	
+	if (get_precision(flags) != -1)
+	{
+		output = ft_strsub_w(str, 0, get_precision(flags));
+		ft_putstrw(output);
+	}
+	else 
+		ft_putstrw(str);
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + ft_strlen(output));
+	*count += (ft_strlen(padding_str) + ft_strlen_w(output));
 }
 
 void ft_sign_order_u(t_item *form, int *count)
@@ -138,7 +110,6 @@ void	create_output_u(t_item *form, char *output, int *count)
 	else if (form->padding > 0 && form->zero == false)
 		form->padding_str = ft_strfill(form->padding, ' ');
 }
-
 
 void	make_output_u(t_item *form, char *output, int *count)
 {	

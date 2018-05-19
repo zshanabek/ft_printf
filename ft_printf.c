@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 13:23:28 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/19 14:23:52 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
 		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
 	else if (form->specifier == 's')
-		ft_analyze_s(va_arg(ap, char *), form, flags, count);
+		ft_analyze_s(va_arg(ap, wchar_t *), form, flags, count);
 	else if (form->specifier == 'S')
-		ft_analyze_s(va_arg(ap, char *), form, flags, count);
+	{
+		ft_analyze_s(va_arg(ap, wchar_t *), form, flags, count);
+	}
 	else if (form->specifier == 'c')
 		ft_analyze_c(find_length_c(ap, flags), form, flags, count);
 	else if (form->specifier == 'C')
@@ -155,10 +157,11 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	wchar_t c;
+	wchar_t* c;
 
-	setlocale(LC_ALL, "");
-	c = L'€';
-	ft_printf("%C\n", c);
-	printf("%C\n", c);	
+	// setlocale(LC_ALL, "");
+	c = L"€ асель jbl папвп";
+
+	ft_printf("%S\n", c);
+	printf("%S\n", c);	
 }

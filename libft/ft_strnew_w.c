@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strnew_w.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/22 16:33:45 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 13:29:01 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/05/19 13:35:24 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/19 14:10:18 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+wchar_t	*ft_strnew_w(size_t size)
 {
-	char	*str;
-	size_t	i;
+	wchar_t		*str;
+	wchar_t		*p;
+	size_t		i;
 
-	if (!s)
-		return (0);
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = (wchar_t *)malloc(sizeof(wchar_t) * (size + 1));
 	if (str == NULL)
-		return (0);
-	while (s[start] && i < len)
+		return (NULL);
+	i = 0;
+	p = (wchar_t *)str;
+	while (i < (size + 1))
 	{
-		str[i] = s[start];
-		start++;
+		p[i] = (wchar_t)('\0');
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
