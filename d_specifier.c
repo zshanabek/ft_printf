@@ -14,30 +14,6 @@ void ft_sign_order(t_item *form, char *padding_str, char *zeros_str)
 	}
 }
 
-void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
-{
-	if (num < 0)
-	{
-		form->sign = '-';
-		num *= -1;
-	}
-	if (find_plus(flags) && form->sign != '-')
-		form->sign = '+';
-	else if (find_space(flags))
-		form->space = true;
-	form->precision = calculate_zeros(num, flags);	
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags) && form->precision == -1)
-		form->zero = true;
-	if (is_sign(form->sign) || form->padding > 0) 
-		form->space = false;
-	form->padding = calculate_padding(num, form, flags);
-	create_output_d(num, form, count);
-
-}
-
-
 void make_output_d(intmax_t num, t_item *form, char *padding_str, char *zeros_str, int *count)
 {
 	if (form->space)
@@ -57,7 +33,7 @@ void make_output_d(intmax_t num, t_item *form, char *padding_str, char *zeros_st
 		ft_putchar(form->sign);
 	if (is_sign(form->sign))
 		(*count)++;
-	ft_putnbr(num);
+	ft_putstr(ft_itoa(num));
 	if (ft_strlen(padding_str) > 0 && form->minus == true) 
 		ft_putstr(padding_str);
 	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_intlen(num));	
@@ -80,3 +56,24 @@ void create_output_d(intmax_t num, t_item *form, int *count)
 	make_output_d(num, form, padding_str, zeros_str, count);
 }
 
+void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
+{
+	if (num < 0)
+	{
+		form->sign = '-';
+		num = -num;
+	}
+	if (find_plus(flags) && form->sign != '-')
+		form->sign = '+';
+	else if (find_space(flags))
+		form->space = true;
+	form->precision = calculate_zeros(num, flags);	
+	if (find_minus(flags))
+		form->minus = true;
+	else if (find_zero(flags) && form->precision == -1)
+		form->zero = true;
+	if (is_sign(form->sign) || form->padding > 0) 
+		form->space = false;
+	form->padding = calculate_padding(num, form, flags);
+	create_output_d(num, form, count);
+}

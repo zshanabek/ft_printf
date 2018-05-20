@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 19:10:06 by zshanabe         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 char	*get_inform(const char * restrict format, int i, t_item *form)
@@ -161,8 +149,17 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-	ft_printf("%ld", -2147483648);
-	printf("%ld", -2147483648);			
-}
+// int		main()
+// {
+
+// 	wchar_t c;
+
+// 	char *s;
+// 	int len;
+// 	setlocale(LC_ALL, "");
+// 	c = L'€';
+
+// 	ft_printf("%C\n",42);
+// 	printf	("%C\n",42);	
+			
+// }

@@ -16,7 +16,12 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	ft_putsymbol(c);
+	if (c == 0)
+		ft_putchar(0);
+	else if ( c >= 32 && c <= 126)
+		ft_putchar(c);	
+	else
+		ft_putsymbol(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
 	*count += (ft_strlen(padding_str) + 1);		
