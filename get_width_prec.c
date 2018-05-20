@@ -53,7 +53,7 @@ int get_precision(char *flags)
 		return (-1);
 }
 
-int calculate_zeros(int64_t num, char *flags)
+int calculate_zeros(intmax_t num, char *flags)
 {
 	int precision;
 
@@ -63,7 +63,7 @@ int calculate_zeros(int64_t num, char *flags)
 	return precision;
 }
 
-int calculate_padding(int64_t num, t_item *form, char *flags)
+int calculate_padding(intmax_t num, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;	
@@ -126,7 +126,7 @@ int calculate_padding_u(int len, t_item *form, char *flags)
 	return (0);
 }
 
-int calculate_padding_ws(wchar_t *str, t_item *form, char *flags)
+int calculate_padding_ws(wchar_t *str, char *flags)
 {
 	int width;
 	int padding;
@@ -136,7 +136,7 @@ int calculate_padding_ws(wchar_t *str, t_item *form, char *flags)
 	return (padding);
 }
 
-int calculate_padding_s(char *str, t_item *form, char *flags)
+int calculate_padding_s(char *str, char *flags)
 {
 	int width;
 	int padding;

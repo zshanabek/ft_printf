@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/19 17:07:30 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 18:47:37 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,16 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
-char			*ft_itoa(int64_t n);
+char			*ft_itoa(intmax_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
-void			ft_putnbr(int64_t n);
+void			ft_putnbr(intmax_t n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-void			ft_nbrendl(int64_t n);
+void			ft_nbrendl(intmax_t n);
 int				ft_isempty(char const *str);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
@@ -87,15 +87,15 @@ void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstaddend(t_list *head);
-int				ft_intlen(int n);
+int				ft_intlen(intmax_t n);
 int				ft_isws(char c);
 void			ft_print2darr(char **matrix);
 int				ft_intmax(int a, int b);
-char			*ft_itoa_base(int64_t value, int base);
-char			*ft_itoa_base_u(uint64_t value, int base);
-char			*ft_itoa_u(uint64_t n);
-uint64_t		ft_atoi_u(const char *str);
-int				ft_intlen_u(uint64_t n);
+char			*ft_itoa_base(intmax_t value, int base);
+char			*ft_itoa_base_u(uintmax_t value, int base);
+char			*ft_itoa_u(uintmax_t n);
+uintmax_t		ft_atoi_u(const char *str);
+int				ft_intlen_u(uintmax_t n);
 void			ft_strupcase(char *str);
 wchar_t			*ft_strsub_w(wchar_t const *s, unsigned int start, size_t len);
 wchar_t			*ft_strnew_w(size_t size);
@@ -103,4 +103,5 @@ size_t			ft_strlen_w(const wchar_t *s);
 void			ft_putsymbol(wchar_t c);
 void			ft_putstrw(const wchar_t *str);
 wchar_t		*ft_strdupw(const wchar_t *src);
+
 #endif

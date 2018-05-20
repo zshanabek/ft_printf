@@ -14,7 +14,7 @@ void ft_sign_order(t_item *form, char *padding_str, char *zeros_str)
 	}
 }
 
-void			ft_analyze_d(int64_t num, t_item *form, char *flags, int *count)
+void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 {
 	if (num < 0)
 	{
@@ -38,10 +38,8 @@ void			ft_analyze_d(int64_t num, t_item *form, char *flags, int *count)
 }
 
 
-void make_output_d(int64_t num, t_item *form, char *padding_str, char *zeros_str, int *count)
+void make_output_d(intmax_t num, t_item *form, char *padding_str, char *zeros_str, int *count)
 {
-	int len;
-
 	if (form->space)
 	{
 		ft_putchar(' ');
@@ -58,14 +56,14 @@ void make_output_d(int64_t num, t_item *form, char *padding_str, char *zeros_str
 	if (form->order == 3 && is_sign(form->sign))
 		ft_putchar(form->sign);
 	if (is_sign(form->sign))
-		(*count)++;			
+		(*count)++;
 	ft_putnbr(num);
 	if (ft_strlen(padding_str) > 0 && form->minus == true) 
 		ft_putstr(padding_str);
 	*count += (ft_strlen(padding_str) + ft_strlen(zeros_str) + ft_intlen(num));	
 }
 
-void create_output_d(int64_t num, t_item *form, int *count)
+void create_output_d(intmax_t num, t_item *form, int *count)
 {
 	char 	*zeros_str;
 	char 	*padding_str;

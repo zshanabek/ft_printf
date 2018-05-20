@@ -57,7 +57,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 		output = ft_strsub_w(str, 0, get_precision(flags));
 	else 
 		output = ft_strdupw(str);
-	form->padding = calculate_padding_ws(output, form, flags);
+	form->padding = calculate_padding_ws(output, flags);
 	if (form->padding > 0)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
@@ -74,14 +74,16 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	char *padding_str;
 
 	output = ft_strnew(0);
-	padding_str = ft_strnew(0);	
+	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
-	if (get_precision(flags) != -1)
+	if (str == NULL)
+		output = ft_strdup("(null)");
+	else if (get_precision(flags) != -1)
 		output = ft_strsub(str, 0, get_precision(flags));
 	else 
 		output = ft_strdup(str);
-	form->padding = calculate_padding_s(output, form, flags);
+	form->padding = calculate_padding_s(output, flags);
 	if (form->padding > 0)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
@@ -121,7 +123,7 @@ void ft_sign_order_u(t_item *form, int *count)
 	}
 }
 
-void	create_output_u(t_item *form, char *output, int *count)
+void	create_output_u(t_item *form)
 {
 	form->zeros_str = ft_strnew(0);
 	form->padding_str = ft_strnew(0);	
@@ -146,17 +148,18 @@ void	make_output_u(t_item *form, char *output, int *count)
 	if (form->order == 3)
 		ft_putstr(form->hex_sign);
 	ft_putstr(output);
-	if (form->padding_str > 0 && form->minus == true) 
+	if (form->padding > 0 && form->minus == true) 
 		ft_putstr(form->padding_str);
 	*count += (ft_strlen(form->padding_str) + ft_strlen(form->zeros_str) + ft_strlen(output));	
 }
 
-void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
+
 	if (find_minus(flags))
 		form->minus = true;
-	if (find_zero(flags))
+	else if (find_zero(flags))
 		form->zero = true;
 	if ((find_hash(flags) || form->specifier == 'p') && num != 0)
 		form->hash = true;
@@ -169,10 +172,9 @@ void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 	
 	if (form->specifier == 'X')
 		ft_strupcase(output);
-
 	form->precision  = calculate_zeros_u(ft_strlen(output), flags);
 	form->padding = calculate_padding_u(ft_strlen(output), form, flags);
-	create_output_u(form, output, count);
+	create_output_u(form);
 	ft_sign_order_u(form, count);	
 	make_output_u(form, output, count);
 }

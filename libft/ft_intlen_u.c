@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 19:55:56 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/17 22:30:41 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 18:02:43 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_intlen_u(uint64_t n)
+int		ft_intlen_u(uintmax_t n)
 {
 	int len;
 

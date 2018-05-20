@@ -6,16 +6,16 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 17:55:45 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/17 22:30:41 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 18:02:43 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-uint64_t	ft_atoi_u(const char *str)
+uintmax_t	ft_atoi_u(const char *str)
 {
 	int				i;
-	uint64_t		res;
+	uintmax_t		res;
 
 	res = 0;
 	i = 0;
