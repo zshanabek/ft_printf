@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 19:07:14 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 19:10:06 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,8 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-// int		main()
-// {
-// 	ft_printf("u: %hhd\n", 128);
-// 	printf("o: %hhd\n", 128);			
-// }
+int		main()
+{
+	ft_printf("%ld", -2147483648);
+	printf("%ld", -2147483648);			
+}
