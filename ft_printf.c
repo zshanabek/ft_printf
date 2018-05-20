@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 18:51:45 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 19:07:14 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ intmax_t		find_length(va_list ap, char *flags)
 	i = 0;
 	while (flags[i])
 	{
-		if (flags[i-1] == 'h' && flags[i] == 'h')
+		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((char)(va_arg(ap, int)));
-		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
+		else if (flags[i] == 'l')
 			return (va_arg(ap, long int));	
 		else if (flags[i] == 'h')
 			return (short)(va_arg(ap, int));
@@ -66,9 +66,9 @@ uintmax_t	find_length_u(va_list ap, char *flags)
 	i = 0;
 	while(flags[i])
 	{
-		if (flags[i-1] == 'h' && flags[i] == 'h')
+		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((unsigned char)va_arg(ap, unsigned int));
-		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
+		else if (flags[i] == 'l')
 			return (va_arg(ap, unsigned long));
 		else if (flags[i] == 'h')
 			return ((short)va_arg(ap, unsigned int));
@@ -161,8 +161,8 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-	printf("%d\n", ft_printf("%d\n", 2147483648));
-	printf("%d\n", printf("%d\n", 2147483648));				
-}
+// int		main()
+// {
+// 	ft_printf("u: %hhd\n", 128);
+// 	printf("o: %hhd\n", 128);			
+// }
