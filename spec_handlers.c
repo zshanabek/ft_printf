@@ -158,7 +158,7 @@ void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 		form->minus = true;
 	if (find_zero(flags))
 		form->zero = true;
-	if (find_hash(flags) || form->specifier == 'p')
+	if ((find_hash(flags) || form->specifier == 'p') && num != 0)
 		form->hash = true;
 	if (form->specifier == 'o')
 		output = ft_itoa_base_u(num, 8);

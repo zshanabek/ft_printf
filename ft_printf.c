@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 15:48:52 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 15:56:56 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,16 +157,16 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-	wchar_t c;
+// int		main()
+// {
+// 	wchar_t c;
 
-	char *s;
-	int len;
-	setlocale(LC_ALL, "");
-	c = L'€';
+// 	char *s;
+// 	int len;
+// 	setlocale(LC_ALL, "");
+// 	c = L'€';
 
-	ft_printf("%010x\n", 542);
-	printf("%010x\n", 542);	
+// 	ft_printf("g: %#x\n", 0); 
+// 	printf("o: %#x\n", 0); 	
 
-}
+// }
