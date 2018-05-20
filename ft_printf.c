@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:11:06 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 14:23:52 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/20 15:48:52 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,19 @@ uint64_t	find_length_u(va_list ap, char *flags)
 	while(flags[i])
 	{
 		if (flags[i-1] == 'h' && flags[i] == 'h')
-			return (va_arg(ap, unsigned int));
+			return ((unsigned char)va_arg(ap, unsigned int));
 		else if ((flags[i-1] == 'l' && flags[i] == 'l') || flags[i] == 'l')
-			return ((long)va_arg(ap, uint64_t));
+			return (va_arg(ap, unsigned long));
 		else if (flags[i] == 'h')
-			return ((short)(va_arg(ap, uint64_t)));
+			return ((short)va_arg(ap, unsigned int));
+		else if (flags[i] == 'j')
+			return (va_arg(ap, uintmax_t));
 		i++;
 	}
-	return (va_arg(ap, uint64_t));		
+	return (va_arg(ap, unsigned int));		
 }
 
-wchar_t *find_length_s(va_list ap, char *flags)
+int find_length_s(va_list ap, char *flags)
 {
 	int i;
 
@@ -81,10 +83,10 @@ wchar_t *find_length_s(va_list ap, char *flags)
 	while (flags[i])
 	{
 		if (flags[i] == 'l')
-			return (va_arg(ap, wchar_t *));
+			return (1);
 		i++;
 	}
-	return (va_arg(ap, wchar_t *));
+	return (0);
 }
 
 wint_t	find_length_c(va_list ap, char *flags)
@@ -106,13 +108,13 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
 		ft_analyze_d(find_length(ap, flags), form, flags, count);
 	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
-		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
-	else if (form->specifier == 's')
-		ft_analyze_s(va_arg(ap, wchar_t *), form, flags, count);
-	else if (form->specifier == 'S')
 	{
-		ft_analyze_s(va_arg(ap, wchar_t *), form, flags, count);
+		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
 	}
+	else if (form->specifier == 'S' || (form->specifier == 's' && find_length_s(ap, flags) == 1))
+		ft_analyze_ls(va_arg(ap, wchar_t *), form, flags, count);
+	else if (form->specifier == 's')
+		ft_analyze_s(va_arg(ap, char *), form, flags, count);
 	else if (form->specifier == 'c')
 		ft_analyze_c(find_length_c(ap, flags), form, flags, count);
 	else if (form->specifier == 'C')
@@ -157,11 +159,14 @@ int	ft_printf(const char * restrict format, ...)
 
 int		main()
 {
-	wchar_t* c;
+	wchar_t c;
 
-	// setlocale(LC_ALL, "");
-	c = L"€ асель jbl папвп";
+	char *s;
+	int len;
+	setlocale(LC_ALL, "");
+	c = L'€';
 
-	ft_printf("%S\n", c);
-	printf("%S\n", c);	
+	ft_printf("%010x\n", 542);
+	printf("%010x\n", 542);	
+
 }

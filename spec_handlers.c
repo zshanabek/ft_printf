@@ -44,7 +44,7 @@ void	ft_analyze_percent(t_item *form, char *flags, int *count)
 	*count += (ft_strlen(padding_str) + 1);	
 }
 
-void	ft_analyze_s(wchar_t *str, t_item *form, char *flags, int *count)
+void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 {
 	wchar_t		*output;
 	char		*padding_str;
@@ -53,21 +53,43 @@ void	ft_analyze_s(wchar_t *str, t_item *form, char *flags, int *count)
 	padding_str = ft_strnew(0);	
 	if (find_minus(flags))
 		form->minus = true;
+	if (get_precision(flags) != -1)
+		output = ft_strsub_w(str, 0, get_precision(flags));
+	else 
+		output = ft_strdupw(str);
+	form->padding = calculate_padding_ws(output, form, flags);
+	if (form->padding > 0)
+		padding_str = ft_strfill(form->padding, ' ');
+	if (form->minus == false)
+		ft_putstr(padding_str);
+	ft_putstrw(output);		
+	if (form->minus == true)
+		ft_putstr(padding_str);
+	*count += (ft_strlen(padding_str) + ft_strlen_w(output));
+}
+
+void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
+{
+	char *output;
+	char *padding_str;
+
+	output = ft_strnew(0);
+	padding_str = ft_strnew(0);	
+	if (find_minus(flags))
+		form->minus = true;
+	if (get_precision(flags) != -1)
+		output = ft_strsub(str, 0, get_precision(flags));
+	else 
+		output = ft_strdup(str);
 	form->padding = calculate_padding_s(output, form, flags);
 	if (form->padding > 0)
 		padding_str = ft_strfill(form->padding, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	if (get_precision(flags) != -1)
-	{
-		output = ft_strsub_w(str, 0, get_precision(flags));
-		ft_putstrw(output);
-	}
-	else 
-		ft_putstrw(str);
+	ft_putstr(output);	
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + ft_strlen_w(output));
+	*count += (ft_strlen(padding_str) + ft_strlen(output));
 }
 
 void ft_sign_order_u(t_item *form, int *count)
@@ -138,15 +160,16 @@ void	ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count)
 		form->zero = true;
 	if (find_hash(flags) || form->specifier == 'p')
 		form->hash = true;
-	
 	if (form->specifier == 'o')
 		output = ft_itoa_base_u(num, 8);
 	else if (form->specifier == 'X' || form->specifier == 'x' || form->specifier == 'p' )
 		output = ft_itoa_base_u(num, 16);		
 	else
 		output = ft_itoa_base_u(num, 10);
+	
 	if (form->specifier == 'X')
 		ft_strupcase(output);
+
 	form->precision  = calculate_zeros_u(ft_strlen(output), flags);
 	form->padding = calculate_padding_u(ft_strlen(output), form, flags);
 	create_output_u(form, output, count);

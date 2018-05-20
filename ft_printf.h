@@ -56,12 +56,13 @@ char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
 void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
 void			ft_analyze_d(int64_t num, t_item *form, char *flags, int *count);
-void			ft_analyze_s(wchar_t *str, t_item *form, char *flags, int *count);
-int				calculate_padding_s(wchar_t *str, t_item *form, char *flags);
+void			ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count);
+void	ft_analyze_s(char *str, t_item *form, char *flags, int *count);
+int calculate_padding_ws(wchar_t *str, t_item *form, char *flags);
+int				calculate_padding_s(char *str, t_item *form, char *flags);
 void			ft_analyze_u(uint64_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_x(uint64_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_c(wint_t c, t_item *form, char *flags, int *count);
 void			ft_analyze_percent(t_item *form, char *flags, int *count);
 int				ft_printf(const char * restrict format, ...);
-
 #endif

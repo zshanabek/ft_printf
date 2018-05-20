@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdupw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 23:18:50 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 16:03:10 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/05/19 16:12:03 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/20 13:58:00 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+wchar_t		*ft_strdupw(const wchar_t *src)
 {
-	size_t i;
+	int		len;
+	wchar_t	*dup;
+	int		i;
 
+	len = ft_strlen_w(src);
+	dup = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1));
+	if (dup == NULL)
+		return (0);
 	i = 0;
-	while (s[i])
+	while (src[i])
+	{
+		dup[i] = src[i];
 		i++;
-	return (i);
+	}
+	dup[i] = '\0';
+	return (dup);
 }

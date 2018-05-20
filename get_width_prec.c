@@ -13,6 +13,8 @@ int get_width(char *flags)
 		i++;
 	k = i;
 	len = 0;
+	if (flags[i - 1] == '.')
+		return (num);
 	while (ft_isdigit(flags[i]))
 	{
 		len++;
@@ -124,12 +126,22 @@ int calculate_padding_u(int len, t_item *form, char *flags)
 	return (0);
 }
 
-int calculate_padding_s(wchar_t *str, t_item *form, char *flags)
+int calculate_padding_ws(wchar_t *str, t_item *form, char *flags)
 {
 	int width;
 	int padding;
 
 	width = get_width(flags);
-	padding = width - ft_strlen_w(str); 
+	padding = width - ft_strlen_w(str) - ft_strlen_w(str); 
+	return (padding);
+}
+
+int calculate_padding_s(char *str, t_item *form, char *flags)
+{
+	int width;
+	int padding;
+
+	width = get_width(flags);
+	padding = width - ft_strlen(str); 
 	return (padding);
 }
