@@ -75,6 +75,8 @@ int calculate_padding(intmax_t num, t_item *form, char *flags)
 		padding = width - (form->precision + ft_intlen(num));
 		if (form->sign == '+' || form->sign == '-' || form->space == true )
 			padding--;
+		if (num == -9223372036854775808)
+			padding++;
 		return (padding);		
 	}
 	else
@@ -82,6 +84,8 @@ int calculate_padding(intmax_t num, t_item *form, char *flags)
 		padding = width - ft_intlen(num);
 		if (form->sign == '+' || form->sign == '-' || form->space == true  )
 			padding--;
+		if (num == -9223372036854775808)
+			padding++;
 		return (padding);	
 	}
 	return (0);

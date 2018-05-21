@@ -153,9 +153,8 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-int		main()
-{
-
-	printf("%20.d\n", 0); 
-	
-}
+// int		main()
+// {
+// 	ft_printf("%040lld\n", -9223372036854775808);
+// 	printf("%040lld\n", -9223372036854775808);	
+// }
