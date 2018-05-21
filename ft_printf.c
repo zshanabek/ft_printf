@@ -34,7 +34,7 @@ intmax_t		find_length(va_list ap, char *flags)
 		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((char)(va_arg(ap, int)));
 		else if (flags[i] == 'l')
-			return (va_arg(ap, long int));	
+			return ((long)va_arg(ap, int));	
 		else if (flags[i] == 'h')
 			return (short)(va_arg(ap, int));
 		else if (flags[i] == 'j')
@@ -162,7 +162,6 @@ int	ft_printf(const char * restrict format, ...)
 // 	int len;
 // 	setlocale(LC_ALL, "");
 // 	c = L'€';
-
-// 	ft_printf("@moulitest: %.x\n", 0);
-// 	printf("@moulitest: %.x\n", 0);	
+// 	ft_printf("M: %zd\n", 4294967295);
+// 	printf("O: %zd\n", 4294967295);	
 // }

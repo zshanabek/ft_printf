@@ -63,6 +63,7 @@ void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->sign = '-';
 		num = -num;
 	}
+
 	if (find_plus(flags) && form->sign != '-')
 		form->sign = '+';
 	else if (find_space(flags))

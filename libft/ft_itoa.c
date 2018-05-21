@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:09:21 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 20:39:54 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/21 18:57:33 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*fill_arr(char *arr, int64_t n, int len)
+static char		*fill_arr(char *arr, intmax_t n, int len)
 {
 	int		flag;
 
@@ -34,11 +34,13 @@ static char		*fill_arr(char *arr, int64_t n, int len)
 	return (arr);
 }
 
-char			*ft_itoa(int64_t n)
+char			*ft_itoa(intmax_t n)
 {
 	int		len;
 	char	*arr;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	len = ft_intlen(n);
 	arr = (char *)malloc(sizeof(char) * (len + 1));
 	if (arr == NULL)
