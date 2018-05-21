@@ -153,16 +153,9 @@ int	ft_printf(const char * restrict format, ...)
 	return (count);
 }
 
-// int		main()
-// {
+int		main()
+{
 
-// 	wchar_t c;
-
-// 	char *s;
-// 	int len;
-// 	setlocale(LC_ALL, "");
-// 	c = L'€';
-// 	ft_printf("%jd\n", -9223372036854775808);
-// 	printf("%jd\n", -9223372036854775808);
+	printf("%20.d\n", 0); 
 	
-// }
+}
