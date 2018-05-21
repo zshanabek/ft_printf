@@ -103,6 +103,10 @@ void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 		ft_analyze_d(find_length(ap, flags), form, flags, count);
 	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
 		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
+	else if (form->specifier == 'O' || form->specifier == 'U')
+		ft_analyze_u(va_arg(ap, unsigned long int), form, flags, count);
+	else if (form->specifier == 'D')
+		ft_analyze_d(va_arg(ap, long int), form, flags, count);
 	else if (form->specifier == 'S' || (form->specifier == 's' && find_length_s(flags) == 1))
 		ft_analyze_ls(va_arg(ap, wchar_t *), form, flags, count);
 	else if (form->specifier == 's')
@@ -159,7 +163,6 @@ int	ft_printf(const char * restrict format, ...)
 // 	setlocale(LC_ALL, "");
 // 	c = L'€';
 
-// 	ft_printf("%C\n",42);
-// 	printf	("%C\n",42);	
-			
+// 	ft_printf("@moulitest: %.x\n", 0);
+// 	printf("@moulitest: %.x\n", 0);	
 // }
