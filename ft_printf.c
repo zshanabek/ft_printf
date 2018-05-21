@@ -34,11 +34,11 @@ intmax_t		find_length(va_list ap, char *flags)
 		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((char)(va_arg(ap, int)));
 		else if (flags[i] == 'l')
-			return ((long)va_arg(ap, int));	
+			return (va_arg(ap, long));	
 		else if (flags[i] == 'h')
-			return (short)(va_arg(ap, int));
+			return ((short)va_arg(ap, int));
 		else if (flags[i] == 'j')
-			return (va_arg(ap, intmax_t));
+			return (va_arg(ap, long));
 		else if (flags[i] == 'z')
 			return (va_arg(ap, size_t));
 		i++;
@@ -99,7 +99,7 @@ wint_t	find_length_c(va_list ap, char *flags)
 
 void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
 {
-	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')
+	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')		
 		ft_analyze_d(find_length(ap, flags), form, flags, count);
 	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
 		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
@@ -162,6 +162,7 @@ int	ft_printf(const char * restrict format, ...)
 // 	int len;
 // 	setlocale(LC_ALL, "");
 // 	c = L'€';
-// 	ft_printf("M: %zd\n", 4294967295);
-// 	printf("O: %zd\n", 4294967295);	
+// 	ft_printf("%jd\n", -9223372036854775808);
+// 	printf("%jd\n", -9223372036854775808);
+	
 // }
