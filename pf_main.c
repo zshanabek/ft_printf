@@ -1,12 +1,12 @@
 #include "ft_printf.h"
 
-char	*get_inform(const char * restrict format, int i, t_item *form)
+char	*get_inform(const char *restrict format, int i, t_item *form)
 {
 	int		k;
 	int		len;
 	char	*flags;
 
-	flags = ft_strnew(0);	
+	flags = ft_strnew(0);
 	k = i;
 	len = 0;
 	if (is_specifier(format[i]))
@@ -19,7 +19,7 @@ char	*get_inform(const char * restrict format, int i, t_item *form)
 		i++;
 		len++;
 	}
-	form->specifier = format[i];	
+	form->specifier = format[i];
 	flags = ft_strsub(format, k, len);
 	return (flags);
 }
@@ -152,9 +152,3 @@ int	ft_printf(const char * restrict format, ...)
 	va_end(ap);
 	return (count);
 }
-
-// int		main()
-// {
-// 	ft_printf("%040lld\n", -9223372036854775808);
-// 	printf("%040lld\n", -9223372036854775808);	
-// }

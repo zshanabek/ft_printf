@@ -4,7 +4,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
 	char *padding_str;
 
-	padding_str = ft_strnew(0);	
+	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
 	else if (find_zero(flags))
@@ -18,13 +18,13 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 		ft_putstr(padding_str);
 	if (c == 0)
 		ft_putchar(0);
-	else if ( c >= 32 && c <= 126)
-		ft_putchar(c);	
+	else if (c >= 32 && c <= 126)
+		ft_putchar(c);
 	else
 		ft_putsymbol(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + 1);		
+	*count += (ft_strlen(padding_str) + 1);
 }
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)

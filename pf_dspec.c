@@ -33,8 +33,11 @@ void make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putchar(form->sign);
 	if (is_sign(form->sign))
 		(*count)++;
-	if (num == -9223372036854775808)
+	if (num == -9223372036854775808U)
+	{
 		ft_putstr(ft_strsub(ft_itoa(num), 1, 19));
+		(*count)--;
+	}
 	else 
 		ft_putstr(ft_itoa(num));
 	if (ft_strlen(form->padding_str) > 0 && form->minus == true) 

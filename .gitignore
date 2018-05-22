@@ -6,4 +6,5 @@ libft/*.a
 push.sh
 zs.sh
 examples
-libftprintf.a   
+libftprintf.a  
+a.out.*/
