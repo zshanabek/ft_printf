@@ -70,9 +70,9 @@ int calculate_padding(intmax_t num, t_item *form, char *flags)
 
 	width = get_width(flags);
 	
-	if (form->precision > 0)
+	if (form->prec > 0)
 	{
-		padding = width - (form->precision + ft_intlen(num));
+		padding = width - (form->prec + ft_intlen(num));
 		if (form->sign == '+' || form->sign == '-' || form->space == true )
 			padding--;
 		if (num == -9223372036854775808U)
@@ -108,10 +108,10 @@ int calculate_padding_u(int len, t_item *form, char *flags)
 	int		width;	
 
 	width = get_width(flags);	
-	if (form->precision > 0)
+	if (form->prec > 0)
 	{
-		padding = width - (form->precision + len);
-		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
+		padding = width - (form->prec + len);
+		if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
 			padding -= 2;
 		else if (form->hash == true)
 			padding--;
@@ -120,7 +120,7 @@ int calculate_padding_u(int len, t_item *form, char *flags)
 	else
 	{
 		padding = width - len;
-		if (form->hash == true && (form->specifier == 'x' || form->specifier == 'X'))
+		if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
 			padding -= 2;
 		else if (form->hash == true)
 			padding--;

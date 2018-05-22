@@ -24,14 +24,14 @@ typedef struct	s_item
 	int minus;
 	int zero;				
 	int hash;			
-	int precision;
-	int padding;
+	int prec;
+	int pad;
 	char sign;
 	char *hex_sign;	
 	int order;
-	char specifier;
-	char *padding_str;
-	char *zeros_str;
+	char spec;
+	char *pad_str;
+	char *zer_str;
 }				t_item;
 
 void 			print_struct(t_item *form);
@@ -65,4 +65,9 @@ void			ft_analyze_x(uintmax_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_c(wint_t c, t_item *form, char *flags, int *count);
 void			ft_analyze_percent(t_item *form, char *flags, int *count);
 int				ft_printf(const char * restrict format, ...);
+char			*get_inform(const char *restrict format, int i, t_item *form);
+int				find_length_s(char *flags);
+wint_t			find_length_c(va_list ap, char *flags, t_item *form);
+void			ft_sign_order_u(t_item *form, int *count);
+
 #endif

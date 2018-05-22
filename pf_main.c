@@ -1,30 +1,6 @@
 #include "ft_printf.h"
 
-char	*get_inform(const char *restrict format, int i, t_item *form)
-{
-	int		k;
-	int		len;
-	char	*flags;
-
-	flags = ft_strnew(0);
-	k = i;
-	len = 0;
-	if (is_specifier(format[i]))
-	{
-		form->specifier = format[i];
-		return (flags);
-	}
-	while (!(is_specifier(format[i])))
-	{
-		i++;
-		len++;
-	}
-	form->specifier = format[i];
-	flags = ft_strsub(format, k, len);
-	return (flags);
-}
-
-intmax_t		find_length(va_list ap, char *flags)
+intmax_t	find_length(va_list ap, char *flags, t_item *form)
 {
 	int i;
 
@@ -34,7 +10,7 @@ intmax_t		find_length(va_list ap, char *flags)
 		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((char)(va_arg(ap, int)));
 		else if (flags[i] == 'l')
-			return (va_arg(ap, long));	
+			return (va_arg(ap, long));
 		else if (flags[i] == 'h')
 			return ((short)va_arg(ap, int));
 		else if (flags[i] == 'j')
@@ -43,16 +19,18 @@ intmax_t		find_length(va_list ap, char *flags)
 			return (va_arg(ap, size_t));
 		i++;
 	}
-	return (va_arg(ap, int));
+	if (form->spec == 'D')
+		return (va_arg(ap, long int));
+	else
+		return (va_arg(ap, int));
 }
-
 
 uintmax_t	find_length_u(va_list ap, char *flags)
 {
 	int i;
 
 	i = 0;
-	while(flags[i])
+	while (flags[i])
 	{
 		if (flags[i] == 'h' && flags[i + 1] == 'h')
 			return ((unsigned char)va_arg(ap, unsigned int));
@@ -66,70 +44,51 @@ uintmax_t	find_length_u(va_list ap, char *flags)
 			return (va_arg(ap, size_t));
 		i++;
 	}
-	return (va_arg(ap, unsigned int));		
+	return (va_arg(ap, unsigned int));
 }
 
-int find_length_s(char *flags)
+void		identify_spec(t_item *form, va_list ap, char *flags, int *count)
 {
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'l')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-wint_t	find_length_c(va_list ap, char *flags)
-{
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'l')
-			return (va_arg(ap, wint_t));
-		i++;
-	}
-	return (va_arg(ap, int));
-}
-
-void	identify_specifier(t_item *form, va_list ap, char *flags, int *count)
-{
-	if (form->specifier == 'd' || form->specifier == 'i' || form->specifier == 'D')		
-		ft_analyze_d(find_length(ap, flags), form, flags, count);
-	else if (form->specifier == 'o' || form->specifier == 'x' || form->specifier == 'u' || form->specifier == 'p' || form->specifier == 'X')
+	if (form->spec == 'd' || form->spec == 'i' || form->spec == 'D')
+		ft_analyze_d(find_length(ap, flags, form), form, flags, count);
+	else if (form->spec == 'o' || form->spec == 'x' || form->spec == 'u')
 		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
-	else if (form->specifier == 'O' || form->specifier == 'U')
+	else if (form->spec == 'p' || form->spec == 'X')
+		ft_analyze_u(find_length_u(ap, flags), form, flags, count);
+	else if (form->spec == 'O' || form->spec == 'U')
 		ft_analyze_u(va_arg(ap, unsigned long int), form, flags, count);
-	else if (form->specifier == 'D')
-		ft_analyze_d(va_arg(ap, long int), form, flags, count);
-	else if (form->specifier == 'S' || (form->specifier == 's' && find_length_s(flags) == 1))
+	else if (form->spec == 'S' || (form->spec == 's' && find_length_s(flags)))
 		ft_analyze_ls(va_arg(ap, wchar_t *), form, flags, count);
-	else if (form->specifier == 's')
+	else if (form->spec == 's')
 		ft_analyze_s(va_arg(ap, char *), form, flags, count);
-	else if (form->specifier == 'c')
-		ft_analyze_c(find_length_c(ap, flags), form, flags, count);
-	else if (form->specifier == 'C')
-		ft_analyze_c(va_arg(ap, wint_t), form, flags, count);
-	else if (form->specifier == '%')
+	else if (form->spec == 'c' || form->spec == 'C')
+		ft_analyze_c(find_length_c(ap, flags, form), form, flags, count);
+	else if (form->spec == '%')
 		ft_analyze_percent(form, flags, count);
+	free(form);
 }
 
-int	ft_printf(const char * restrict format, ...)
+int			go_str(int i, va_list ap, const char *restrict format, int *count)
+{
+	t_item		*form;
+
+	i += 1;
+	form = create_struct();
+	identify_spec(form, ap, get_inform(format, i, form), count);
+	while (!is_specifier(format[i]))
+		i++;
+	return (i);
+}
+
+int			ft_printf(const char *restrict format, ...)
 {
 	int			i;
 	int			count;
-	char		*flags;
-	t_item		*form;
 	va_list		ap;
 
-	count = 0;
-    va_start(ap, format);
 	i = 0;
+	count = 0;
+	va_start(ap, format);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -138,17 +97,14 @@ int	ft_printf(const char * restrict format, ...)
 			count++;
 		}
 		if (format[i] == '%')
-		{
-			i += 1;
-			form = create_struct();
-			flags = get_inform(format, i, form);
-			identify_specifier(form, ap, flags, &count);
-			while (!is_specifier(format[i]))
-				i++;
-			free(form);
-		}
+			i = go_str(i, ap, format, &count);
 		i++;
 	}
 	va_end(ap);
 	return (count);
 }
+
+// int main()
+// {
+// 	ft_printf("%#X", 42);
+// }
