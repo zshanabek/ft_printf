@@ -54,7 +54,6 @@ t_item			*create_struct();
 void			create_output_d(intmax_t num, t_item *form, int *count);
 char			*ft_strfill(size_t size, char c);
 int				is_sign(char c);
-void			ft_sign_order(t_item *form, char *padding_str, char *zeros_str);
 void			ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count);
 void			ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count);
 void			ft_analyze_s(char *str, t_item *form, char *flags, int *count);
