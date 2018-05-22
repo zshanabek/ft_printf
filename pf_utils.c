@@ -1,26 +1,6 @@
 #include "ft_printf.h"
 
-int is_specifier(char c)
-{
-	char *spec;
-	char *flags;
-	
-	flags = "%sSpdDioOuUxXcCfF";
-
-	spec = ft_strchr(flags, c);
-	if (spec)
-		return (1);
-	return (0);
-}
-
-int is_sign(char c)
-{
-	if (c == '+' || c == '-')
-		return (1);
-	return (0);
-}
-
-t_item *create_struct()
+t_item		*create_struct(void)
 {
 	t_item *form;
 
@@ -30,17 +10,17 @@ t_item *create_struct()
 	form->plus = false;
 	form->minus = false;
 	form->space = false;
-	form->zero = false;			
+	form->zero = false;
 	form->hash = false;
 	form->pad = 0;
 	form->prec = 0;
 	form->sign = 'E';
-	form->hex_sign = ft_strnew(2);	
-	form->order = 0;	
+	form->hex_sign = ft_strnew(2);
+	form->order = 0;
 	return (form);
 }
 
-char	*ft_strfill(size_t size, char c)
+char		*ft_strfill(size_t size, char c)
 {
 	char *str;
 
@@ -80,7 +60,7 @@ wint_t		find_length_c(va_list ap, char *flags, t_item *form)
 	return (va_arg(ap, int));
 }
 
-char	*get_inform(const char *restrict format, int i, t_item *form)
+char		*get_inform(const char *restrict format, int i, t_item *form)
 {
 	int		k;
 	int		len;

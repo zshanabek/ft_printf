@@ -103,8 +103,3 @@ int			ft_printf(const char *restrict format, ...)
 	va_end(ap);
 	return (count);
 }
-
-// int main()
-// {
-// 	ft_printf("%#X", 42);
-// }

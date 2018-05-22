@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 21:17:57 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 18:02:43 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/22 22:31:00 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 static char		*fill_arr(char *arr, uintmax_t n, int len)
 {
-	int		flag;
-	
-	flag = 1;
 	arr[len] = '\0';
 	len--;
 	if (n == 0)
 		arr[len] = '0';
 	while (len >= 0 && n != 0)
 	{
-		arr[len--] = flag * n % 10 + '0';
+		arr[len--] = n % 10 + '0';
 		n /= 10;
 	}
 	return (arr);

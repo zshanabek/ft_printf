@@ -6,8 +6,6 @@ int main(int argc, char **argv)
 {
 	wchar_t c;
 
-	char *s;
-	int len;
 	setlocale(LC_ALL, "");
 	c = L'€';
 

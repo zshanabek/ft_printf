@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 15:44:20 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 18:02:43 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/22 22:30:09 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 char		*ft_itoa_base_u(uintmax_t value, int base)
 {
-	int		len;
+	int			len;
 	uintmax_t	nbr;
-	char	*pointer;
-	char	*base_string = "0123456789abcdef";
-	
+	char		*pointer;
+	char		*base_string;
+
+	base_string = "0123456789abcdef";
 	if (value == 0)
 		return ("0");
 	len = 0;

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int get_width(char *flags)
+int		get_width(char *flags)
 {
 	int k;
 	int len;
@@ -21,11 +21,10 @@ int get_width(char *flags)
 		i++;
 	}
 	num = ft_atoi(ft_strsub(flags, k, len));
-	
 	return (num);
 }
 
-int get_precision(char *flags)
+int		get_precision(char *flags)
 {
 	int len;
 	int num;
@@ -39,7 +38,7 @@ int get_precision(char *flags)
 	if (flags[i] == '.')
 	{
 		i++;
-		k = i;		
+		k = i;
 		len = 0;
 		while (flags[i] && ft_isdigit(flags[i]))
 		{
@@ -47,105 +46,45 @@ int get_precision(char *flags)
 			i++;
 		}
 		num = ft_atoi(ft_strsub(flags, k, len));
-		return (num);		
+		return (num);
 	}
-	else 
+	else
 		return (-1);
 }
 
-int calculate_zeros(intmax_t num, char *flags)
+int		calculate_zeros(intmax_t num, char *flags)
 {
 	int precision;
 
 	precision = get_precision(flags);
 	if (precision > 0)
 		precision = precision - ft_intlen(num);
-	return precision;
+	return (precision);
 }
 
-int calculate_padding(intmax_t num, t_item *form, char *flags)
+int		calculate_padding(intmax_t num, t_item *form, char *flags)
 {
 	int		padding;
-	int		width;	
+	int		width;
 
 	width = get_width(flags);
-	
 	if (form->prec > 0)
 	{
 		padding = width - (form->prec + ft_intlen(num));
-		if (form->sign == '+' || form->sign == '-' || form->space == true )
+		if (form->sign == '+' || form->sign == '-' || form->space == true)
 			padding--;
 		if (num == -9223372036854775808U)
 			padding++;
-		return (padding);		
+		return (padding);
 	}
 	else
 	{
 		padding = width - ft_intlen(num);
-		if (form->sign == '+' || form->sign == '-' || form->space == true  )
+		if (form->sign == '+' || form->sign == '-' || form->space == true)
 			padding--;
 		if (num == -9223372036854775808U)
 			padding++;
-		return (padding);	
+		return (padding);
 	}
 	return (0);
-}
-
-
-int calculate_zeros_u(int len, char *flags)
-{
-	int precision;
-
-	precision = get_precision(flags);
-	if (precision > 0)
-		precision = precision - len;
-	return precision;
-}
-
-int calculate_padding_u(int len, t_item *form, char *flags)
-{
-	int		padding;
-	int		width;	
-
-	width = get_width(flags);	
-	if (form->prec > 0)
-	{
-		padding = width - (form->prec + len);
-		if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
-			padding -= 2;
-		else if (form->hash == true)
-			padding--;
-		return (padding);				
-	}
-	else
-	{
-		padding = width - len;
-		if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
-			padding -= 2;
-		else if (form->hash == true)
-			padding--;
-		return (padding);	
-	}
-
-	return (0);
-}
-
-int calculate_padding_ws(wchar_t *str, char *flags)
-{
-	int width;
-	int padding;
-
-	width = get_width(flags);
-	padding = width - ft_strlen_w(str) - ft_strlen_w(str); 
-	return (padding);
-}
-
-int calculate_padding_s(char *str, char *flags)
-{
-	int width;
-	int padding;
-
-	width = get_width(flags);
-	padding = width - ft_strlen(str); 
-	return (padding);
 }
