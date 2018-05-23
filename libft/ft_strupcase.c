@@ -6,20 +6,20 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 19:45:15 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/20 15:41:11 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:48:50 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_strupcase(char *str)
+void	ft_strupcase(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] >= 97 && str[i] <= 122 )
+		if (str[i] >= 97 && str[i] <= 122)
 			str[i] = str[i] - 32;
 		i++;
 	}

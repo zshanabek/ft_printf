@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/21 19:01:12 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:49:32 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ wchar_t			*ft_strnew_w(size_t size);
 size_t			ft_strlen_w(const wchar_t *s);
 void			ft_putsymbol(wchar_t c);
 void			ft_putstrw(const wchar_t *str);
-wchar_t		*ft_strdupw(const wchar_t *src);
+wchar_t			*ft_strdupw(const wchar_t *src);
 
 #endif

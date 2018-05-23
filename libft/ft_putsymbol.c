@@ -6,13 +6,13 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:50:28 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/22 22:34:48 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/23 15:48:23 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void ft_putunicode(wchar_t c, int len)
+static void		ft_putunicode(wchar_t c, int len)
 {
 	if (len <= 11)
 	{
@@ -22,19 +22,19 @@ static void ft_putunicode(wchar_t c, int len)
 	else if (len <= 16)
 	{
 		ft_putchar((c >> 12) + 0b11100000);
-		ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
+		ft_putchar(((c >> 6) & 0b111111) + 0b10000000);
 		ft_putchar((c & 0b111111) + 0b10000000);
 	}
 	else
 	{
-		ft_putchar((c >> 18) + 0b11110000);		
+		ft_putchar((c >> 18) + 0b11110000);
 		ft_putchar(((c >> 12) & 0b111111) + 0b10000000);
-		ft_putchar(((c >> 6) & 0b111111) + 0b10000000);		
+		ft_putchar(((c >> 6) & 0b111111) + 0b10000000);
 		ft_putchar((c & 0b111111) + 0b10000000);
 	}
 }
 
-void ft_putsymbol(wchar_t c)
+void			ft_putsymbol(wchar_t c)
 {
 	char	*s;
 	int		len;
