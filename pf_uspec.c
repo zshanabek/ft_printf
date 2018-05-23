@@ -19,7 +19,7 @@ void	ft_sign_order_u(t_item *form, int *count)
 		form->hex_sign = "0";
 		(*count) += 1;
 	}
-	else if (form->hash && (form->spec == 'x' || form->spec == 'X'))
+	else if (form->hash)
 	{
 		form->hex_sign = "0x";
 		if (form->spec == 'X')

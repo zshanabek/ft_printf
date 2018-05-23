@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_itoa_max.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 19:55:56 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/23 17:06:09 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/05/23 20:48:10 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/05/23 20:52:14 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_intlen(intmax_t n)
+static char		*fill_arr(char *arr, intmax_t n, int len)
 {
-	int len;
-
-	len = 0;
 	if (n < 0)
-		len += 1;
+		arr[0] = '-';
+	arr[len] = '\0';
+	len--;
 	if (n == 0)
-		return (1);
-	while (n != 0)
+		arr[len] = '0';
+	while (len >= 0 && n != 0)
 	{
-		n = n / 10;
-		len++;
+		arr[len--] = (n % 10) > 0 ? n % 10 + '0' : -(n % 10) + '0';
+		n /= 10;
 	}
-	return (len);
+	return (arr);
+}
+
+char			*ft_itoa_max(intmax_t n)
+{
+	int		len;
+	char	*arr;
+
+	len = ft_intlen(n);
+	arr = (char *)malloc(sizeof(char) * (len + 1));
+	if (arr == NULL)
+		return (0);
+	return (fill_arr(arr, n, len));
 }

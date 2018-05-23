@@ -6,13 +6,14 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:09:21 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/21 23:31:34 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/23 20:58:48 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft.h"
 
-static char		*fill_arr(char *arr, intmax_t n, int len)
+static char		*fill_arr(char *arr, int n, int len)
 {
 	int		flag;
 
@@ -28,13 +29,13 @@ static char		*fill_arr(char *arr, intmax_t n, int len)
 		arr[len] = '0';
 	while (len >= 0 && n != 0)
 	{
-		arr[len--] = (n % 10) > 0 ? n % 10 + '0' : -(n % 10) + '0';
+		arr[len--] = flag * n % 10 + '0';
 		n /= 10;
 	}
 	return (arr);
 }
 
-char			*ft_itoa(intmax_t n)
+char			*ft_itoa(int n)
 {
 	int		len;
 	char	*arr;
