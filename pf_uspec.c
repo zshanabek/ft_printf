@@ -68,7 +68,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 		form->zero = true;
 	if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
 		form->hash = true;
-	if (form->spec == 'o')
+	if (form->spec == 'o' || form->spec == 'O')
 		output = ft_itoa_base_u(num, 8);
 	else if (form->spec == 'X' || form->spec == 'x' || form->spec == 'p')
 		output = ft_itoa_base_u(num, 16);

@@ -32,34 +32,6 @@ char		*ft_strfill(size_t size, char c)
 	return (str);
 }
 
-int			find_length_s(char *flags)
-{
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'l')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-wint_t		find_length_c(va_list ap, char *flags, t_item *form)
-{
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'l' || form->spec == 'C')
-			return (va_arg(ap, wint_t));
-		i++;
-	}
-	return (va_arg(ap, int));
-}
-
 char		*get_inform(const char *restrict format, int i, t_item *form)
 {
 	int		k;

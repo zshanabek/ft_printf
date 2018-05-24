@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <wchar.h>
 # include <locale.h>
+# include <limits.h>
 
 typedef enum	e_size
 {
@@ -62,6 +63,8 @@ void			ft_analyze_percent(t_item *form, char *flags, int *count);
 int				ft_printf(const char *restrict format, ...);
 char			*get_inform(const char *restrict format, int i, t_item *form);
 int				find_length_s(char *flags);
+intmax_t		find_length(va_list ap, char *flags, t_item *form);
+uintmax_t		find_length_u(va_list ap, char *flags, t_item *form);
 wint_t			find_length_c(va_list ap, char *flags, t_item *form);
 void			ft_sign_order_u(t_item *form, int *count);
 int				find_spec(char *flags);

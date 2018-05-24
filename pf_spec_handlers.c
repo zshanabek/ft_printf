@@ -2,8 +2,10 @@
 
 void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
-	char *padding_str;
+	char	*padding_str;
+	int		size;
 
+	size = 1;
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
@@ -21,10 +23,10 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 	else if (c >= 32 && c <= 126)
 		ft_putchar(c);
 	else
-		ft_putsymbol(c);
+		size = ft_putsymbol(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + 1);
+	*count += (ft_strlen(padding_str) + size);
 }
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)
@@ -53,12 +55,16 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 {
 	wchar_t		*output;
 	char		*padding_str;
+	int			size;
 
+	size = 0;
 	output = ft_strnew_w(0);
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
-	if (get_precision(flags) != -1)
+	if (str == NULL)
+		output = ft_strdupw(L"(null)");
+	else if (get_precision(flags) != -1)
 		output = ft_strsub_w(str, 0, get_precision(flags));
 	else
 		output = ft_strdupw(str);
@@ -67,10 +73,10 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 		padding_str = ft_strfill(form->pad, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	ft_putstrw(output);
+	size = ft_putstrw(output);
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + ft_strlen_w(output));
+	*count += (ft_strlen(padding_str) + size);
 }
 
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)

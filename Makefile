@@ -14,7 +14,8 @@ LIBFT := $(LIB)/ft_atoi.c $(LIB)/ft_memalloc.c $(LIB)/ft_putchar.c $(LIB)/ft_str
 		$(LIB)/ft_intlen.c $(LIB)/ft_isws.c $(LIB)/ft_print2darr.c $(LIB)/ft_intmax.c $(LIB)/ft_nbrendl.c $(LIB)/ft_itoa_base.c    	   \
 		$(LIB)/ft_itoa_base_u.c $(LIB)/ft_itoa_u.c  $(LIB)/ft_intlen_u.c $(LIB)/ft_atoi_u.c $(LIB)/ft_strupcase.c $(LIB)/ft_strsub_w.c \
 		$(LIB)/ft_strnew_w.c $(LIB)/ft_strlen_w.c $(LIB)/ft_putstrw.c $(LIB)/ft_putsymbol.c $(LIB)/ft_strdupw.c $(LIB)/ft_itoa_max.c
-FILES :=  pf_main.c pf_spec_handlers.c pf_utils.c pf_flags.c pf_width_prec.c pf_dspec.c pf_uspec.c pf_extra.c pf_width_prec_wsu.c
+FILES :=  pf_main.c pf_spec_handlers.c pf_utils.c pf_flags.c pf_width_prec.c pf_dspec.c pf_uspec.c pf_extra.c pf_width_prec_wsu.c  \
+		  pf_find_size.c
 OBJ1 := $(LIBFT:.c=.o)
 OBJ2 := $(FILES:.c=.o)
 

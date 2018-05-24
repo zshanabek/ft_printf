@@ -1,55 +1,5 @@
 #include "ft_printf.h"
 
-intmax_t	find_length(va_list ap, char *flags, t_item *form)
-{
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'h' && flags[i + 1] == 'h')
-			return ((char)(va_arg(ap, int)));
-		else if (flags[i] == 'l')
-			return (va_arg(ap, long));
-		else if (flags[i] == 'h')
-			return ((short)va_arg(ap, int));
-		else if (flags[i] == 'j')
-			return (va_arg(ap, long));
-		else if (flags[i] == 'z')
-			return (va_arg(ap, size_t));
-		i++;
-	}
-	if (form->spec == 'D')
-		return (va_arg(ap, long int));
-	else
-		return (va_arg(ap, int));
-}
-
-uintmax_t	find_length_u(va_list ap, char *flags, t_item *form)
-{
-	int i;
-
-	i = 0;
-	while (flags[i])
-	{
-		if (flags[i] == 'h' && flags[i + 1] == 'h')
-			return ((unsigned char)va_arg(ap, unsigned int));
-		else if (flags[i] == 'l')
-			return (va_arg(ap, unsigned long));
-		else if (flags[i] == 'h')
-			return ((short)va_arg(ap, unsigned int));
-		else if (flags[i] == 'j')
-			return (va_arg(ap, uintmax_t));
-		else if (flags[i] == 'z')
-			return (va_arg(ap, size_t));
-		i++;
-	}
-	if (form->spec == 'p')
-		return (va_arg(ap, unsigned long));
-	else
-		return (va_arg(ap, unsigned int));
-}
-
 void		identify_spec(t_item *form, va_list ap, char *flags, int *count)
 {
 	if (form->spec == 'd' || form->spec == 'i' || form->spec == 'D')
@@ -109,11 +59,13 @@ int			ft_printf(const char *restrict format, ...)
 	return (count);
 }
 
-
 // int main(int argc, char **argv)
 // {
+// 	wchar_t c;
 
-// 	ft_printf("mf %gfgf\n", 4);
-// 	printf   ("of %gfgf\n", 4);
-	
+// 	setlocale(LC_ALL, "");
+// 	c = L'€';
+
+// 	ft_printf("%hD, %hD\n", 0, USHRT_MAX);	
+// 	printf   ("%hD, %hD\n", 0, USHRT_MAX);
 // }

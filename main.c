@@ -9,7 +9,6 @@ int main(int argc, char **argv)
 	setlocale(LC_ALL, "");
 	c = L'€';
 
-	int i;
 
 	ft_printf("%p\n", &c);
 	printf("%p\n", &c);

@@ -6,22 +6,25 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:43:36 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 13:54:32 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/24 15:34:39 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstrw(const wchar_t *str)
+int		ft_putstrw(const wchar_t *str)
 {
-	int i;
+	int		i;
+	int		size;
 
+	size = 0;
 	i = 0;
 	if (!str)
-		return ;
+		return (0);
 	while (str[i])
 	{
-		ft_putsymbol(str[i]);
+		size += ft_putsymbol(str[i]);
 		i++;
 	}
+	return (size);
 }
