@@ -64,5 +64,5 @@ char			*get_inform(const char *restrict format, int i, t_item *form);
 int				find_length_s(char *flags);
 wint_t			find_length_c(va_list ap, char *flags, t_item *form);
 void			ft_sign_order_u(t_item *form, int *count);
-
+int				find_spec(char *flags);
 #endif

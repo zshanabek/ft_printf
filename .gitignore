@@ -5,6 +5,5 @@ libft/*.a
 .vscode/
 push.sh
 zs.sh
-examples
 libftprintf.a  
 a.out.*/
