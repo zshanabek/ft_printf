@@ -5,13 +5,13 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 	char	*padding_str;
 	int		size;
 
-	size = 1;
+	size = ft_charlen(c);
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
 	else if (find_zero(flags))
 		form->zero = true;
-	form->pad = get_width(flags) - 1;
+	form->pad = get_width(flags) - size;
 	if (form->pad > 0 && form->zero)
 		padding_str = ft_strfill(form->pad, '0');
 	else if (form->pad > 0)
@@ -23,7 +23,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 	else if (c >= 32 && c <= 126)
 		ft_putchar(c);
 	else
-		size = ft_putsymbol(c);
+		ft_putsymbol(c);
 	if (form->minus == true)
 		ft_putstr(padding_str);
 	*count += (ft_strlen(padding_str) + size);
@@ -55,9 +55,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 {
 	wchar_t		*output;
 	char		*padding_str;
-	int			size;
 
-	size = 0;
 	output = ft_strnew_w(0);
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
@@ -73,10 +71,10 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 		padding_str = ft_strfill(form->pad, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);
-	size = ft_putstrw(output);
+	ft_putstrw(output);
 	if (form->minus == true)
 		ft_putstr(padding_str);
-	*count += (ft_strlen(padding_str) + size);
+	*count += (ft_strlen(padding_str) + ft_wstrlen(output));
 }
 
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
@@ -88,6 +86,8 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
+	else if (find_zero(flags))
+		form->zero = true;
 	if (str == NULL)
 		output = ft_strdup("(null)");
 	else if (get_precision(flags) != -1)
@@ -95,8 +95,10 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	else
 		output = ft_strdup(str);
 	form->pad = calculate_padding_s(output, flags);
-	if (form->pad > 0)
-		padding_str = ft_strfill(form->pad, ' ');
+	if (form->pad > 0 && form->zero)
+		padding_str = ft_strfill(form->pad, '0');
+	else if (form->pad > 0)
+		padding_str = ft_strfill(form->pad, ' ');		
 	if (form->minus == false)
 		ft_putstr(padding_str);
 	ft_putstr(output);

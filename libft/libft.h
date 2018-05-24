@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/24 15:30:51 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/24 22:52:54 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,10 @@ void			ft_strupcase(char *str);
 wchar_t			*ft_strsub_w(wchar_t const *s, unsigned int start, size_t len);
 wchar_t			*ft_strnew_w(size_t size);
 size_t			ft_strlen_w(const wchar_t *s);
-int				ft_putsymbol(wchar_t c);
-int				ft_putstrw(const wchar_t *str);
+void			ft_putsymbol(wchar_t c);
+void			ft_putstrw(const wchar_t *str);
 wchar_t			*ft_strdupw(const wchar_t *src);
+int				ft_wstrlen(wchar_t *str);
+int				ft_charlen(wchar_t c);
 
 #endif

@@ -66,6 +66,6 @@ int			ft_printf(const char *restrict format, ...)
 // 	setlocale(LC_ALL, "");
 // 	c = L'€';
 
-// 	ft_printf("%hD, %hD\n", 0, USHRT_MAX);	
-// 	printf   ("%hD, %hD\n", 0, USHRT_MAX);
+// 	ft_printf("{%05s}\n", "abc");		
+// 	printf("{%05s}\n", "abc");	
 // }
