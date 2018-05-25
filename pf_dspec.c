@@ -1,19 +1,15 @@
 #include "ft_printf.h"
 
-void	ft_sign_order(t_item *form, int *count)
+void	ft_sign_order(t_item *form)
 {
-	if (is_sign(form->sign))
-	{
-		if ((form->pad <= 0 && form->prec <= 0) ||
-		(form->pad > 0 && form->prec <= 0 && form->zero == true) ||
-		(form->prec > form->pad))
-			form->order = 1;
-		else if (form->pad > 0 && form->prec > 0)
-			form->order = 2;
-		else if (form->pad > 0 && form->prec <= 0)
-			form->order = 3;
-		(*count)++;
-	}
+	if ((form->pad <= 0 && form->prec <= 0) ||
+	(form->pad > 0 && form->prec <= 0 && form->zero == true) ||
+	(form->prec > form->pad))
+		form->order = 1;
+	else if (form->pad > 0 && form->prec > 0)
+		form->order = 2;
+	else if (form->pad > 0 && form->prec <= 0)
+		form->order = 3;
 }
 
 void	make_output_d(intmax_t num, t_item *form, int *count)
@@ -44,18 +40,6 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putstr(form->pad_str);
 }
 
-void	create_output_d(intmax_t num, t_item *form, int *count)
-{
-	form->pad_str = ft_strnew(0);
-	form->zer_str = ft_strnew(0);
-	if (form->zero == false && form->pad > 0)
-		form->pad_str = ft_strfill(form->pad, ' ');
-	else if (form->zero == true && form->pad > 0)
-		form->pad_str = ft_strfill(form->pad, '0');
-	if (form->prec > 0)
-		form->zer_str = ft_strfill(form->prec, '0');
-}
-
 void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 {
 	if (num < 0)
@@ -72,11 +56,15 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->minus = true;
 	else if (find_zero(flags) && form->prec == -1)
 		form->zero = true;
-	if (is_sign(form->sign) || form->pad > 0)
+	if (is_sign(form->sign))
 		form->space = false;
 	form->pad = calculate_padding(num, form, flags);
-	create_output_d(num, form, count);
-	ft_sign_order(form, count);
+	create_output(form);
+	if (is_sign(form->sign))
+	{
+		ft_sign_order(form);
+		(*count)++;
+	}
 	make_output_d(num, form, count);
 	*count += (ft_strlen(form->pad_str) + ft_strlen(form->zer_str));
 	*count += ft_intlen(num);

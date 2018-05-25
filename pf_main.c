@@ -58,15 +58,3 @@ int			ft_printf(const char *restrict format, ...)
 	va_end(ap);
 	return (count);
 }
-
-// int main(int argc, char **argv)
-// {
-// 	wchar_t c;
-
-// 	setlocale(LC_ALL, "");
-// 	c = L'-';
-
-// 	printf("%d\n", ft_printf("%.19S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
-// 	printf("%d\n", printf   ("%.19S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
-	
-// }

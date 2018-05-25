@@ -72,8 +72,8 @@ wint_t		find_length_c(va_list ap, char *flags, t_item *form)
 	while (flags[i])
 	{
 		if (flags[i] == 'l' || form->spec == 'C')
-			return (va_arg(ap, wint_t));
+			return ((wchar_t)va_arg(ap, int));
 		i++;
 	}
-	return (va_arg(ap, int));
+	return (va_arg(ap, unsigned int));
 }

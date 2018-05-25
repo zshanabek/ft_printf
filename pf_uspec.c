@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	create_output_u(t_item *form)
+void	create_output(t_item *form)
 {
 	form->zer_str = ft_strnew(0);
 	form->pad_str = ft_strnew(0);
@@ -27,16 +27,7 @@ void	ft_sign_order_u(t_item *form, int *count)
 		(*count) += 2;
 	}
 	if (form->hash)
-	{
-		if ((form->pad <= 0 && form->prec <= 0) ||
-		(form->pad > 0 && form->prec <= 0 && form->zero == true) ||
-		(form->prec > form->pad))
-			form->order = 1;
-		else if (form->pad > 0 && form->prec > 0)
-			form->order = 2;
-		else if (form->pad > 0 && form->prec <= 0)
-			form->order = 3;
-	}
+		ft_sign_order(form);
 }
 
 void	make_output_u(t_item *form, char *output, int *count)
@@ -78,7 +69,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 		ft_strupcase(output);
 	form->prec = calculate_zeros_u(ft_strlen(output), flags);
 	form->pad = calculate_padding_u(ft_strlen(output), form, flags);
-	create_output_u(form);
+	create_output(form);
 	ft_sign_order_u(form, count);
 	make_output_u(form, output, count);
 }
