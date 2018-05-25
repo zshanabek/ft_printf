@@ -46,7 +46,9 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->zero = true;
 	if (is_sign(form->sign))
 		form->space = false;
-	form->pad = calculate_padding(num, form, flags);
+	form->pad = calculate_padding(ft_intlen(num), form, flags);
+	if (num == -9223372036854775808U)
+		form->pad++;
 	create_output(form);
 	if (is_sign(form->sign))
 	{

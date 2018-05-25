@@ -62,20 +62,27 @@ int		calculate_zeros(int len, char *flags)
 	return (precision);
 }
 
-int		calculate_padding(intmax_t num, t_item *form, char *flags)
+int		calculate_padding(int len, t_item *form, char *flags)
 {
 	int		padding;
 	int		width;
 
 	padding = 0;
 	width = get_width(flags);
+
+	if (form->spec == 's' || form->spec == 'S')
+		return (width - len);
 	if (form->prec > 0)
-		padding = width - (form->prec + ft_intlen(num));
+		padding = width - (form->prec + len);
 	else
-		padding = width - ft_intlen(num);
+		padding = width - len;
 	if (form->sign == '+' || form->sign == '-' || form->space == true)
 		padding--;
-	if (num == -9223372036854775808U)
-		padding++;
+	if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
+		padding -= 2;
+	else if (form->spec == 'p')
+		padding -= 2;
+	else if (form->hash == true && (form->spec == 'o' || form->spec == 'O'))
+		padding--;
 	return (padding);
 }

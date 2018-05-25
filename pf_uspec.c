@@ -53,7 +53,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	if (form->spec == 'X')
 		ft_strupcase(output);
 	form->prec = calculate_zeros(ft_strlen(output), flags);
-	form->pad = calculate_padding_u(ft_strlen(output), form, flags);
+	form->pad = calculate_padding(ft_strlen(output), form, flags);
 	create_output(form);
 	ft_prefix(form, count);
 	make_output_u(form, output, count);

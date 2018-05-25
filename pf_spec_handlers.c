@@ -46,8 +46,8 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 		output = ft_strsub_w(str, 0, get_precision(flags));
 	else
 		output = ft_strdupw(str);
-	form->pad = calculate_padding_ws(output, flags);
-	create_output(form);	
+	form->pad = calculate_padding(ft_wstrlen(output), form, flags);
+	create_output(form);
 	if (form->minus == false)
 		ft_putstr(form->pad_str);
 	ft_putstrw(output);
@@ -68,7 +68,7 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 		output = ft_strsub(str, 0, get_precision(flags));
 	else
 		output = ft_strdup(str);
-	form->pad = calculate_padding_s(output, flags);
+	form->pad = calculate_padding(ft_strlen(output), form, flags);
 	create_output(form);
 	if (form->minus == false)
 		ft_putstr(form->pad_str);
