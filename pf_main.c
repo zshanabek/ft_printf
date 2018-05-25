@@ -64,8 +64,9 @@ int			ft_printf(const char *restrict format, ...)
 // 	wchar_t c;
 
 // 	setlocale(LC_ALL, "");
-// 	c = L'€';
+// 	c = L'-';
 
-// 	ft_printf("{%05s}\n", "abc");		
-// 	printf("{%05s}\n", "abc");	
+// 	printf("%d\n", ft_printf("%.19S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+// 	printf("%d\n", printf   ("%.19S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B"));
+	
 // }

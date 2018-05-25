@@ -60,6 +60,8 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 	padding_str = ft_strnew(0);
 	if (find_minus(flags))
 		form->minus = true;
+	else if (find_zero(flags))
+		form->zero = true;
 	if (str == NULL)
 		output = ft_strdupw(L"(null)");
 	else if (get_precision(flags) != -1)
@@ -67,7 +69,9 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 	else
 		output = ft_strdupw(str);
 	form->pad = calculate_padding_ws(output, flags);
-	if (form->pad > 0)
+	if (form->pad > 0 && form->zero)
+		padding_str = ft_strfill(form->pad, '0');
+	else if (form->pad > 0)
 		padding_str = ft_strfill(form->pad, ' ');
 	if (form->minus == false)
 		ft_putstr(padding_str);

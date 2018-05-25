@@ -14,7 +14,7 @@ void	create_output_u(t_item *form)
 
 void	ft_sign_order_u(t_item *form, int *count)
 {
-	if (form->hash && form->spec == 'o')
+	if (form->hash && (form->spec == 'o' || form->spec == 'O'))
 	{
 		form->hex_sign = "0";
 		(*count) += 1;
