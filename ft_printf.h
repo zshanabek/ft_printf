@@ -28,6 +28,7 @@ typedef struct	s_item
 	int		prec;
 	int		pad;
 	int		order;
+	int		l;
 	char	sign;
 	char	spec;
 	char	*hex_sign;

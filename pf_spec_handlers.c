@@ -4,7 +4,10 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
 	int		size;
 
-	size = ft_charlen(c);
+	if (form->spec == 'C' || form->l == true)
+		size = ft_charlen(c);
+	else
+		size = 1;
 	ft_basic_analyze(flags, form);
 	form->pad = get_width(flags) - size;
 	create_output(form);
@@ -12,10 +15,10 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 		ft_putstr(form->pad_str);
 	if (c == 0)
 		ft_putchar(0);
-	else if (c >= 32 && c <= 126)
-		ft_putchar(c);
-	else
+	else if (form->spec == 'C' || form->l == true)
 		ft_putsymbol(c);
+	else if (form->spec == 'c')
+		ft_putchar(c);
 	if (form->minus == true)
 		ft_putstr(form->pad_str);
 	*count += (ft_strlen(form->pad_str) + size);

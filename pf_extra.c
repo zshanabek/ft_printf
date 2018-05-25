@@ -21,8 +21,6 @@ int		is_sign(char c)
 
 void	create_output(t_item *form)
 {
-	form->zer_str = ft_strnew(0);
-	form->pad_str = ft_strnew(0);
 	if (form->prec > 0)
 		form->zer_str = ft_strfill(form->prec, '0');
 	if (form->pad > 0 && form->zero == true)

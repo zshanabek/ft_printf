@@ -12,11 +12,14 @@ t_item		*create_struct(void)
 	form->space = false;
 	form->zero = false;
 	form->hash = false;
+	form->l = false;	
 	form->pad = 0;
 	form->prec = 0;
 	form->sign = 'E';
-	form->hex_sign = ft_strnew(2);
 	form->order = 0;
+	form->hex_sign = ft_strnew(2);
+	form->zer_str = ft_strnew(0);
+	form->pad_str = ft_strnew(0);
 	return (form);
 }
 
