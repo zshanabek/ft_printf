@@ -5,10 +5,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 	int		size;
 
 	size = ft_charlen(c);
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags))
-		form->zero = true;
+	ft_basic_analyze(flags, form);
 	form->pad = get_width(flags) - size;
 	create_output(form);
 	if (form->minus == false)
@@ -26,10 +23,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)
 {
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags))
-		form->zero = true;
+	ft_basic_analyze(flags, form);	
 	form->pad = get_width(flags) - 1;
 	create_output(form);
 	if (form->minus == false)
@@ -45,10 +39,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 	wchar_t		*output;
 
 	output = ft_strnew_w(0);
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags))
-		form->zero = true;
+	ft_basic_analyze(flags, form);	
 	if (str == NULL)
 		output = ft_strdupw(L"(null)");
 	else if (get_precision(flags) != -1)
@@ -68,14 +59,9 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 {
 	char *output;
-	char *padding_str;
 
 	output = ft_strnew(0);
-	padding_str = ft_strnew(0);
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags))
-		form->zero = true;
+	ft_basic_analyze(flags, form);	
 	if (str == NULL)
 		output = ft_strdup("(null)");
 	else if (get_precision(flags) != -1)

@@ -1,18 +1,6 @@
 #include "ft_printf.h"
 
-void	create_output(t_item *form)
-{
-	form->zer_str = ft_strnew(0);
-	form->pad_str = ft_strnew(0);
-	if (form->prec > 0)
-		form->zer_str = ft_strfill(form->prec, '0');
-	if (form->pad > 0 && form->zero == true)
-		form->pad_str = ft_strfill(form->pad, '0');
-	else if (form->pad > 0 && form->zero == false)
-		form->pad_str = ft_strfill(form->pad, ' ');
-}
-
-void	ft_sign_order_u(t_item *form, int *count)
+void	ft_prefix(t_item *form, int *count)
 {
 	if (form->hash && (form->spec == 'o' || form->spec == 'O'))
 	{
@@ -53,10 +41,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 
-	if (find_minus(flags))
-		form->minus = true;
-	else if (find_zero(flags))
-		form->zero = true;
+	ft_basic_analyze(flags, form);
 	if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
 		form->hash = true;
 	if (form->spec == 'o' || form->spec == 'O')
@@ -67,9 +52,9 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 		output = ft_itoa_base_u(num, 10);
 	if (form->spec == 'X')
 		ft_strupcase(output);
-	form->prec = calculate_zeros_u(ft_strlen(output), flags);
+	form->prec = calculate_zeros(ft_strlen(output), flags);
 	form->pad = calculate_padding_u(ft_strlen(output), form, flags);
 	create_output(form);
-	ft_sign_order_u(form, count);
+	ft_prefix(form, count);
 	make_output_u(form, output, count);
 }

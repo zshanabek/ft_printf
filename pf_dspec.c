@@ -1,17 +1,5 @@
 #include "ft_printf.h"
 
-void	ft_sign_order(t_item *form)
-{
-	if ((form->pad <= 0 && form->prec <= 0) ||
-	(form->pad > 0 && form->prec <= 0 && form->zero == true) ||
-	(form->prec > form->pad))
-		form->order = 1;
-	else if (form->pad > 0 && form->prec > 0)
-		form->order = 2;
-	else if (form->pad > 0 && form->prec <= 0)
-		form->order = 3;
-}
-
 void	make_output_d(intmax_t num, t_item *form, int *count)
 {
 	if (form->space)
@@ -51,7 +39,7 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->sign = '+';
 	else if (find_space(flags))
 		form->space = true;
-	form->prec = calculate_zeros(num, flags);
+	form->prec = calculate_zeros(ft_intlen(num), flags);
 	if (find_minus(flags))
 		form->minus = true;
 	else if (find_zero(flags) && form->prec == -1)

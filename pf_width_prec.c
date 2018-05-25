@@ -52,13 +52,13 @@ int		get_precision(char *flags)
 		return (-1);
 }
 
-int		calculate_zeros(intmax_t num, char *flags)
+int		calculate_zeros(int len, char *flags)
 {
 	int precision;
 
 	precision = get_precision(flags);
 	if (precision > 0)
-		precision = precision - ft_intlen(num);
+		precision = precision - len;
 	return (precision);
 }
 

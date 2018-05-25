@@ -1,15 +1,5 @@
 #include "ft_printf.h"
 
-int		calculate_zeros_u(int len, char *flags)
-{
-	int precision;
-
-	precision = get_precision(flags);
-	if (precision > 0)
-		precision = precision - len;
-	return (precision);
-}
-
 int		calculate_padding_u(int len, t_item *form, char *flags)
 {
 	int		padding;
