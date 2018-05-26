@@ -57,6 +57,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 	if (form->minus == true)
 		ft_putstr(form->pad_str);
 	*count += (ft_strlen(form->pad_str) + ft_wstrlen(output));
+	ft_wstrdel(&output);
 }
 
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)

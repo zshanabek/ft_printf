@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 
 	setlocale(LC_ALL, "");
 	c = L'€';
-	ft_printf("%#6o\n", 2500);
-	system("leaks a.out");
+	printf("%d\n", ft_printf("%05d\n", 42));
+	printf("%d\n", printf   ("%05d\n", 42));	
+	// system("leaks a.out");
 }
