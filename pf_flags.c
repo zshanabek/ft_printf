@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int		find_minus(char *flags)
+int		find_minus(const char *flags)
 {
 	char *minus;
 
@@ -10,7 +10,7 @@ int		find_minus(char *flags)
 	return (0);
 }
 
-int		find_spec(char *flags)
+int		find_spec(const char *flags)
 {
 	char *spec;
 	int i;
@@ -23,7 +23,7 @@ int		find_spec(char *flags)
 	return (0);
 }
 
-int		find_zero(char *flags)
+int		find_zero(const char *flags)
 {
 	int i;
 
@@ -37,7 +37,7 @@ int		find_zero(char *flags)
 	return (0);
 }
 
-int		find_plus(char *flags)
+int		find_plus(const char *flags)
 {
 	char *plus;
 
@@ -47,7 +47,7 @@ int		find_plus(char *flags)
 	return (0);
 }
 
-int		find_space(char *flags)
+int		find_space(const char *flags)
 {
 	char *space;
 
@@ -57,7 +57,7 @@ int		find_space(char *flags)
 	return (0);
 }
 
-int		find_hash(char *flags)
+int		find_hash(const char *flags)
 {
 	char *hash;
 

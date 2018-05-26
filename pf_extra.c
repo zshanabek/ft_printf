@@ -3,7 +3,7 @@
 int		is_specifier(char c)
 {
 	char *spec;
-	char *flags;
+	const char *flags;
 
 	flags = "%sSpdDioOuUxXcC";
 	spec = ft_strchr(flags, c);
@@ -41,7 +41,7 @@ void	ft_sign_order(t_item *form)
 		form->order = 3;
 }
 
-void	ft_basic_analyze(char *flags, t_item *form)
+void	ft_basic_analyze(const char *flags, t_item *form)
 {
 	if (find_minus(flags))
 		form->minus = true;

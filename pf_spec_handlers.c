@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
+void	ft_analyze_c(wint_t c, t_item *form, const char *flags, int *count)
 {
 	int		size;
 
@@ -24,7 +24,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 	*count += (ft_strlen(form->pad_str) + size);
 }
 
-void	ft_analyze_percent(t_item *form, char *flags, int *count)
+void	ft_analyze_percent(t_item *form, const char *flags, int *count)
 {
 	ft_basic_analyze(flags, form);	
 	form->pad = get_width(flags) - 1;
@@ -37,7 +37,7 @@ void	ft_analyze_percent(t_item *form, char *flags, int *count)
 	*count += (ft_strlen(form->pad_str) + 1);
 }
 
-void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
+void	ft_analyze_ls(wchar_t *str, t_item *form, const char *flags, int *count)
 {
 	wchar_t		*output;
 
@@ -60,7 +60,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 	ft_wstrdel(&output);
 }
 
-void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
+void	ft_analyze_s(char *str, t_item *form, const char *flags, int *count)
 {
 	ft_basic_analyze(flags, form);	
 	if (str == NULL)

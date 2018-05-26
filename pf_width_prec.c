@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int		get_width(char *flags)
+int		get_width(const char *flags)
 {
 	int k;
 	int len;
@@ -24,7 +24,7 @@ int		get_width(char *flags)
 	return (num);
 }
 
-int		get_precision(char *flags)
+int		get_precision(const char *flags)
 {
 	int len;
 	int num;
@@ -52,7 +52,7 @@ int		get_precision(char *flags)
 		return (-1);
 }
 
-int		calculate_zeros(int len, char *flags)
+int		calculate_zeros(int len, const char *flags)
 {
 	int precision;
 
@@ -62,7 +62,7 @@ int		calculate_zeros(int len, char *flags)
 	return (precision);
 }
 
-int		calculate_padding(int len, t_item *form, char *flags)
+int		calculate_padding(int len, t_item *form, const char *flags)
 {
 	int		padding;
 	int		width;

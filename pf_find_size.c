@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-uintmax_t	find_length_u(va_list ap, char *flags, t_item *form)
+uintmax_t	find_length_u(va_list ap, const char *flags, t_item *form)
 {
 	int i;
 
@@ -25,7 +25,7 @@ uintmax_t	find_length_u(va_list ap, char *flags, t_item *form)
 		return (va_arg(ap, unsigned int));
 }
 
-intmax_t	find_length(va_list ap, char *flags, t_item *form)
+intmax_t	find_length(va_list ap, const char *flags, t_item *form)
 {
 	int i;
 
@@ -50,7 +50,7 @@ intmax_t	find_length(va_list ap, char *flags, t_item *form)
 		return (va_arg(ap, int));
 }
 
-int			find_length_s(char *flags)
+int			find_length_s(const char *flags)
 {
 	int i;
 
@@ -64,7 +64,7 @@ int			find_length_s(char *flags)
 	return (0);
 }
 
-wint_t		find_length_c(va_list ap, char *flags, t_item *form)
+wint_t		find_length_c(va_list ap, const char *flags, t_item *form)
 {
 	int i;
 

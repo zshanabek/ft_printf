@@ -38,7 +38,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 	*count += ft_strlen(output);
 }
 
-void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_u(uintmax_t num, t_item *form, const char *flags, int *count)
 {
 	char *output;
 

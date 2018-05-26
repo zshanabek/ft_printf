@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void		identify_spec(t_item *form, va_list ap, char *flags, int *count)
+void		identify_spec(t_item *form, va_list ap, const char *flags, int *count)
 {
 	if (form->spec == 'd' || form->spec == 'i' || form->spec == 'D')
 		ft_analyze_d(find_length(ap, flags, form), form, flags, count);
@@ -26,12 +26,9 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 	t_item		*form;
 	char		*flags;
 
-	flags = ft_strnew(0);
-	i += 1;
 	form = create_struct();
-	flags = get_inform(format, i, form);
+	get_inform(format, i, form);
 	identify_spec(form, ap, flags, count);
-	ft_strdel(&flags);
 	while (!is_specifier(format[i]))
 		i++;
 	return (i);

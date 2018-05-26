@@ -28,7 +28,7 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putstr(form->pad_str);
 }
 
-void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
+void	ft_analyze_d(intmax_t num, t_item *form, const char *flags, int *count)
 {
 	if (num < 0)
 	{
