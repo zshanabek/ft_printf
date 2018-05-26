@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:50:28 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/24 22:50:29 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/26 16:07:45 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void			ft_putsymbol(wchar_t c)
 		else
 			ft_putunicode(c, len);
 	}
+	ft_strdel(&s);
 }

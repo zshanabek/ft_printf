@@ -4,14 +4,15 @@ void	ft_prefix(t_item *form, int *count)
 {
 	if (form->hash && (form->spec == 'o' || form->spec == 'O'))
 	{
-		form->hex_sign = "0";
+		form->hex_sign[0] = '0';
 		(*count) += 1;
 	}
 	else if (form->hash)
 	{
-		form->hex_sign = "0x";
+		form->hex_sign[0] = '0';
+		form->hex_sign[1] = 'x';
 		if (form->spec == 'X')
-			form->hex_sign = "0X";
+			form->hex_sign[1] = 'X';
 		(*count) += 2;
 	}
 	if (form->hash)
@@ -41,6 +42,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 {
 	char *output;
 
+	output = ft_strnew(1);
 	ft_basic_analyze(flags, form);
 	if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
 		form->hash = true;

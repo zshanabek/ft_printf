@@ -61,22 +61,19 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 
 void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 {
-	char *output;
-
-	output = ft_strnew(0);
 	ft_basic_analyze(flags, form);	
 	if (str == NULL)
-		output = ft_strdup("(null)");
+		form->output = ft_strdup("(null)");
 	else if (get_precision(flags) != -1)
-		output = ft_strsub(str, 0, get_precision(flags));
+		form->output = ft_strsub(str, 0, get_precision(flags));
 	else
-		output = ft_strdup(str);
-	form->pad = calculate_padding(ft_strlen(output), form, flags);
+		form->output = ft_strdup(str);
+	form->pad = calculate_padding(ft_strlen(form->output), form, flags);
 	create_output(form);
 	if (form->minus == false)
 		ft_putstr(form->pad_str);
-	ft_putstr(output);
+	ft_putstr(form->output);
 	if (form->minus == true)
 		ft_putstr(form->pad_str);
-	*count += (ft_strlen(form->pad_str) + ft_strlen(output));
+	*count += (ft_strlen(form->pad_str) + ft_strlen(form->output));
 }

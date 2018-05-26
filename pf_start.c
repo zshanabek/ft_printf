@@ -18,7 +18,7 @@ void		identify_spec(t_item *form, va_list ap, char *flags, int *count)
 		ft_analyze_c(find_length_c(ap, flags, form), form, flags, count);
 	else if (form->spec == '%')
 		ft_analyze_percent(form, flags, count);
-	free(form);
+	form_del(form);	
 }
 
 int			go_str(int i, va_list ap, const char *restrict format, int *count)
@@ -26,10 +26,12 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 	t_item		*form;
 	char		*flags;
 
+	flags = ft_strnew(0);
 	i += 1;
 	form = create_struct();
 	flags = get_inform(format, i, form);
 	identify_spec(form, ap, flags, count);
+	ft_strdel(&flags);
 	while (!is_specifier(format[i]))
 		i++;
 	return (i);

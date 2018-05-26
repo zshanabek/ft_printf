@@ -9,15 +9,6 @@
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
-
-typedef enum	e_size
-{
-	h,
-	l,
-	hh,
-	ll
-}				t_size;
-
 typedef struct	s_item
 {
 	int		plus;
@@ -34,6 +25,7 @@ typedef struct	s_item
 	char	*hex_sign;
 	char	*pad_str;
 	char	*zer_str;
+	char	*output;	
 }				t_item;
 
 int				find_minus(char *flags);
@@ -68,4 +60,6 @@ int				find_spec(char *flags);
 void			create_output(t_item *form);
 void			ft_sign_order(t_item *form);
 void			ft_basic_analyze(char *flags, t_item *form);
+void			form_del(t_item *form);
+
 #endif
