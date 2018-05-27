@@ -42,7 +42,6 @@ void	make_output_u(t_item *form, char *output, int *count)
 	if (form->order != 0)
 		ft_strdel(&form->hex_sign);		
 	*count += ft_strlen(output);
-	ft_strdel(&output);
 }
 
 void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
@@ -65,4 +64,6 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	create_output(form);
 	ft_prefix(form, count);
 	make_output_u(form, output, count);
+	free(form->hex_sign);
+	free(output);
 }
