@@ -16,7 +16,7 @@ typedef struct	s_item
 	int		minus;
 	int		zero;
 	int		hash;
-	int		prec;
+	int		zer;
 	int		pad;
 	int		order;
 	int		l;
@@ -25,7 +25,6 @@ typedef struct	s_item
 	char	*hex_sign;
 	char	*pad_str;
 	char	*zer_str;
-	char	*output;	
 }				t_item;
 
 int				find_minus(char *flags);

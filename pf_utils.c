@@ -14,22 +14,18 @@ t_item		*create_struct(void)
 	form->hash = false;
 	form->l = false;	
 	form->pad = 0;
-	form->prec = 0;
+	form->zer = 0;
 	form->sign = 'E';
 	form->order = 0;
-	form->hex_sign = ft_strnew(2);
-	form->zer_str = ft_strnew(0);
-	form->pad_str = ft_strnew(0);
-	form->output = ft_strnew(0);	
 	return (form);
 }
 
 void	form_del(t_item *form)
 {
-	ft_strdel(&form->pad_str);
-	ft_strdel(&form->zer_str);
-	ft_strdel(&form->hex_sign);
-	ft_strdel(&form->output);	
+	if (form->pad >= 0)
+		ft_strdel(&form->pad_str);
+	if (form->zer >= 0)
+		ft_strdel(&form->zer_str);
 
 	free(form);
 	form = NULL;

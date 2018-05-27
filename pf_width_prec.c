@@ -77,8 +77,8 @@ int		calculate_padding(int len, t_item *form, char *flags)
 	width = get_width(flags);
 	if (form->spec == 's' || form->spec == 'S')
 		return (width - len);
-	if (form->prec > 0)
-		padding = width - (form->prec + len);
+	if (form->zer > 0)
+		padding = width - (form->zer + len);
 	else
 		padding = width - len;
 	if (form->sign == '+' || form->sign == '-' || form->space == true)

@@ -9,11 +9,11 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 	}
 	if (form->order == 1)
 		ft_putchar(form->sign);
-	if (ft_strlen(form->pad_str) > 0 && form->minus == false)
+	if (form->pad > 0 && form->minus == false)
 		ft_putstr(form->pad_str);
 	if (form->order == 2)
 		ft_putchar(form->sign);
-	if (ft_strlen(form->zer_str) > 0)
+	if (form->zer > 0)
 		ft_putstr(form->zer_str);
 	if (form->order == 3)
 		ft_putchar(form->sign);
@@ -24,7 +24,7 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 	}
 	else
 		ft_putstr(ft_itoa_max(num));
-	if (ft_strlen(form->pad_str) > 0 && form->minus == true)
+	if (form->pad > 0 && form->minus == true)
 		ft_putstr(form->pad_str);
 }
 
@@ -39,10 +39,10 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		form->sign = '+';
 	else if (find_space(flags))
 		form->space = true;
-	form->prec = calculate_zeros(ft_intlen(num), flags);
+	form->zer = calculate_zeros(ft_intlen(num), flags);
 	if (find_minus(flags))
 		form->minus = true;
-	else if (find_zero(flags) && form->prec == -1)
+	else if (find_zero(flags) && form->zer == -1)
 		form->zero = true;
 	if (is_sign(form->sign))
 		form->space = false;
@@ -56,6 +56,9 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 		(*count)++;
 	}
 	make_output_d(num, form, count);
-	*count += (ft_strlen(form->pad_str) + ft_strlen(form->zer_str));
+	if (form->zer >= 0)
+		*count += form->zer;
+	if (form->pad >= 0)
+		*count += form->pad;
 	*count += ft_intlen(num);
 }

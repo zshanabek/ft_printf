@@ -21,8 +21,8 @@ int		is_sign(char c)
 
 void	create_output(t_item *form)
 {
-	if (form->prec > 0)
-		form->zer_str = ft_strfill(form->prec, '0');
+	if (form->zer > 0)
+		form->zer_str = ft_strfill(form->zer, '0');
 	if (form->pad > 0 && form->zero == true)
 		form->pad_str = ft_strfill(form->pad, '0');
 	else if (form->pad > 0 && form->zero == false)
@@ -31,13 +31,13 @@ void	create_output(t_item *form)
 
 void	ft_sign_order(t_item *form)
 {
-	if ((form->pad <= 0 && form->prec <= 0) ||
-	(form->pad > 0 && form->prec <= 0 && form->zero == true) ||
-	(form->prec > form->pad))
+	if ((form->pad <= 0 && form->zer <= 0) ||
+	(form->pad > 0 && form->zer <= 0 && form->zero == true) ||
+	(form->zer > form->pad))
 		form->order = 1;
-	else if (form->pad > 0 && form->prec > 0)
+	else if (form->pad > 0 && form->zer > 0)
 		form->order = 2;
-	else if (form->pad > 0 && form->prec <= 0)
+	else if (form->pad > 0 && form->zer <= 0)
 		form->order = 3;
 }
 
