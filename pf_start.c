@@ -47,7 +47,7 @@ int			ft_printf(const char *restrict format, ...)
 	{
 		if (format[i] != '%')
 		{
-			ft_putchar(format[i]);
+			// ft_putchar(format[i]);
 			count++;
 		}
 		if (format[i] == '%')

@@ -1,55 +1,51 @@
 #include "ft_printf.h"
 
-int		get_width(const char *flags)
+int		get_width(const char *flags, int i, t_item *form)
 {
 	int k;
 	int len;
-	int num;
-	int i;
 
-	num = 0;
-	i = 0;
 	while ((flags[i] && !(ft_isdigit(flags[i]))) || flags[i] == '0')
 		i++;
 	k = i;
 	len = 0;
 	if (flags[i - 1] == '.')
-		return (num);
+		form->pad = 0;
 	while (ft_isdigit(flags[i]))
 	{
 		len++;
 		i++;
 	}
-	num = ft_atoi(ft_strsub(flags, k, len));
-	return (num);
+	form->pad = ft_atoi(ft_strsub(flags, k, len));
+	return (i);
 }
 
-int		get_precision(const char *flags)
+void	get_precision(const char *format, int i, t_item *form)
 {
 	int len;
 	int num;
 	int k;
-	int i;
+	char *arr;
 
-	i = 0;
 	num = 0;
-	while (flags[i] && flags[i] != '.')
+	while (format[i] && format[i] != '.')
 		i++;
-	if (flags[i] == '.')
+	if (format[i] == '.')
 	{
 		i++;
 		k = i;
 		len = 0;
-		while (flags[i] && ft_isdigit(flags[i]))
+		while (format[i] && ft_isdigit(format[i]))
 		{
 			len++;
 			i++;
 		}
-		num = ft_atoi(ft_strsub(flags, k, len));
-		return (num);
+		arr = ft_strsub(format, k, len);
+		num = ft_atoi(arr);
+		form->prec = num;
 	}
 	else
-		return (-1);
+		form->prec = -1;
 }
 
 int		calculate_zeros(int len, const char *flags)

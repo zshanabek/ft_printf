@@ -49,5 +49,48 @@ char		*ft_strfill(size_t size, char c)
 
 void	get_inform(const char *restrict format, int i, t_item *form)
 {
-	printf("ok: %s\n", format);
+	while (format[i])
+	{
+			if (format[i] == '-' || format[i] == '0')
+			{
+				if (format[i] == '-')
+					form->zero = true;
+				else if (format[i] == '0')
+					form->minus = true;
+				i++;
+			}
+			if (format[i] == '+' || format[i] == ' ')
+			{
+				if (format[i] == '+')
+					form->plus = true;
+				else if (format[i] == ' ')
+					form->space = true;
+				i++;
+			}
+			if (format[i] == '#')
+			{
+				form->hash = true;
+				i++;
+			}
+			if (ft_isdigit(format[i]))
+			{
+				
+			}
+			if (format[i] == '.')
+			{
+				form->prec = 0;				
+				k = i;
+				i++;
+				num = 0;
+				while (format[i] && ft_isdigit(format[i]))
+				{
+					num++;
+					i++;
+				}
+				form->precision = ft_atoi(ft_strsub(format, k + 1, num));
+			}
+			if (is_specifier(format[i]))
+			form->spec = format[i];
+		i++;
+	}
 }
