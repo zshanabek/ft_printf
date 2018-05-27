@@ -6,6 +6,7 @@ int		get_width(char *flags)
 	int len;
 	int num;
 	int i;
+	char *arr;
 
 	num = 0;
 	i = 0;
@@ -20,7 +21,9 @@ int		get_width(char *flags)
 		len++;
 		i++;
 	}
-	num = ft_atoi(ft_strsub(flags, k, len));
+	arr = ft_strsub(flags, k, len);
+	num = ft_atoi(arr);
+	ft_strdel(&arr);	
 	return (num);
 }
 
@@ -30,6 +33,7 @@ int		get_precision(char *flags)
 	int num;
 	int k;
 	int i;
+	char *arr;
 
 	i = 0;
 	num = 0;
@@ -45,7 +49,9 @@ int		get_precision(char *flags)
 			len++;
 			i++;
 		}
-		num = ft_atoi(ft_strsub(flags, k, len));
+		arr = ft_strsub(flags, k, len);
+		num = ft_atoi(arr);
+		ft_strdel(&arr);
 		return (num);
 	}
 	else
@@ -69,7 +75,6 @@ int		calculate_padding(int len, t_item *form, char *flags)
 
 	padding = 0;
 	width = get_width(flags);
-
 	if (form->spec == 's' || form->spec == 'S')
 		return (width - len);
 	if (form->prec > 0)

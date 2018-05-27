@@ -67,6 +67,7 @@ char		*get_inform(const char *restrict format, int i, t_item *form)
 		len++;
 	}
 	form->spec = format[i];
+	ft_strdel(&flags);
 	flags = ft_strsub(format, k, len);
 	return (flags);
 }
