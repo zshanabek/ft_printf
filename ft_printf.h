@@ -57,7 +57,7 @@ wint_t			find_length_c(va_list ap, char *flags, t_item *form);
 void			ft_sign_order_u(t_item *form, int *count);
 int				find_spec(char *flags);
 void			create_output(t_item *form);
-void			ft_sign_order(t_item *form);
+void			ft_sign_order(t_item *form, int *count);
 void			ft_basic_analyze(char *flags, t_item *form);
 void			form_del(t_item *form);
 

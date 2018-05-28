@@ -17,7 +17,7 @@ void	ft_prefix(t_item *form, int *count)
 		(*count) += 2;
 	}
 	if (form->hash)
-		ft_sign_order(form);
+		ft_sign_order(form, count);
 }
 
 void	make_output_u(t_item *form, char *output, int *count)
