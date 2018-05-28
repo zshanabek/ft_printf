@@ -6,7 +6,7 @@ all: 	$(NAME)
 
 $(NAME): 
 		@gcc $(FLAGS) -c libft/*.c -I libft/libft.h
-		@gcc -c $(FILES)
+		@gcc $(FLAGS) -c $(FILES)
 		@ar rc $(NAME) *.o
 
 clean:

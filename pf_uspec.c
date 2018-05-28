@@ -40,7 +40,7 @@ void	make_output_u(t_item *form, char *output, int *count)
 	if (form->pad >= 0)
 		*count += form->pad;
 	if (form->order != 0)
-		ft_strdel(&form->hex_sign);		
+		ft_strdel(&form->hex_sign);
 	*count += ft_strlen(output);
 }
 
