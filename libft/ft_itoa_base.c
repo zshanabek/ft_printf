@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 14:47:25 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/22 22:27:47 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:20:36 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*fill_arr(intmax_t value, long nbr, int base, int len)
 	if (!(arr = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	arr[len] = '\0';
-	while (nbr)
+	while (len >= 0 && nbr != 0)
 	{
 		arr[--len] = base_string[nbr % base];
 		nbr /= base;

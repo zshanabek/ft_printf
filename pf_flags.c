@@ -10,19 +10,6 @@ int		find_minus(char *flags)
 	return (0);
 }
 
-int		find_spec(char *flags)
-{
-	char *spec;
-	int i;
-
-	i = 0;
-	while (flags[i])
-		i++;
-	if (is_specifier(flags[i]))
-		return (1);
-	return (0);
-}
-
 int		find_zero(char *flags)
 {
 	int i;

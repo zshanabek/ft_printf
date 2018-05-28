@@ -45,7 +45,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, char *flags, int *count)
 {
 	wchar_t		*output;
 
-	ft_basic_analyze(flags, form);	
+	ft_basic_analyze(flags, form);		
 	if (str == NULL)
 		output = ft_strdupw(L"(null)");
 	else if (get_precision(flags) != -1)

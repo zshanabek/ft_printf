@@ -23,7 +23,7 @@ int		get_width(char *flags)
 	}
 	arr = ft_strsub(flags, k, len);
 	num = ft_atoi(arr);
-	ft_strdel(&arr);	
+	ft_strdel(&arr);
 	return (num);
 }
 
