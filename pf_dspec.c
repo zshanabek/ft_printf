@@ -26,7 +26,7 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putstr(form->pad_str);
 }
 
-void	ft_count(int num, int *count, t_item *form)
+void	ft_count(intmax_t num, int *count, t_item *form)
 {
 	if (form->zer >= 0)
 		*count += form->zer;
