@@ -4,7 +4,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 {
 	int		size;
 
-	if (form->spec == 'C' || form->l == true)
+	if (c != 0 && (form->spec == 'C' || form->l == true))
 		size = ft_charlen(c);
 	else
 		size = 1;
@@ -28,7 +28,7 @@ void	ft_analyze_c(wint_t c, t_item *form, char *flags, int *count)
 
 void	ft_analyze_percent(t_item *form, char *flags, int *count)
 {
-	ft_basic_analyze(flags, form);	
+	ft_basic_analyze(flags, form);
 	form->pad = get_width(flags) - 1;
 	create_output(form);
 	if (form->minus == false && form->pad > 0)

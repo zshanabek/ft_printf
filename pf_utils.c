@@ -22,11 +22,6 @@ t_item		*create_struct(void)
 
 void	form_del(t_item *form)
 {
-	if (form->pad >= 0)
-		ft_strdel(&form->pad_str);
-	if (form->zer >= 0)
-		ft_strdel(&form->zer_str);
-
 	free(form);
 	form = NULL;
 }
