@@ -17,7 +17,7 @@ int		find_zero(char *flags)
 	i = 0;
 	while (flags[i])
 	{
-		if (ft_isdigit(flags[i - 1]) == 0 && flags[i] == '0')
+		if (!ft_isdigit(flags[i - 1]) && flags[i - 1] != '.' && flags[i] == '0')
 			return (1);
 		i++;
 	}
