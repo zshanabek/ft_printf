@@ -51,7 +51,7 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	char *output;
 
 	ft_basic_analyze(flags, form);
-	if (form->spec == 'o' && (find_hash(flags)))
+	if ((form->spec == 'o' || form->spec == 'O') && (find_hash(flags)))
 		form->hash = true;
 	else if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
 		form->hash = true;

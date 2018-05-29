@@ -20,12 +20,6 @@ t_item		*create_struct(void)
 	return (form);
 }
 
-void	form_del(t_item *form)
-{
-	free(form);
-	form = NULL;
-}
-
 char		*ft_strfill(size_t size, char c)
 {
 	char *str;

@@ -30,7 +30,8 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 	flags = get_inform(format, i, form);
 	identify_spec(form, ap, flags, count);
 	ft_strdel(&flags);
-	form_del(form);
+	free(form);
+	form = NULL;
 	while (!is_specifier(format[i]))
 		i++;
 	return (i);

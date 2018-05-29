@@ -3,6 +3,7 @@
 void	make_output_d(intmax_t num, t_item *form, int *count)
 {
 	char *str;
+
 	if (form->space)
 	{
 		ft_putchar(' ');
@@ -20,7 +21,7 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putchar(form->sign);
 	str = ft_itoa_max(num);
 	if (num < 0)
-		ft_putstr(str + 1); 
+		ft_putstr(str + 1);
 	else if (num != 0 || form->zer != 0)
 		ft_putstr(str);
 	ft_strdel(&str);
@@ -38,10 +39,19 @@ void	ft_count(intmax_t num, int *count, t_item *form)
 	if (form->pad > 0)
 	{
 		*count += form->pad;
-		free(form->pad_str);		
+		free(form->pad_str);
 	}
 	if (num != 0 || form->zer != 0)
 		*count += ft_intlen(num);
+}
+
+void	do_a_job(intmax_t num, t_item *form, int *count)
+{
+	create_output(form);
+	if (is_sign(form->sign))
+		ft_sign_order(form, count);
+	make_output_d(num, form, count);
+	ft_count(num, count, form);
 }
 
 void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
@@ -52,7 +62,7 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 	if (num < 0)
 	{
 		len--;
-		form->sign = '-';	
+		form->sign = '-';
 	}
 	if (find_plus(flags) && form->sign != '-')
 		form->sign = '+';
@@ -68,9 +78,5 @@ void	ft_analyze_d(intmax_t num, t_item *form, char *flags, int *count)
 	form->pad = calculate_padding(len, form, flags);
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
-	create_output(form);
-	if (is_sign(form->sign))
-		ft_sign_order(form, count);
-	make_output_d(num, form, count);
-	ft_count(num, count, form);
+	do_a_job(num, form, count);
 }
