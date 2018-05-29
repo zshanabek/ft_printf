@@ -20,7 +20,7 @@ void	ft_prefix(t_item *form, int *count)
 		ft_sign_order(form, count);
 }
 
-void	make_output_u(t_item *form, char *output, int *count)
+void	make_output_u(t_item *form, int num, char *output, int *count)
 {
 	if (form->order == 1)
 		ft_putstr(form->hex_sign);
@@ -32,7 +32,8 @@ void	make_output_u(t_item *form, char *output, int *count)
 		ft_putstr(form->zer_str);
 	if (form->order == 3)
 		ft_putstr(form->hex_sign);
-	ft_putstr(output);
+	if (num != 0 || form->zer != 0)
+		ft_putstr(output);
 	if (form->pad > 0 && form->minus == true)
 		ft_putstr(form->pad_str);
 	if (form->zer >= 0)
@@ -41,7 +42,8 @@ void	make_output_u(t_item *form, char *output, int *count)
 		*count += form->pad;
 	if (form->order != 0)
 		ft_strdel(&form->hex_sign);
-	*count += ft_strlen(output);
+	if (num != 0 || form->zer != 0)
+		*count += ft_strlen(output);
 }
 
 void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
@@ -49,7 +51,9 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	char *output;
 
 	ft_basic_analyze(flags, form);
-	if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
+	if (form->spec == 'o' && (find_hash(flags)))
+		form->hash = true;
+	else if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
 		form->hash = true;
 	if (form->spec == 'o' || form->spec == 'O')
 		output = ft_itoa_base_u(num, 8);
@@ -61,9 +65,11 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 		ft_strupcase(output);
 	form->zer = calculate_zeros(ft_strlen(output), flags);
 	form->pad = calculate_padding(ft_strlen(output), form, flags);
+	if (form->zer == 0 && num == 0 && form->pad > 0)
+		form->pad++;
 	create_output(form);
 	ft_prefix(form, count);
-	make_output_u(form, output, count);
+	make_output_u(form, num, output, count);
 	free(form->hex_sign);
 	free(output);
 }
