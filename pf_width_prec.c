@@ -44,7 +44,7 @@ int		get_precision(char *flags)
 		i++;
 		k = i;
 		len = 0;
-		while (flags[i] && ft_isdigit(flags[i]))
+		while (flags[i] && (ft_isdigit(flags[i]) || is_specifier(flags[i])))
 		{
 			len++;
 			i++;

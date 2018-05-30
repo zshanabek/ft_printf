@@ -70,21 +70,28 @@ void	ft_analyze_s(char *str, t_item *form, char *flags, int *count)
 	char *output;
 
 	ft_basic_analyze(flags, form);
-	if (str == NULL)
+	if (str == NULL && get_precision(flags) == -1)
 		output = ft_strdup("(null)");
 	else if (get_precision(flags) != -1)
 		output = ft_strsub(str, 0, get_precision(flags));
 	else
 		output = ft_strdup(str);
-	form->pad = calculate_padding(ft_strlen(output), form, flags);
+	if (str == NULL && get_precision(flags) != -1)
+		form->pad = get_width(flags);
+	else
+		form->pad = calculate_padding(ft_strlen(output), form, flags);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
-	ft_putstr(output);
+	if (!(str == NULL && get_precision(flags) != -1))
+		ft_putstr(output);
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
 	if (form->pad >= 0)
 		*count += form->pad;
-	*count += ft_strlen(output);
-	ft_strdel(&output);
+	if (!(str == NULL && get_precision(flags) != -1))
+	{
+		*count += ft_strlen(output);
+		ft_strdel(&output);
+	}
 }
