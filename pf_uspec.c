@@ -51,19 +51,21 @@ void	ft_analyze_u(uintmax_t num, t_item *form, char *flags, int *count)
 	char *output;
 
 	ft_basic_analyze(flags, form);
-	if ((form->spec == 'o' || form->spec == 'O') && (find_hash(flags)))
-		form->hash = true;
-	else if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
-		form->hash = true;
 	if (form->spec == 'o' || form->spec == 'O')
 		output = ft_itoa_base_u(num, 8);
 	else if (form->spec == 'X' || form->spec == 'x' || form->spec == 'p')
 		output = ft_itoa_base_u(num, 16);
 	else
 		output = ft_itoa_base_u(num, 10);
+	form->zer = calculate_zeros(ft_strlen(output), flags);	
+	if ((form->spec == 'o' || form->spec == 'O') && find_hash(flags) && (num == 0 && form->zer != 0))
+		form->hash = false;
+	else if ((form->spec == 'o' || form->spec == 'O') && (find_hash(flags)))
+		form->hash = true;
+	else if ((find_hash(flags) && num != 0) || (form->spec == 'p'))
+		form->hash = true;
 	if (form->spec == 'X')
 		ft_strupcase(output);
-	form->zer = calculate_zeros(ft_strlen(output), flags);
 	form->pad = calculate_padding(ft_strlen(output), form, flags);
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
