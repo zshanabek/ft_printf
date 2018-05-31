@@ -95,8 +95,8 @@ int		get_inform(const char *restrict format, int i, t_item *form)
 		form->pad = form->pad * 10 + (format[i++] - '0');
 	if (format[i] == '.')
 	{
+		i++;		
 		form->zer = 0;
-		i++;
 		while (ft_isdigit(format[i]))
 			form->zer = form->zer * 10 + (format[i++] - '0');
 	}
@@ -105,7 +105,7 @@ int		get_inform(const char *restrict format, int i, t_item *form)
 		form->size = format[i];
 		i++;
 	}
-	if (!is_specifier(format[i]))
+	if (!is_specifier(format[i]) && format[i] == form->size)
 	{
 		form->doubled = 1;
 		i++;

@@ -6,5 +6,9 @@ int			ft_printf(const char *restrict format, ...);
 
 int main(int argc, char **argv)
 {
-	ft_printf("My name is %s and yours\n", "Jonas");
+	int i;
+
+	set_locale(LC_ALL, "");
+	ft_printf("%lc\n", L'暖');
+	printf   ("%lc\n", L'暖');
 }

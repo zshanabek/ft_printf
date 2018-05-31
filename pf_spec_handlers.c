@@ -14,9 +14,9 @@ void	ft_analyze_c(wint_t c, t_item *form, int *count)
 		ft_putstr(form->pad_str);
 	if (c == 0)
 		ft_putchar(0);
-	else if (form->spec == 'C' || form->l == true)
+	else if (form->spec == 'C' || form->size == 'l')
 		ft_putsymbol(c);
-	else if (form->spec == 'c')
+	else
 		ft_putchar(c);
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);

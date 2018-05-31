@@ -8,7 +8,7 @@ void	ft_prefix(t_item *form, int *count)
 		form->hex_sign[0] = '0';
 		(*count) += 1;
 	}
-	else if (form->hash)
+	else if (form->hash || form->spec == 'p')
 	{
 		form->hex_sign[0] = '0';
 		form->hex_sign[1] = 'x';
@@ -16,7 +16,7 @@ void	ft_prefix(t_item *form, int *count)
 			form->hex_sign[1] = 'X';
 		(*count) += 2;
 	}
-	if (form->hash)
+	if (form->hash || form->spec == 'p')
 		ft_sign_order(form, count);
 }
 

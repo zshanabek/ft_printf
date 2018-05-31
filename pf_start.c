@@ -18,6 +18,8 @@ void		identify_spec(t_item *form, va_list ap, int *count)
 		ft_analyze_c(find_length_c(ap, form), form, count);
 	else if (form->spec == '%')
 		ft_analyze_percent(form, count);
+	else
+		ft_analyze_c(form->spec, form, count);
 }
 
 int			go_str(int i, va_list ap, const char *restrict format, int *count)
