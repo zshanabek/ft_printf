@@ -6,20 +6,20 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:50:28 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/26 17:07:04 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:04:53 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_putunicode(wchar_t c, int len)
+static void		ft_putunicode(wchar_t c, int size)
 {
-	if (len <= 11)
+	if (size == 2)
 	{
 		ft_putchar((c >> 6) + 0b11000000);
 		ft_putchar((c & 0b111111) + 0b10000000);
 	}
-	else if (len <= 16)
+	else if (size == 3)
 	{
 		ft_putchar((c >> 12) + 0b11100000);
 		ft_putchar(((c >> 6) & 0b111111) + 0b10000000);
@@ -36,17 +36,14 @@ static void		ft_putunicode(wchar_t c, int len)
 
 void			ft_putsymbol(wchar_t c)
 {
-	char	*s;
-	int		len;
+	int		size;
 
-	s = ft_itoa_base(c, 2);
-	len = ft_strlen(s);
-	ft_strdel(&s);	
+	size = ft_charlen(c);
 	if (MB_CUR_MAX != 1)
 	{
-		if (len <= 7)
+		if (size == 1)
 			ft_putchar(c);
 		else
-			ft_putunicode(c, len);
+			ft_putunicode(c, size);
 	}
 }

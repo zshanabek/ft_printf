@@ -5,8 +5,8 @@ FILES =  pf_start.c pf_spec_handlers.c pf_utils.c pf_flags.c pf_width_prec.c pf_
 all: 	$(NAME)
 
 $(NAME): 
-		@gcc -c libft/*.c -I libft/libft.h
-		@gcc -c $(FILES)
+		@gcc $(FLAGS) -c libft/*.c -I libft/libft.h
+		@gcc $(FLAGS) -c $(FILES)
 		@ar rc $(NAME) *.o
 
 clean:

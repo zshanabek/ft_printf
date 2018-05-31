@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:26:52 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/25 12:56:44 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:05:54 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ wchar_t		*ft_strsub_w(wchar_t const *s, unsigned int start, size_t len)
 {
 	wchar_t		*str;
 	size_t		i;
-	int			d;
+	size_t		d;
 
 	if (!s)
 		return (0);
@@ -25,12 +25,12 @@ wchar_t		*ft_strsub_w(wchar_t const *s, unsigned int start, size_t len)
 	str = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1));
 	if (str == NULL)
 		return (0);
-	while (s[d] && (i + ft_charlen(s[d + 1]) <= len))
+	while (s[start] && (i + ft_charlen(s[start + 1]) <= len))
 	{
-		str[d] = s[d];
-		i += ft_charlen(s[d]);
-		d++;
+		str[d] = s[start];
+		i += ft_charlen(s[start]);
 		start++;
+		d++;
 	}
 	str[d] = '\0';
 	return (str);
