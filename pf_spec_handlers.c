@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_analyze_c(wint_t c, t_item *form, const char *flags, int *count)
+void	ft_analyze_c(wint_t c, t_item *form, int *count)
 {
 	int		size;
 
@@ -8,8 +8,7 @@ void	ft_analyze_c(wint_t c, t_item *form, const char *flags, int *count)
 		size = ft_charlen(c);
 	else
 		size = 1;
-	ft_basic_analyze(flags, form);
-	form->pad = get_width(flags) - size;
+	form->pad = form->pad - size;
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
@@ -26,10 +25,9 @@ void	ft_analyze_c(wint_t c, t_item *form, const char *flags, int *count)
 	*count += size;
 }
 
-void	ft_analyze_percent(t_item *form, const char *flags, int *count)
+void	ft_analyze_percent(t_item *form, int *count)
 {
-	ft_basic_analyze(flags, form);
-	form->pad = get_width(flags) - 1;
+	form->pad = form->pad - 1;
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
@@ -41,18 +39,17 @@ void	ft_analyze_percent(t_item *form, const char *flags, int *count)
 	*count += 1;
 }
 
-void	ft_analyze_ls(wchar_t *str, t_item *form, const char *flags, int *count)
+void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 {
 	wchar_t		*output;
 
-	ft_basic_analyze(flags, form);
 	if (str == NULL)
 		output = ft_strdupw(L"(null)");
-	else if (get_precision(flags) != -1)
-		output = ft_strsub_w(str, 0, get_precision(flags));
+	else if (form->zer != -1)
+		output = ft_strsub_w(str, 0, form->zer);
 	else
 		output = ft_strdupw(str);
-	form->pad = calculate_padding(ft_wstrlen(output), form, flags);
+	form->pad = calculate_padding(ft_wstrlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
@@ -65,31 +62,27 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, const char *flags, int *count)
 	ft_wstrdel(&output);
 }
 
-void	ft_analyze_s(char *str, t_item *form, const char *flags, int *count)
+void	ft_analyze_s(char *str, t_item *form, int *count)
 {
 	char *output;
 
-	ft_basic_analyze(flags, form);
-	if (str == NULL && get_precision(flags) == -1)
+	if (str == NULL && form->zer == -1)
 		output = ft_strdup("(null)");
-	else if (get_precision(flags) != -1)
-		output = ft_strsub(str, 0, get_precision(flags));
+	else if (form->zer != -1)
+		output = ft_strsub(str, 0, form->zer);
 	else
 		output = ft_strdup(str);
-	if (str == NULL && get_precision(flags) != -1)
-		form->pad = get_width(flags);
-	else
-		form->pad = calculate_padding(ft_strlen(output), form, flags);
+	form->pad = calculate_padding(ft_strlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (!(str == NULL && get_precision(flags) != -1))
+	if (!(str == NULL && form->zer != -1))
 		ft_putstr(output);
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
 	if (form->pad >= 0)
 		*count += form->pad;
-	if (!(str == NULL && get_precision(flags) != -1))
+	if (!(str == NULL && form->zer != -1))
 	{
 		*count += ft_strlen(output);
 		ft_strdel(&output);

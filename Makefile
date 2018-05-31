@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-FILES =  pf_start.c pf_spec_handlers.c pf_utils.c pf_flags.c pf_width_prec.c pf_dspec.c pf_uspec.c pf_extra.c pf_find_size.c
+FILES =  pf_start.c pf_spec_handlers.c pf_utils.c pf_width_prec.c pf_dspec.c pf_uspec.c pf_extra.c pf_find_size.c
 
 all: 	$(NAME)
 
