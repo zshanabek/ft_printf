@@ -17,6 +17,7 @@ typedef struct	s_item
 	int		minus;
 	int		zero;
 	int		hash;
+	int		prefix;	
 	int		zer;
 	int		pad;
 	int		order;

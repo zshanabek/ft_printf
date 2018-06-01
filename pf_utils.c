@@ -51,6 +51,7 @@ t_item		*create_struct(void)
 	form->space = false;
 	form->zero = false;
 	form->hash = false;
+	form->prefix = false;	
 	form->doubled = 0;	
 	form->pad = 0;
 	form->zer = -1;
@@ -81,7 +82,7 @@ int		ft_flags(const char *restrict format, int i, t_item *form)
 		form->zero = ((form->zero || format[i] == '0') && form->minus == 0) ? 1 : 0;
 		form->plus = (form->plus || format[i] == '+') ? 1  : 0;
 		form->space = ((form->space || format[i] == ' ') && form->plus == 0) ? 1 : 0;
-		form->hash = (form->hash || format[i] == '#') ? 1  : 0;
+		form->prefix = (form->prefix || format[i] == '#') ? 1  : 0;
 		i++;
 	}
 	return (i);

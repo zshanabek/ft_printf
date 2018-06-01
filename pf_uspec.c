@@ -57,9 +57,11 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 	else
 		output = ft_itoa_base_u(num, 10);
 	form->zer = calculate_zeros(ft_strlen(output), form);	
-	if ((form->spec == 'o' || form->spec == 'O') && form->hash && (num == 0 && form->zer != 0))
+	if ((form->spec == 'o' || form->spec == 'O') && form->prefix && (num == 0 && form->zer != 0))
 		form->hash = false;
-	else if ((form->spec == 'o' || form->spec == 'O') && (form->hash))
+	else if ((form->spec == 'o' || form->spec == 'O') && (form->prefix))
+		form->hash = true;
+	else if ((form->prefix && num != 0) || (form->spec == 'p'))
 		form->hash = true;
 	if (form->spec == 'X')
 		ft_strupcase(output);

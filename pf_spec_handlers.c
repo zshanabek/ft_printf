@@ -66,13 +66,15 @@ void	ft_analyze_s(char *str, t_item *form, int *count)
 {
 	char *output;
 
+	output = NULL;
 	if (str == NULL && form->zer == -1)
 		output = ft_strdup("(null)");
 	else if (form->zer != -1)
 		output = ft_strsub(str, 0, form->zer);
 	else
 		output = ft_strdup(str);
-	form->pad = calculate_padding(ft_strlen(output), form);
+	if (output != NULL)
+		form->pad = calculate_padding(ft_strlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
