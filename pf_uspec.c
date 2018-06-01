@@ -59,8 +59,8 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 	form->zer = calculate_zeros(ft_strlen(output), form);	
 	if ((form->spec == 'o' || form->spec == 'O') && form->hash && (num == 0 && form->zer != 0))
 		form->hash = false;
-	else if (num == 0)
-		form->hash = false;
+	else if ((form->spec == 'o' || form->spec == 'O') && (form->hash))
+		form->hash = true;
 	if (form->spec == 'X')
 		ft_strupcase(output);
 	form->pad = calculate_padding(ft_strlen(output), form);
