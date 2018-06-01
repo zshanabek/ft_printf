@@ -25,11 +25,11 @@ int		calculate_padding(int len, t_item *form)
 		padding = width - len;
 	if (form->sign == '+' || form->sign == '-' || form->space == true)
 		padding--;
-	if (form->hash == true && (form->spec == 'x' || form->spec == 'X'))
+	if (form->hash && (form->spec == 'x' || form->spec == 'X'))
 		padding -= 2;
 	else if (form->spec == 'p')
 		padding -= 2;
-	else if (form->hash == true && (form->spec == 'o' || form->spec == 'O'))
+	else if (form->hash && (form->spec == 'o' || form->spec == 'O'))
 		padding--;
 	return (padding);
 }

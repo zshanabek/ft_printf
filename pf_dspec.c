@@ -26,7 +26,7 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putstr(str);
 	if (form->pad > 0 && form->minus == true)
 		ft_putstr(form->pad_str);
-	free(str);	
+	free(str);
 }
 
 void	ft_analyze_d(intmax_t num, t_item *form, int *count)
