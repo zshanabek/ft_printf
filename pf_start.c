@@ -84,6 +84,7 @@ int			ft_printf(const char *restrict format, ...)
 	int			i;
 	int			count;
 	va_list		ap;
+
 	i = 0;
 	count = 0;
 	va_start(ap, format);

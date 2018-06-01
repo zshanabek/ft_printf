@@ -2,12 +2,9 @@
 
 int		is_specifier(char c)
 {
-	char	*spec;
-	char	*flags;
-
-	flags = "%sSpdDioOuUxXcC";
-	spec = ft_strchr(flags, c);
-	if (spec)
+	if (c == 's' || c == 'S' || c == 'p' || c == 'd' ||
+	c == 'D' || c == 'i' || c == 'o' || c == 'O' || c == 'u' ||
+	c == 'U' || c == 'x' || c == 'X' || c == 'c' || c == 'C')
 		return (1);
 	return (0);
 }

@@ -30,29 +30,22 @@ typedef struct	s_item
 	char	*zer_str;
 }				t_item;
 
+int				ft_printf(const char *restrict format, ...);
 int				calculate_zeros(int len, t_item *form);
 int				calculate_padding(int len, t_item *form);
 int				is_specifier(char c);
 t_item			*create_struct();
 void			create_output(t_item *form);
-void			create_output_d(intmax_t num, t_item *form, int *count);
 void			ft_analyze_d(intmax_t n, t_item *form, int *c);
 void			ft_analyze_ls(wchar_t *str, t_item *form, int *c);
 void			ft_analyze_s(char *str, t_item *form, int *count);
 void			ft_analyze_u(uintmax_t n, t_item *form, int *c);
-void			ft_analyze_c(wint_t c, t_item *form, int *count);
+void			ft_analyze_c(wchar_t c, t_item *form, int *count);
 void			ft_analyze_percent(t_item *form, int *count);
-int				ft_printf(const char *restrict format, ...);
-int				get_inform(const char *restrict format, int i, t_item *form);
-int				find_length_s(const char *flags);
 intmax_t		find_length(va_list ap, t_item *form);
 uintmax_t		find_length_u(va_list ap, t_item *form);
 wint_t			find_length_c(va_list ap, t_item *form);
-void			ft_sign_order_u(t_item *form, int *count);
-int				find_spec(const char *flags);
 void			ft_sign_order(t_item *form, int *count);
-void			form_del(t_item *form);
-void			print_struct(t_item *form);
 char			*ft_itoa_max(intmax_t n);
 
 #endif
