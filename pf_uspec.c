@@ -68,6 +68,8 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 	form->pad = calculate_padding(ft_strlen(output), form);
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
+	if ((form->spec == 'o' || form->spec == 'O') && form->zer > 0)
+		form->hash = false;
 	create_output(form);
 	ft_prefix(form, count);
 	make_output_u(form, num, output, count);

@@ -6,10 +6,6 @@ int			ft_printf(const char *restrict format, ...);
 
 int main(int argc, char **argv)
 {
-	int i;
-
-	setlocale(LC_ALL, "");
-	ft_printf("%#.3o\n", 1);
+	ft_printf("%#.3o\n", 1);	
 	printf   ("%#.3o\n", 1);
-
 }
