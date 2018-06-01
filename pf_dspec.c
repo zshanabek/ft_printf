@@ -45,15 +45,6 @@ void	ft_count(intmax_t num, int *count, t_item *form)
 		*count += ft_intlen(num);
 }
 
-void	do_a_job(intmax_t num, t_item *form, int *count)
-{
-	create_output(form);
-	if (form->sign == '+' || form->sign == '-')
-		ft_sign_order(form, count);
-	make_output_d(num, form, count);
-	ft_count(num, count, form);
-}
-
 void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 {
 	int len;
@@ -74,5 +65,9 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	form->pad = calculate_padding(len, form);
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
-	do_a_job(num, form, count);
+	create_output(form);
+	if (form->sign == '+' || form->sign == '-')
+		ft_sign_order(form, count);
+	make_output_d(num, form, count);
+	ft_count(num, count, form);
 }
