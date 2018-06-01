@@ -42,23 +42,6 @@ void	make_output_u(t_item *form, int num, char *output)
 		ft_putstr(form->pad_str);
 }
 
-void 	count_return_value(t_item *form, int num, char *output, int *count)
-{
-	if (form->zer >= 0)
-		*count += form->zer;
-	if (form->pad >= 0)
-		*count += form->pad;
-	if (num != 0 || form->zer != 0)
-		*count += ft_strlen(output);
-	if (form->hash)
-	{
-		if (form->spec == 'o' || form->spec == 'O')
-			(*count)++;
-		else
-			(*count) += 2;
-	}
-}
-
 void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 {
 	char *output;
@@ -80,6 +63,6 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 		ft_sign_order(form, count);		
 	create_output(form);
 	make_output_u(form, num, output);
-	count_return_value(form, num, output, count);
+	count_return_value(form, num, ft_strlen(output), count);
 	free(output);	
 }

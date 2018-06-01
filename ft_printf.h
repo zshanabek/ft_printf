@@ -49,5 +49,6 @@ wint_t			find_length_c(va_list ap, t_item *form);
 t_item			*create_struct();
 intmax_t		find_length(va_list ap, t_item *form);
 uintmax_t		find_length_u(va_list ap, t_item *form);
+void			count_return_value(t_item *form, int num, int len, int *count);
 
 #endif

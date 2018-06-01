@@ -24,25 +24,9 @@ void	make_output_d(intmax_t num, t_item *form, int *count)
 		ft_putstr(str + 1);
 	else if (num != 0 || form->zer != 0)
 		ft_putstr(str);
-	ft_strdel(&str);
 	if (form->pad > 0 && form->minus == true)
 		ft_putstr(form->pad_str);
-}
-
-void	ft_count(intmax_t num, int *count, t_item *form)
-{
-	if (form->zer > 0)
-	{
-		*count += form->zer;
-		free(form->zer_str);
-	}
-	if (form->pad > 0)
-	{
-		*count += form->pad;
-		free(form->pad_str);
-	}
-	if (num != 0 || form->zer != 0)
-		*count += ft_intlen(num);
+	free(str);	
 }
 
 void	ft_analyze_d(intmax_t num, t_item *form, int *count)
@@ -57,11 +41,11 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	}
 	if (form->plus && form->sign != '-')
 		form->sign = '+';
-	form->zer = calculate_zeros(len, form);
 	if (form->zero && form->zer != -1 )
 		form->zero = false;
 	if (form->sign == '+' || form->sign == '-')
 		form->space = false;
+	form->zer = calculate_zeros(len, form);
 	form->pad = calculate_padding(len, form);
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
@@ -69,5 +53,5 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	if (form->sign == '+' || form->sign == '-')
 		ft_sign_order(form, count);
 	make_output_d(num, form, count);
-	ft_count(num, count, form);
+	count_return_value(form, num, ft_intlen(num), count);
 }

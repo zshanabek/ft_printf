@@ -87,6 +87,6 @@ void	ft_analyze_s(char *str, t_item *form, int *count)
 	if (!(str == NULL && form->zer != -1))
 	{
 		*count += ft_strlen(output);
-		ft_strdel(&output);
+		free(output);
 	}
 }
