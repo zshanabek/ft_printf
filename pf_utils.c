@@ -1,14 +1,5 @@
 #include "ft_printf.h"
 
-int		is_specifier(char c)
-{
-	if (c == 's' || c == 'S' || c == 'p' || c == 'd' ||
-	c == 'D' || c == 'i' || c == 'o' || c == 'O' || c == 'u' ||
-	c == 'U' || c == 'x' || c == 'X' || c == 'c' || c == 'C')
-		return (1);
-	return (0);
-}
-
 void	ft_sign_order(t_item *form, int *count)
 {
 	if (form->sign == '+' || form->sign == '-')

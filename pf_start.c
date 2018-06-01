@@ -25,8 +25,7 @@ void		identify_spec(t_item *form, va_list ap, int *count)
 int		ft_flags(const char *restrict format, int i, t_item *form)
 {
 	i++;
-	while (format[i] == '-' || format[i] == '0'
-	|| format[i] == '+' || format[i] == ' ' || format[i] == '#')
+	while (is_flag(format[i]))
 	{
 		form->minus = (form->minus || format[i] == '-') ? 1 : 0;
 		form->zero = ((form->zero || format[i] == '0')
@@ -52,8 +51,7 @@ int		get_inform(const char *restrict format, int i, t_item *form)
 		while (ft_isdigit(format[i]))
 			form->zer = form->zer * 10 + (format[i++] - '0');
 	}
-	if (format[i] == 'h' || format[i] == 'l'
-	|| format[i] == 'z' || format[i] == 'j')
+	if (is_modifier(format[i]))
 	{
 		form->size = format[i];
 		i++;
