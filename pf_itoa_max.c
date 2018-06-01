@@ -6,11 +6,11 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 20:48:10 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/28 19:44:07 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:03:36 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static char		*fill_arr(char *arr, intmax_t n, int len)
 {

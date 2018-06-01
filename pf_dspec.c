@@ -48,7 +48,7 @@ void	ft_count(intmax_t num, int *count, t_item *form)
 void	do_a_job(intmax_t num, t_item *form, int *count)
 {
 	create_output(form);
-	if (is_sign(form->sign))
+	if (form->sign == '+' || form->sign == '-')
 		ft_sign_order(form, count);
 	make_output_d(num, form, count);
 	ft_count(num, count, form);
@@ -69,7 +69,7 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	form->zer = calculate_zeros(len, form);
 	if (form->zero && form->zer != -1 )
 		form->zero = false;
-	if (is_sign(form->sign))
+	if (form->sign == '+' || form->sign == '-')
 		form->space = false;
 	form->pad = calculate_padding(len, form);
 	if (form->zer == 0 && num == 0 && form->pad > 0)

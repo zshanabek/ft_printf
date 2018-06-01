@@ -22,6 +22,51 @@ void		identify_spec(t_item *form, va_list ap, int *count)
 		ft_analyze_c(form->spec, form, count);
 }
 
+int		ft_flags(const char *restrict format, int i, t_item *form)
+{
+	i++;
+	while (format[i] == '-' || format[i] == '0'
+	|| format[i] == '+' || format[i] == ' ' || format[i] == '#')
+	{
+		form->minus = (form->minus || format[i] == '-') ? 1 : 0;
+		form->zero = ((form->zero || format[i] == '0')
+		&& form->minus == 0) ? 1 : 0;
+		form->plus = (form->plus || format[i] == '+') ? 1 : 0;
+		form->space = ((form->space || format[i] == ' ')
+		&& form->plus == 0) ? 1 : 0;
+		form->prefix = (form->prefix || format[i] == '#') ? 1 : 0;
+		i++;
+	}
+	return (i);
+}
+
+int		get_inform(const char *restrict format, int i, t_item *form)
+{
+	i = ft_flags(format, i, form);
+	while (ft_isdigit(format[i]))
+		form->pad = form->pad * 10 + (format[i++] - '0');
+	if (format[i] == '.')
+	{
+		i++;
+		form->zer = 0;
+		while (ft_isdigit(format[i]))
+			form->zer = form->zer * 10 + (format[i++] - '0');
+	}
+	if (format[i] == 'h' || format[i] == 'l'
+	|| format[i] == 'z' || format[i] == 'j')
+	{
+		form->size = format[i];
+		i++;
+	}
+	if (!is_specifier(format[i]) && format[i] == form->size)
+	{
+		form->doubled = 1;
+		i++;
+	}
+	form->spec = format[i];
+	return (i);
+}
+
 int			go_str(int i, va_list ap, const char *restrict format, int *count)
 {
 	t_item		*form;

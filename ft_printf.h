@@ -34,9 +34,8 @@ int				calculate_zeros(int len, t_item *form);
 int				calculate_padding(int len, t_item *form);
 int				is_specifier(char c);
 t_item			*create_struct();
+void			create_output(t_item *form);
 void			create_output_d(intmax_t num, t_item *form, int *count);
-char			*ft_strfill(size_t size, char c);
-int				is_sign(char c);
 void			ft_analyze_d(intmax_t n, t_item *form, int *c);
 void			ft_analyze_ls(wchar_t *str, t_item *form, int *c);
 void			ft_analyze_s(char *str, t_item *form, int *count);
@@ -51,9 +50,9 @@ uintmax_t		find_length_u(va_list ap, t_item *form);
 wint_t			find_length_c(va_list ap, t_item *form);
 void			ft_sign_order_u(t_item *form, int *count);
 int				find_spec(const char *flags);
-void			create_output(t_item *form);
 void			ft_sign_order(t_item *form, int *count);
 void			form_del(t_item *form);
 void			print_struct(t_item *form);
+char			*ft_itoa_max(intmax_t n);
 
 #endif

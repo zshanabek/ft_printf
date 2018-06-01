@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/06/01 19:37:05 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/01 20:00:02 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int				ft_isempty(char const *str);
 int				ft_intlen(intmax_t n);
 int				ft_isws(char c);
 int				ft_intmax(int a, int b);
-char			*ft_itoa_max(intmax_t n);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_base_u(uintmax_t value, int base);
 wchar_t			*ft_wstrsub(wchar_t const *s, unsigned int start, size_t len);
