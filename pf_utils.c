@@ -52,7 +52,6 @@ t_item		*create_struct(void)
 	form->zero = false;
 	form->hash = false;
 	form->doubled = 0;	
-	form->l = false;	
 	form->pad = 0;
 	form->zer = -1;
 	form->sign = 'E';
@@ -75,14 +74,14 @@ char		*ft_strfill(size_t size, char c)
 
 int		ft_flags(const char *restrict format, int i, t_item *form)
 {
-	i++;
+	i++;	
 	while (format[i] == '-' || format[i] == '0' || format[i] == '+' || format[i] == ' ' || format[i] == '#')
 	{
-		form->minus = (form->minus || format[i] == '-') ? true : false;
-		form->zero = ((form->zero || format[i] == '0') && form->minus == false) ? true : false;
-		form->plus = (form->plus || format[i] == '+') ? true : false;
-		form->space = ((form->space || format[i] == ' ') && form->plus == false) ? true : false;
-		form->hash = (form->hash || format[i] == '#') ? true : false;
+		form->minus = (form->minus || format[i] == '-') ? 1 : 0;
+		form->zero = ((form->zero || format[i] == '0') && form->minus == 0) ? 1 : 0;
+		form->plus = (form->plus || format[i] == '+') ? 1  : 0;
+		form->space = ((form->space || format[i] == ' ') && form->plus == 0) ? 1 : 0;
+		form->hash = (form->hash || format[i] == '#') ? 1  : 0;
 		i++;
 	}
 	return (i);

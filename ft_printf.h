@@ -9,6 +9,7 @@
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
+
 typedef struct	s_item
 {
 	int		plus;
@@ -19,7 +20,6 @@ typedef struct	s_item
 	int		zer;
 	int		pad;
 	int		order;
-	int		l;
 	int		doubled;
 	char	sign;
 	char	spec;

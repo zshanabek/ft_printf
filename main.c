@@ -8,7 +8,8 @@ int main(int argc, char **argv)
 {
 	int i;
 
-	set_locale(LC_ALL, "");
-	ft_printf("%lc\n", L'暖');
-	printf   ("%lc\n", L'暖');
+	setlocale(LC_ALL, "");
+
+	ft_printf("%443d", 43);
+	
 }
