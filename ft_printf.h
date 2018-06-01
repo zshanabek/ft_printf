@@ -40,7 +40,7 @@ void			ft_analyze_d(intmax_t n, t_item *form, int *c);
 void			ft_analyze_ls(wchar_t *str, t_item *form, int *c);
 void			ft_analyze_s(char *str, t_item *form, int *count);
 void			ft_analyze_u(uintmax_t n, t_item *form, int *c);
-void			ft_analyze_c(wchar_t c, t_item *form, int *count);
+void			ft_analyze_c(wint_t c, t_item *form, int *count);
 void			ft_analyze_percent(t_item *form, int *count);
 void			ft_sign_order(t_item *form, int *count);
 void			create_output(t_item *form);
