@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew_w.c                                      :+:      :+:    :+:   */
+/*   ft_wstrdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/19 13:35:24 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/05/19 14:10:18 by zshanabe         ###   ########.fr       */
+/*   Created: 2018/05/19 16:12:03 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/06/01 19:27:07 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-wchar_t	*ft_strnew_w(size_t size)
+wchar_t		*ft_wstrdup(wchar_t *src)
 {
-	wchar_t		*str;
-	wchar_t		*p;
-	size_t		i;
+	int		len;
+	wchar_t	*dup;
+	int		i;
 
-	str = (wchar_t *)malloc(sizeof(wchar_t) * (size + 1));
-	if (str == NULL)
-		return (NULL);
+	len = ft_wstrlen(src);
+	dup = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1));
+	if (dup == NULL)
+		return (0);
 	i = 0;
-	p = (wchar_t *)str;
-	while (i < (size + 1))
+	while (src[i])
 	{
-		p[i] = (wchar_t)('\0');
+		dup[i] = src[i];
 		i++;
 	}
-	return (str);
+	dup[i] = '\0';
+	return (dup);
 }

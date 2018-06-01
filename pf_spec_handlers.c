@@ -44,11 +44,11 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 	wchar_t		*output;
 
 	if (str == NULL)
-		output = ft_strdupw(L"(null)");
+		output = ft_wstrdup(L"(null)");
 	else if (form->zer != -1)
-		output = ft_strsub_w(str, 0, form->zer);
+		output = ft_wstrsub(str, 0, form->zer);
 	else
-		output = ft_strdupw(str);
+		output = ft_wstrdup(str);
 	form->pad = calculate_padding(ft_wstrlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)

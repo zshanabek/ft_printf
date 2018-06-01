@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 19:23:44 by atlekbai          #+#    #+#             */
-/*   Updated: 2018/05/26 17:02:01 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/01 19:37:05 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
-char			*ft_itoa_max(intmax_t n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
@@ -79,8 +78,6 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-void			ft_nbrendl(intmax_t n);
-int				ft_isempty(char const *str);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -88,24 +85,23 @@ void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstaddend(t_list *head);
+void			ft_nbrendl(intmax_t n);
+int				ft_isempty(char const *str);
 int				ft_intlen(intmax_t n);
 int				ft_isws(char c);
-void			ft_print2darr(char **matrix);
 int				ft_intmax(int a, int b);
+char			*ft_itoa_max(intmax_t n);
 char			*ft_itoa_base(intmax_t value, int base);
 char			*ft_itoa_base_u(uintmax_t value, int base);
-char			*ft_itoa_u(uintmax_t n);
-uintmax_t		ft_atoi_u(const char *str);
-int				ft_intlen_u(uintmax_t n);
-void			ft_strupcase(char *str);
-wchar_t			*ft_strsub_w(wchar_t const *s, unsigned int start, size_t len);
-wchar_t			*ft_strnew_w(size_t size);
-size_t			ft_strlen_w(const wchar_t *s);
-void			ft_putsymbol(wchar_t c);
-void			ft_putstrw(const wchar_t *str);
-wchar_t			*ft_strdupw(const wchar_t *src);
+wchar_t			*ft_wstrsub(wchar_t const *s, unsigned int start, size_t len);
+wchar_t			*ft_wstrnew(size_t size);
+wchar_t			*ft_wstrdup(wchar_t *src);
 int				ft_wstrlen(wchar_t *str);
 int				ft_charlen(wchar_t c);
 void			ft_wstrdel(wchar_t **as);
+void			ft_strupcase(char *str);
+void			ft_putsymbol(wchar_t c);
+void			ft_putstrw(const wchar_t *str);
+void			ft_print2darr(char **matrix);
 
 #endif
