@@ -6,23 +6,17 @@ void	ft_analyze_c(wint_t c, t_item *form, int *count)
 	int		flag;
 
 	flag = 1;
+	size = 1;
 	if (c != 0 && (form->spec == 'C' || form->size == 'l'))
 		size = ft_charlen(c);
-	else
-		size = 1;
 	form->pad = form->pad - size;
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (c == 0)
-		ft_putchar(0);
-	else if (form->spec == 'C' || form->size == 'l')
-	{
-		if ((flag = ft_putsymbol(c)) == -1)
-			*count = -1;
-	}
-	else
+	if (form->spec != 'C' && form->size != 'l')
 		ft_putchar(c);
+	else if ((flag = ft_putsymbol(c)) == -1)
+			*count = -1;
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
 	if (flag != -1)

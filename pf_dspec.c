@@ -41,7 +41,7 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	}
 	if (form->plus && form->sign != '-')
 		form->sign = '+';
-	if (form->zero && form->zer != -1 )
+	if (form->zero && form->zer != -1)
 		form->zero = false;
 	if (form->sign == '+' || form->sign == '-')
 		form->space = false;

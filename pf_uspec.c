@@ -60,9 +60,9 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 	if (form->zer == 0 && num == 0 && form->pad > 0)
 		form->pad++;
 	if (form->hash)
-		ft_sign_order(form, count);		
+		ft_sign_order(form, count);
 	create_output(form);
 	make_output_u(form, num, output);
 	count_return_value(form, num, ft_strlen(output), count);
-	free(output);	
+	free(output);
 }

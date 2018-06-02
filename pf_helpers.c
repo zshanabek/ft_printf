@@ -23,7 +23,7 @@ int		is_specifier(char c)
 	return (0);
 }
 
-void 	count_return_value(t_item *form, int num, int len, int *count)
+void	count_return_value(t_item *form, int num, int len, int *count)
 {
 	if (form->zer > 0)
 	{
