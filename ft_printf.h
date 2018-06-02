@@ -9,6 +9,7 @@
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
+# include <string.h>
 
 typedef struct	s_item
 {
