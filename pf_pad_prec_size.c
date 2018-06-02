@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_pad_prec_size.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/02 23:55:04 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/06/02 23:55:05 by zshanabe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int		calculate_zeros(int len, t_item *form)
+int			calculate_zeros(int len, t_item *form)
 {
 	int precision;
 
@@ -10,7 +22,7 @@ int		calculate_zeros(int len, t_item *form)
 	return (precision);
 }
 
-int		calculate_padding(int len, t_item *form)
+int			calculate_padding(int len, t_item *form)
 {
 	int		padding;
 	int		width;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_spec_handlers.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/02 23:55:37 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/06/02 23:55:38 by zshanabe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	ft_analyze_c(wint_t c, t_item *form, int *count)
@@ -67,7 +79,7 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 			*count += form->pad;
 		*count += ft_wstrlen(output);
 	}
-	ft_wstrdel(&output);
+	free(output);
 }
 
 void	ft_analyze_s(char *str, t_item *form, int *count)

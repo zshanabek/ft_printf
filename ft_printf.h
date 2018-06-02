@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/02 23:56:16 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/06/02 23:56:17 by zshanabe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft/libft.h"
@@ -18,7 +30,7 @@ typedef struct	s_item
 	int		minus;
 	int		zero;
 	int		hash;
-	int		prefix;	
+	int		prefix;
 	int		zer;
 	int		pad;
 	int		order;
