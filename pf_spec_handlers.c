@@ -16,7 +16,7 @@ void	ft_analyze_c(wint_t c, t_item *form, int *count)
 	if (form->spec != 'C' && form->size != 'l')
 		ft_putchar(c);
 	else if ((flag = ft_putsymbol(c)) == -1)
-			*count = -1;
+		*count = -1;
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
 	if (flag != -1)
@@ -44,7 +44,7 @@ void	ft_analyze_percent(t_item *form, int *count)
 void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 {
 	wchar_t		*output;
-	int flag;
+	int			flag;
 
 	flag = 1;
 	if (str == NULL)

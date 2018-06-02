@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:43:36 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 20:56:55 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/02 23:47:33 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_putstrw(const wchar_t *str)
 {
 	int		i;
-	int 	flag;
+	int		flag;
 
 	flag = 1;
 	i = 0;

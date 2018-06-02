@@ -22,7 +22,7 @@ void		identify_spec(t_item *form, va_list ap, int *count)
 		ft_analyze_c(form->spec, form, count);
 }
 
-int		ft_flags(const char *restrict format, int i, t_item *form)
+int			ft_flags(const char *restrict format, int i, t_item *form)
 {
 	i++;
 	while (is_flag(format[i]))
@@ -39,7 +39,7 @@ int		ft_flags(const char *restrict format, int i, t_item *form)
 	return (i);
 }
 
-int		get_inform(const char *restrict format, int i, t_item *form)
+int			get_inform(const char *restrict format, int i, t_item *form)
 {
 	i = ft_flags(format, i, form);
 	while (ft_isdigit(format[i]))
@@ -72,10 +72,11 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 	form = create_struct();
 	i = get_inform(format, i, form);
 	if (form->spec == '\0')
-		return (-2);
-	identify_spec(form, ap, count);
+		i = -2;
+	if (i != -2)
+		identify_spec(form, ap, count);
 	if (*count == -1)
-		return (-1);
+		i = -1;
 	free(form);
 	form = NULL;
 	return (i);
