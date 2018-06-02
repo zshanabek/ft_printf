@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:37 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 23:55:38 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 00:33:33 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ft_analyze_s(char *str, t_item *form, int *count)
 	output = NULL;
 	if (str == NULL && form->zer == -1)
 		output = ft_strdup("(null)");
-	else if (form->zer != -1)
+	else if (form->zer > 0)
 		output = ft_strsub(str, 0, form->zer);
 	else
 		output = ft_strdup(str);

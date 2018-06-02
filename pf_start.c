@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:10 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 23:55:11 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 00:25:01 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 		identify_spec(form, ap, count);
 	if (*count == -1)
 		i = -1;
+	if (form->pad > 0)
+		free(form->pad_str);
+	if (form->zer > 0)
+		free(form->zer_str);
 	free(form);
 	form = NULL;
 	return (i);
