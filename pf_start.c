@@ -72,6 +72,8 @@ int			go_str(int i, va_list ap, const char *restrict format, int *count)
 	form = create_struct();
 	i = get_inform(format, i, form);
 	identify_spec(form, ap, count);
+	if (*count == -1)
+		return (-1);
 	free(form);
 	form = NULL;
 	return (i);
@@ -94,7 +96,11 @@ int			ft_printf(const char *restrict format, ...)
 			count++;
 		}
 		if (format[i] == '%')
+		{
 			i = go_str(i, ap, format, &count);
+			if (i == -1)
+				return (-1);
+		}
 		i++;
 	}
 	va_end(ap);

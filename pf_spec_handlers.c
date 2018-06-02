@@ -3,6 +3,7 @@
 void	ft_analyze_c(wint_t c, t_item *form, int *count)
 {
 	int		size;
+	int		flag;
 
 	if (c != 0 && (form->spec == 'C' || form->size == 'l'))
 		size = ft_charlen(c);
@@ -15,14 +16,20 @@ void	ft_analyze_c(wint_t c, t_item *form, int *count)
 	if (c == 0)
 		ft_putchar(0);
 	else if (form->spec == 'C' || form->size == 'l')
-		ft_putsymbol(c);
+	{
+		if ((flag = ft_putsymbol(c)) == -1)
+			*count = -1;
+	}
 	else
 		ft_putchar(c);
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (form->pad >= 0)
-		*count += form->pad;
-	*count += size;
+	if (flag != -1)
+	{
+		if (form->pad >= 0)
+			*count += form->pad;
+		*count += size;
+	}
 }
 
 void	ft_analyze_percent(t_item *form, int *count)
@@ -42,7 +49,9 @@ void	ft_analyze_percent(t_item *form, int *count)
 void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 {
 	wchar_t		*output;
+	int flag;
 
+	flag = 1;
 	if (str == NULL)
 		output = ft_wstrdup(L"(null)");
 	else if (form->zer != -1)
@@ -53,12 +62,16 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
-	ft_putstrw(output);
+	if ((flag = ft_putstrw(output)) == -1)
+		*count = -1;
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (form->pad >= 0)
-		*count += form->pad;
-	*count += ft_wstrlen(output);
+	if (flag != -1)
+	{
+		if (form->pad >= 0)
+			*count += form->pad;
+		*count += ft_wstrlen(output);
+	}
 	ft_wstrdel(&output);
 }
 
