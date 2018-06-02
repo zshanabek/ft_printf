@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 13:50:28 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 21:13:30 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/02 21:22:54 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ int			ft_putsymbol(wchar_t c)
 		ft_putchar(c);
 	else if (size == 2 && c > 127 && c <= 255)
 	{
-		ft_putchar((c >> 6) + 0b11000000);
-		ft_putchar((c & 0b111111) + 0b10000000);
+		if (MB_CUR_MAX != 1)
+		{
+			ft_putchar((c >> 6) + 0b11000000);
+			ft_putchar((c & 0b111111) + 0b10000000);
+		}
+		else
+			ft_putchar(c);
 	}
 	else if (MB_CUR_MAX != 1)
 		ft_putunicode(c, size);

@@ -4,13 +4,13 @@
 
 int			ft_printf(const char *restrict format, ...);
 
-int main(int argc, char **argv)
+int main()
 {
-	// setlocale(LC_ALL, "");
-	wchar_t *str = L"а";
-	wchar_t c = L'а';
+	setlocale(LC_ALL, "");
+	wchar_t *str = L"ø";
+	wchar_t c = L'ø';
 
-	// printf("len: %d\n", c);
+	printf("len: %d\n", c);
 	printf("%d\n", ft_printf("%S %C %ls %lc\n", str, c, str, c));
 	printf("%d\n", printf   ("%S %C %ls %lc\n", str, c, str, c));	
 }
