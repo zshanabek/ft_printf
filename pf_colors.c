@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	color_len(char *color)
+int		put_color(char *color)
 {
 	if (ft_strequ(color, "red"))
 		ft_putstr("\x1b[31m");
@@ -16,6 +16,9 @@ void	color_len(char *color)
 		ft_putstr("\x1b[36m");
 	else if (ft_strequ(color, "eoc"))
 		ft_putstr("\x1b[0m");
+	else
+		return (0);
+	return (1);
 }
 
 int		identify_color(const char *restrict s, int i)
@@ -26,13 +29,17 @@ int		identify_color(const char *restrict s, int i)
 
 	len = 0;
 	k = i;
-	while (s[i] != '}')
+	while (s[i] && s[i] != '}')
 	{
 		i++;
 		len++;
 	}
 	color = ft_strsub(s, k + 1, len - 1);
-	color_len(color);
+	if (put_color(color) == 0)
+	{
+		ft_putchar('{');
+		i = k;
+	}
 	free(color);
 	return (i);
 }
