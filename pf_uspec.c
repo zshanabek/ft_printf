@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:34 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 23:55:35 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 01:01:28 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	ft_analyze_u(uintmax_t num, t_item *form, int *count)
 		ft_sign_order(form, count);
 	create_output(form);
 	make_output_u(form, num, output);
-	count_return_value(form, num, ft_strlen(output), count);
+	count_return_value(form, (num == 0) ? 1 : 0, ft_strlen(output), count);
 	free(output);
 }

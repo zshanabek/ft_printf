@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:30 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 23:55:31 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 01:04:14 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ void	ft_analyze_d(intmax_t num, t_item *form, int *count)
 	if (form->sign == '+' || form->sign == '-')
 		ft_sign_order(form, count);
 	make_output_d(num, form, count);
-	count_return_value(form, num, ft_intlen(num), count);
+	count_return_value(form, (num == 0) ? 1 : 0, ft_intlen(num), count);
 }
