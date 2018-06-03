@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:37 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/03 18:58:25 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 22:37:25 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 		output = ft_wstrdup(L"(null)");
 	else
 		output = ft_wstrdup(str);
-	if (form->zer >= 0)
-		output = ft_wstrsub(output, 0, form->zer);
 	form->pad = calculate_padding(ft_wstrlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
@@ -85,13 +83,18 @@ void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 void	ft_analyze_s(char *str, t_item *form, int *count)
 {
 	char *output;
+	char *temp;
 
 	if (str == NULL)
 		output = ft_strdup("(null)");
 	else
 		output = ft_strdup(str);
 	if (form->zer >= 0)
+	{
+		temp = output;
 		output = ft_strsub(output, 0, form->zer);
+		free(temp);
+	}
 	form->pad = calculate_padding(ft_strlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
