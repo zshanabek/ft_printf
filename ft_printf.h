@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:56:16 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/02 23:56:17 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/03 20:05:35 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ t_item			*create_struct();
 intmax_t		find_length(va_list ap, t_item *form);
 uintmax_t		find_length_u(va_list ap, t_item *form);
 void			count_return_value(t_item *form, int num, int len, int *count);
+int				identify_color(const char *restrict s, int i);
 
 #endif
