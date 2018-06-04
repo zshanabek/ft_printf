@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:21 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/03 01:04:56 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/04 21:25:38 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		is_specifier(char c)
 
 void	count_return_value(t_item *form, int is_zero, int len, int *count)
 {
-	if (form->zer > 0)
+	if (form->zer > 0 && form->spec != 'S')
 		*count += form->zer;
 	if (form->pad > 0)
 		*count += form->pad;
@@ -47,7 +47,7 @@ void	count_return_value(t_item *form, int is_zero, int len, int *count)
 	{
 		if (form->spec == 'o' || form->spec == 'O')
 			(*count)++;
-		else
+		else if (form->spec == 'x' || form->spec == 'X' || form->spec == 'p')
 			(*count) += 2;
 	}
 }
