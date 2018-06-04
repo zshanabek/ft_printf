@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_colors.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/03 23:04:18 by zshanabe          #+#    #+#             */
+/*   Updated: 2018/06/03 23:04:38 by zshanabe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		put_color(char *color)
@@ -22,7 +34,7 @@ int		put_color(char *color)
 }
 
 int		identify_color(const char *restrict s, int i)
-{	
+{
 	int		len;
 	int		k;
 	char	*color;

@@ -6,13 +6,14 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:55:18 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/03/27 15:24:09 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/04 20:24:24 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
