@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:10 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/04 20:30:38 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/04 21:28:46 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			ft_printf(const char *restrict format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '{' && ft_isalpha(format[i+1]))
+		if (format[i] == '{' && ft_isalpha(format[i + 1]))
 			i = identify_color(format, i);
 		else if (format[i] != '%' && ft_putchar(format[i]))
 			count++;

@@ -6,7 +6,7 @@
 /*   By: zshanabe <zshanabe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 23:55:37 by zshanabe          #+#    #+#             */
-/*   Updated: 2018/06/03 22:37:25 by zshanabe         ###   ########.fr       */
+/*   Updated: 2018/06/04 21:29:11 by zshanabe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	ft_analyze_c(wint_t c, t_item *form, int *count)
 {
 	int		size;
-	int		flag;
 
-	flag = 1;
 	size = 1;
 	if (c != 0 && (form->spec == 'C' || form->size == 'l'))
 		size = ft_charlen(c);
@@ -27,11 +25,11 @@ void	ft_analyze_c(wint_t c, t_item *form, int *count)
 		ft_putstr(form->pad_str);
 	if (form->spec != 'C' && form->size != 'l')
 		ft_putchar(c);
-	else if ((flag = ft_putsymbol(c)) == -1)
+	else if (ft_putsymbol(c) == -1)
 		*count = -1;
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (flag != -1)
+	if (*count != -1)
 	{
 		if (form->pad >= 0)
 			*count += form->pad;
@@ -56,27 +54,28 @@ void	ft_analyze_percent(t_item *form, int *count)
 void	ft_analyze_ls(wchar_t *str, t_item *form, int *count)
 {
 	wchar_t		*output;
-	int			flag;
+	wchar_t		*temp;
 
-	flag = 1;
 	if (str == NULL)
 		output = ft_wstrdup(L"(null)");
 	else
 		output = ft_wstrdup(str);
+	if (form->zer >= 0)
+	{
+		temp = output;
+		output = ft_wstrsub(output, 0, form->zer);
+		free(temp);
+	}
 	form->pad = calculate_padding(ft_wstrlen(output), form);
 	create_output(form);
 	if (form->minus == false && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if ((flag = ft_putstrw(output)) == -1)
+	if (ft_putstrw(output) == -1)
 		*count = -1;
 	if (form->minus == true && form->pad > 0)
 		ft_putstr(form->pad_str);
-	if (flag != -1)
-	{
-		if (form->pad >= 0)
-			*count += form->pad;
-		*count += ft_wstrlen(output);
-	}
+	if (*count != -1)
+		count_return_value(form, 0, ft_wstrlen(output), count);
 	free(output);
 }
 
